@@ -1,47 +1,87 @@
+"use client";
+
+import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+
 const Footer: React.FC = () => (
-  <footer className="text-white py-12 rounded-t-4xl">
-    <div className="max-w-7xl mx-auto px-4 rounded-t-4xl">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+  <footer className="bg-black text-gray-300 py-16 relative overflow-hidden border-t border-[#d4af37]/20">
+    {/* Soft golden background glow */}
+    <div className="absolute inset-0 bg-gradient-to-t from-[#d4af37]/10 via-transparent to-transparent pointer-events-none" />
+
+    <div className="max-w-7xl mx-auto px-6 relative z-10">
+      {/* Top Grid Section */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+        {/* Brand */}
         <div>
-          <h3 className="text-2xl font-bold mb-4">DUQOR</h3>
-          <p className="text-gray-400 text-sm">
-            Excellence in interior design and construction since 2008.
+          <h3 className="text-3xl font-bold text-[#d4af37] mb-4 tracking-wider">DUQOR</h3>
+          <p className="text-sm text-gray-400 leading-relaxed max-w-xs">
+            Excellence in interior design and construction since 2008. We craft spaces that blend innovation, luxury, and timeless design.
           </p>
         </div>
+
+        {/* Services */}
         <div>
-          <h4 className="font-semibold mb-4">Services</h4>
-          <ul className="space-y-2 text-sm text-gray-400">
-            <li><a href="#" className="hover:text-white">Interior Design</a></li>
-            <li><a href="#" className="hover:text-white">Construction</a></li>
-            <li><a href="#" className="hover:text-white">Renovation</a></li>
-            <li><a href="#" className="hover:text-white">Project Management</a></li>
+          <h4 className="text-lg font-semibold text-[#d4af37] mb-4 uppercase tracking-wide">Services</h4>
+          <ul className="space-y-2 text-sm">
+            {["Interior Design", "Construction", "Renovation", "Project Management"].map((service) => (
+              <li key={service}>
+                <a
+                  href="#"
+                  className="hover:text-[#d4af37] transition-all duration-300 relative group"
+                >
+                  {service}
+                  <span className="absolute left-0 -bottom-[2px] w-0 h-[1.5px] bg-[#d4af37] transition-all duration-300 group-hover:w-full"></span>
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
+
+        {/* Company */}
         <div>
-          <h4 className="font-semibold mb-4">Company</h4>
-          <ul className="space-y-2 text-sm text-gray-400">
-            <li><a href="#" className="hover:text-white">About Us</a></li>
-            <li><a href="#" className="hover:text-white">Portfolio</a></li>
-            <li><a href="#" className="hover:text-white">Contact</a></li>
+          <h4 className="text-lg font-semibold text-[#d4af37] mb-4 uppercase tracking-wide">Company</h4>
+          <ul className="space-y-2 text-sm">
+            {["About Us", "Portfolio", "Contact"].map((link) => (
+              <li key={link}>
+                <a
+                  href="#"
+                  className="hover:text-[#d4af37] transition-all duration-300 relative group"
+                >
+                  {link}
+                  <span className="absolute left-0 -bottom-[2px] w-0 h-[1.5px] bg-[#d4af37] transition-all duration-300 group-hover:w-full"></span>
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
+
+        {/* Social Media */}
         <div>
-          <h4 className="font-semibold mb-4">Follow Us</h4>
+          <h4 className="text-lg font-semibold text-[#d4af37] mb-4 uppercase tracking-wide">Follow Us</h4>
           <div className="flex gap-4">
-            <a href="#" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#c2a158] transition-colors">
-              f
-            </a>
-            <a href="#" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#c2a158] transition-colors">
-              in
-            </a>
-            <a href="#" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#c2a158] transition-colors">
-              ig
-            </a>
+            {[
+              { icon: <FaFacebookF />, link: "https://www.facebook.com/duqor" },
+              { icon: <FaLinkedinIn />, link: "https://www.linkedin.com/company/duqor" },
+              { icon: <FaInstagram />, link: "https://www.instagram.com/duqor" },
+            ].map(({ icon, link }, i) => (
+              <a
+                key={i}
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 flex items-center justify-center rounded-full bg-[#1a1a1a] border border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37] hover:text-black shadow-[0_0_10px_rgba(212,175,55,0.5)] transition-all duration-300"
+              >
+                {icon}
+              </a>
+            ))}
           </div>
         </div>
       </div>
-      <div className="border-t border-gray-800 pt-8 text-center text-sm text-gray-400">
-        <p>© 2024 Duqor Interior Design & Construction. All rights reserved.</p>
+
+      {/* Bottom Bar */}
+      <div className="border-t border-[#d4af37]/20 pt-6 text-center text-sm text-gray-400">
+        <p>
+          © {new Date().getFullYear()} <span className="text-[#d4af37] font-medium">Duqor Interior Design & Construction</span>. All rights reserved.
+        </p>
       </div>
     </div>
   </footer>

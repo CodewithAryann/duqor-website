@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 
 interface Stat {
   number: string;
@@ -21,7 +22,7 @@ const StatsSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const [counts, setCounts] = useState<number[]>(stats.map(() => 0));
 
-  // Detect when the section is in viewport
+  // Detect when section enters viewport
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -32,32 +33,26 @@ const StatsSection: React.FC = () => {
       },
       { threshold: 0.4 }
     );
-
     if (sectionRef.current) observer.observe(sectionRef.current);
-
     return () => observer.disconnect();
   }, []);
 
-  // Animate numbers
+  // Animate numbers smoothly
   useEffect(() => {
     if (!visible) return;
 
-    const duration = 2000; // animation time (2s)
+    const duration = 2000;
     const startTime = performance.now();
 
     const updateCounts = (currentTime: number) => {
       const progress = Math.min((currentTime - startTime) / duration, 1);
-
       setCounts(
         stats.map((stat) => {
-          const target = parseInt(stat.number.replace("+", ""));
+          const target = parseInt(stat.number.replace(/\D/g, ""));
           return Math.floor(target * progress);
         })
       );
-
-      if (progress < 1) {
-        requestAnimationFrame(updateCounts);
-      }
+      if (progress < 1) requestAnimationFrame(updateCounts);
     };
 
     requestAnimationFrame(updateCounts);
@@ -66,24 +61,59 @@ const StatsSection: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      className="py-16 bg-linear-to-r from-[#c2a158] to-[#b89845] text-white overflow-hidden"
+      className="relative py-24 bg-linear-to-b from-[#0a0a0a] via-[#141414] to-[#0a0a0a] text-white overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+      {/* Subtle radial golden glow */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.1 }}
+        transition={{ duration: 2 }}
+        className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(194,161,88,0.4),transparent_70%)]"
+      />
+
+      <div className="relative z-10 max-w-6xl mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-10"
+        >
           {stats.map((stat, idx) => (
-            <div
+            <motion.div
               key={idx}
-              className="text-center transform transition-all duration-700 ease-out"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: idx * 0.2 }}
+              viewport={{ once: true }}
+              className="text-center relative"
             >
-              <div className="text-4xl md:text-5xl font-bold mb-2">
+              <motion.h3
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={
+                  visible ? { scale: 1, opacity: 1 } : { scale: 0.9, opacity: 0 }
+                }
+                transition={{ duration: 0.8, delay: idx * 0.1 }}
+                className="text-5xl md:text-6xl font-extrabold mb-3 bg-linear-to-r text-[#d4af37] drop-shadow-[0_0_15px_rgba(212,175,55,0.5)] bg-clip-text"
+              >
                 {counts[idx]}
                 {stat.number.includes("+") && "+"}
                 {stat.number.includes("%") && "%"}
-              </div>
-              <div className="text-sm md:text-base opacity-90">{stat.label}</div>
-            </div>
+              </motion.h3>
+              <p className="text-gray-300 text-sm md:text-base tracking-wide uppercase">
+                {stat.label}
+              </p>
+
+              {/* Accent glow line below each stat */}
+              <motion.div
+                initial={{ width: 0 }}
+                whileInView={{ width: "60%" }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="mx-auto mt-4 h-0.5 bg-linear-to-r from-transparent via-[#d4af37] to-transparent"
+              />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -1,89 +1,130 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { FaComments, FaPalette, FaMoneyCheckAlt, FaTools, FaHandshake } from "react-icons/fa";
+import {
+  FaComments,
+  FaPalette,
+  FaMoneyCheckAlt,
+  FaTools,
+  FaHandshake,
+} from "react-icons/fa";
 
 const processSteps = [
   {
     title: "Discovery & Consultation",
     description:
-      "Understanding your goals, lifestyle aspirations, and vision for the space through in-depth conversations and site analysis.",
-    icon: <FaComments className="text-[#c2a158] text-3xl h-4" />,
+      "We begin with an in-depth consultation — listening to your aspirations, understanding your functional needs, and exploring your design preferences to form the foundation of your dream space.",
+    icon: <FaComments />,
   },
   {
     title: "Concept Design",
     description:
-      "Developing comprehensive mood boards, detailed space layouts, and photorealistic 3D renders that bring your vision to life.",
-    icon: <FaPalette className="text-[#c2a158] text-3xl h-4" />,
+      "Our designers craft immersive mood boards, conceptual layouts, and photorealistic 3D renders, translating your ideas into refined visual narratives that reflect your personality and lifestyle.",
+    icon: <FaPalette />,
   },
   {
     title: "Budgeting & Material Selection",
     description:
-      "Providing transparent Bills of Quantities with carefully curated luxury-grade material options that align with your investment.",
-    icon: <FaMoneyCheckAlt className="text-[#c2a158] text-3xl h-4" />,
+      "We provide transparent cost breakdowns with luxury material selections — balancing aesthetic excellence with practicality to achieve enduring value and sophistication.",
+    icon: <FaMoneyCheckAlt />,
   },
   {
     title: "Execution & Project Management",
     description:
-      "Controlled, precisely coordinated, and quality-driven implementation with regular updates and on-site supervision.",
-    icon: <FaTools className="text-[#c2a158] text-3xl h-4" />,
+      "With precision craftsmanship, in-house joinery, and meticulous site coordination, every detail is executed to perfection under strict timelines and quality standards.",
+    icon: <FaTools />,
   },
   {
     title: "Handover & Aftercare",
     description:
-      "Seamless turnover with comprehensive post-completion support and quality assurance to ensure your complete satisfaction.",
-    icon: <FaHandshake className="text-[#c2a158] text-3xl h-4" />,
+      "We deliver a seamless handover experience complemented by post-completion care — ensuring every detail of your bespoke interior continues to shine over time.",
+    icon: <FaHandshake />,
   },
 ];
 
 const OurProcess: React.FC = () => {
   return (
-    <section id="process" className="relative bg-gray-50 py-28 overflow-hidden">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white to-gray-100 opacity-60 pointer-events-none -z-10" />
+    <section
+      id="process"
+      className="relative py-28 bg-linear-to-b from-[#0a0a0a] via-[#111] to-[#0a0a0a] text-white overflow-hidden"
+    >
+      {/* Subtle golden background glow */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.2 }}
+        transition={{ duration: 2 }}
+        className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(194,161,88,0.3),transparent_70%)]"
+      />
 
-      <div className="max-w-6xl mx-auto px-6 lg:px-10">
-        {/* Header */}
+      {/* Header */}
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="relative z-10 text-center mb-24 px-6"
+      >
+        <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-5">
+          Our <span className="bg-linear-to-r text-[#d4af37] drop-shadow-[0_0_15px_rgba(212,175,55,0.5)] bg-clip-text">Process</span>
+        </h2>
+        <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          Every masterpiece begins with a story — our 5-stage journey from concept to completion.
+        </p>
+      </motion.div>
+
+      {/* Timeline */}
+      <div className="relative max-w-5xl mx-auto px-6 lg:px-10">
+        {/* Vertical golden timeline line */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          initial={{ height: 0 }}
+          whileInView={{ height: "100%" }}
+          transition={{ duration: 1.8, ease: "easeOut" }}
           viewport={{ once: true }}
-          className="text-center mb-20"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 tracking-tight">
-            Our <span className="text-[#c2a158]">Process</span>
-          </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Five Stages to Perfection
-          </p>
-        </motion.div>
+          className="absolute left-6 top-0 w-0.5 bg-linear-to-b from-[#d4af37] to-transparent"
+        />
 
-        {/* Timeline layout */}
-        <div className="relative border-l-2 border-[#c2a158]/40 pl-10 space-y-16">
+        <div className="space-y-20 relative">
           {processSteps.map((step, idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, x: -50 }}
+              initial={{ opacity: 0, x: -60 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: idx * 0.1 }}
+              transition={{ duration: 0.8, delay: idx * 0.15 }}
               viewport={{ once: true }}
-              className="relative group"
+              className="relative flex flex-col md:flex-row md:items-start group"
             >
-              {/* Timeline dot */}
-              <div className="absolute -left-[1.6rem] top-2 w-8 h-8 flex items-center justify-center bg-white border-2 border-[#c2a158] rounded-full shadow-md group-hover:scale-110 transition-transform">
-                {step.icon}
+              {/* Timeline icon */}
+              <div className="relative z-10 shrink-0 mr-8 md:mr-10">
+                <motion.div
+                  whileHover={{ scale: 1.2, rotate: 10 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                  className="w-14 h-14 flex items-center justify-center rounded-full bg-[#c2a158]/10 border border-[#c2a158]/50 text-[#d4af37] text-2xl shadow-[0_0_15px_rgba(194,161,88,0.2)] backdrop-blur-md"
+                >
+                  {step.icon}
+                </motion.div>
+                <div className="absolute left-1/2 transform -translate-x-1/2 top-full w-0.5 h-20 bg-linear-to-b from-[#c2a158]/40 to-transparent" />
               </div>
 
-              {/* Content */}
-              <div className="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition-all duration-500">
-                <h3 className="text-2xl font-semibold text-gray-900 mb-3 group-hover:text-[#c2a158] transition-colors">
+              {/* Content card */}
+              <motion.div
+                whileHover={{ y: -5 }}
+                transition={{ duration: 0.3 }}
+                className="relative z-10 bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-[#c2a158]/20 hover:border-[#c2a158]/60 shadow-[0_0_25px_rgba(194,161,88,0.2)] transition-all duration-500 md:w-[80%]"
+              >
+                <h3 className="text-2xl font-semibold mb-3 text-[#f3f3f3] group-hover:text-[#c2a158] transition-colors duration-300">
                   {step.title}
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  {step.description}
-                </p>
-              </div>
+                <p className="text-gray-400 leading-relaxed">{step.description}</p>
+
+                {/* Decorative underline */}
+                <motion.div
+                  initial={{ width: 0 }}
+                  whileInView={{ width: "60%" }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  viewport={{ once: true }}
+                  className="h-0.5 mt-5 bg-linear-to-r from-[#d4af37] to-transparent"
+                />
+              </motion.div>
             </motion.div>
           ))}
         </div>
