@@ -31,20 +31,20 @@ const ContactSection: React.FC = () => {
     setLoading(true);
     setSuccess(null);
 
-    try {
-      await emailjs.send(
-        'service_y4hh2jh',
-        'template_kalvrfm',
-        form,
-        'HCWuVxfAeo6lDUDAK'
-      );
-      setSuccess('Message sent successfully!');
-      setForm({ name: '', email: '', phone: '', message: '' });
-    } catch (error) {
-      setSuccess('Failed to send message. Please try again later.');
-    } finally {
-      setLoading(false);
-    }
+    // try {
+    //   await emailjs.send(
+    //     'service_y4hh2jh',
+    //     'template_kalvrfm',
+    //     // form,
+    //     'HCWuVxfAeo6lDUDAK'
+    //   );
+    //   setSuccess('Message sent successfully!');
+    //   setForm({ name: '', email: '', phone: '', message: '' });
+    // } catch (error) {
+    //   setSuccess('Failed to send message. Please try again later.');
+    // } finally {
+    //   setLoading(false);
+    // }
   };
 
   const contactInfo = [
