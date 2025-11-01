@@ -8,11 +8,14 @@ import AboutPage from './components/Aboutus';
 import DesignPhilosophy from './components/PhilosophySection';
 import Process from './components/Process';
 import PortfolioSection from './components/PortfolioSection';
+import Introduction from './components/Intro';
+import FAQ from './components/FAQ';
 
 export default function Home() {
   return (
     <div className="min-h-screen">
       <HeroSection />
+      <Introduction />
       <AboutPage />      
       <ServicesSection />
       <DesignPhilosophy />
@@ -21,6 +24,7 @@ export default function Home() {
       {/* <ProcessSection /> */}
       <Process />
       <PortfolioSection />
+      <FAQ />
       <ContactSection />
     </div>
   );

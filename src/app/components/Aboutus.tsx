@@ -37,7 +37,7 @@ const AboutPage: React.FC = () => {
           initial={{ opacity: 0, y: -40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-          className="text-4xl md:text-6xl font-bold mb-6 bg-linear-to-r text-[#d4af37] drop-shadow-[0_0_15px_rgba(212,175,55,0.5)] bg-clip-text"
+          className="text-4xl md:text-6xl font-bold mb-6 text-[#d4af37] drop-shadow-[0_0_15px_rgba(212,175,55,0.5)]"
         >
           About DUQOR
         </motion.h1>
@@ -58,7 +58,7 @@ const AboutPage: React.FC = () => {
           sectors throughout the UAE and GCC.
         </motion.p>
 
-        {/* Highlights */}
+        {/* Highlights with Glowing Balls */}
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -71,20 +71,25 @@ const AboutPage: React.FC = () => {
               variants={fadeUp}
               custom={i}
               whileHover={{ scale: 1.05, rotate: 0.5 }}
-              className="bg-[#111] border border-[#2c2c2c] hover:border-[#d4af37] rounded-2xl p-6 shadow-lg hover:shadow-[0_0_20px_rgba(194,161,88,0.3)] transition-all duration-500"
+              className="bg-[#111] border border-[#2c2c2c] hover:border-[#d4af37] rounded-2xl p-6 shadow-lg hover:shadow-[0_0_25px_rgba(194,161,88,0.3)] transition-all duration-500"
             >
-              <div className="flex items-start gap-4">
-                <motion.span
+              <div className="flex items-center gap-4">
+                <motion.div
                   animate={{
                     scale: [1, 1.3, 1],
-                    opacity: [1, 0.6, 1],
+                    opacity: [1, 0.7, 1],
+                    boxShadow: [
+                      "0 0 5px rgba(212,175,55,0.6)",
+                      "0 0 15px rgba(212,175,55,0.9)",
+                      "0 0 5px rgba(212,175,55,0.6)",
+                    ],
                   }}
                   transition={{
                     duration: 2,
                     repeat: Infinity,
                     ease: "easeInOut",
                   }}
-                  className="inline-block w-4 h-4 rounded-full bg-[#d4af37] mt-2 shadow-[0_0_10px_#c2a158]"
+                  className="w-5 h-5 rounded-full bg-[#d4af37] shrink-0"
                 />
                 <p className="text-gray-200 font-medium text-lg leading-snug text-left">
                   {item}
@@ -99,7 +104,7 @@ const AboutPage: React.FC = () => {
           initial={{ width: 0 }}
           whileInView={{ width: "60%" }}
           transition={{ duration: 1.2, delay: 0.5 }}
-          className="mx-auto mt-16 h-0.5 bg-linear-to-r from-transparent via-[#d4af37] to-transparent text-[#d4af37] drop-shadow-[0_0_15px_rgba(212,175,55,0.5)]"
+          className="mx-auto mt-16 h-0.5 bg-linear-to-r from-transparent via-[#d4af37] to-transparent"
         />
       </div>
     </section>
