@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import Link from "next/link";
 import { FaInstagram, FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
@@ -9,6 +9,7 @@ import Image from "next/image";
 const Navbar: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -18,9 +19,16 @@ const Navbar: React.FC = () => {
 
   const navLinks = [
     { href: "#services", label: "Services" },
-    { href: "#project", label: "Projects" },
-    { href: "#about", label: "About Us" },
-    { href: "#contact", label: "Contact" },
+    { href: "/projects", label: "Projects" },
+    { href: "/business-vertical", label: "Business Vertical" },
+    { href: "/about-us", label: "About Us" },
+  ];
+
+  const businessVerticals = [
+    { label: "Residential Interiors", href: "/services/residential" },
+    { label: "Commercial Spaces", href: "/services/commercial" },
+    { label: "Retail Design", href: "/services/retail" },
+    { label: "Hospitality", href: "/services/hospitality" },
   ];
 
   return (
@@ -34,32 +42,72 @@ const Navbar: React.FC = () => {
       <div className="flex items-center justify-between px-6 py-4 md:px-10 text-white">
         {/* Logo */}
         <Link href="/" className="flex items-center shrink-0">
-         <Image
-      src="/images/d-2.png"
-      alt="Duqor Logo"
-      width={120}
-      height={40}
-      priority
-      className="w-auto h-auto transition-transform duration-500 hover:scale-105 select-none"
-      style={{
-        mixBlendMode: "normal",
-        isolation: "isolate",
-        filter: "none",
-      }}
-    />
+          <Image
+            src="/images/d-2.png"
+            alt="Duqor Logo"
+            width={120}
+            height={40}
+            priority
+            className="w-auto h-auto transition-transform duration-500 hover:scale-105 select-none"
+          />
         </Link>
 
         {/* Desktop Navigation */}
-        <ul className="hidden md:flex space-x-8 text-[15px] font-medium tracking-wide">
+        <ul className="hidden md:flex space-x-8 text-[15px] font-medium tracking-wide relative">
           {navLinks.map(({ href, label }) => (
-            <li key={href} className="relative group">
-              <a
-                href={href}
-                className="transition-all duration-300 text-white/90 group-hover:text-[#d4af37]"
-              >
-                {label}
-              </a>
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#d4af37] rounded-full transition-all duration-300 group-hover:w-full shadow-[0_0_8px_rgba(212,175,55,0.8)]"></span>
+            <li
+              key={href}
+              className="relative group"
+              onMouseEnter={() => label === "Business Vertical" && setDropdownOpen(true)}
+              onMouseLeave={() => label === "Business Vertical" && setDropdownOpen(false)}
+            >
+              {label === "Business Vertical" ? (
+                <>
+                  <div className="flex items-center gap-1 cursor-pointer text-white/90 transition-all duration-300 hover:text-[#d4af37]">
+                    <span className="relative pb-0.5 group">
+                      {label}
+                      <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#d4af37] rounded-full transition-all duration-300 group-hover:w-full shadow-[0_0_6px_rgba(212,175,55,0.8)]"></span>
+                    </span>
+                    <ChevronDown
+                      size={16}
+                      className={`transition-transform duration-300 ${
+                        dropdownOpen ? "rotate-180 text-[#d4af37]" : ""
+                      }`}
+                    />
+                  </div>
+
+                  {/* Dropdown (stays open when hovering) */}
+                  <div
+                    onMouseEnter={() => setDropdownOpen(true)}
+                    onMouseLeave={() => setDropdownOpen(false)}
+                    className={`absolute left-0 mt-3 w-56 bg-black/95 border border-[#d4af37]/30 rounded-xl shadow-[0_0_15px_rgba(212,175,55,0.15)] py-3 backdrop-blur-md transition-all duration-300 ${
+                      dropdownOpen
+                        ? "opacity-100 translate-y-0 visible"
+                        : "opacity-0 -translate-y-3 invisible"
+                    }`}
+                  >
+                    {businessVerticals.map((sub) => (
+                      <Link
+                        key={sub.href}
+                        href={sub.href}
+                        className="block px-5 py-2 text-sm text-white/90 hover:text-[#d4af37] hover:bg-[#1a1a1a]/70 transition-all duration-300"
+                      >
+                        {sub.label}
+                      </Link>
+                    ))}
+                  </div>
+                </>
+              ) : (
+                <Link
+                  href={href}
+                  className="relative group text-white/90 transition-all duration-300 hover:text-[#d4af37]"
+                >
+                  <span className="relative pb-0.5 group">
+                    {label}
+                    <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#d4af37] rounded-full transition-all duration-300 group-hover:w-full shadow-[0_0_6px_rgba(212,175,55,0.8)]"></span>
+                  </span>
+                </Link>
+              )}
             </li>
           ))}
         </ul>
@@ -103,14 +151,39 @@ const Navbar: React.FC = () => {
       >
         <ul className="flex flex-col items-center space-y-6 py-8 text-lg font-medium">
           {navLinks.map(({ href, label }) => (
-            <li key={href}>
-              <a
-                href={href}
-                onClick={() => setMenuOpen(false)}
-                className="hover:text-[#d4af37] transition-colors duration-300"
-              >
-                {label}
-              </a>
+            <li key={href} className="w-full text-center">
+              {label === "Business Vertical" ? (
+                <details className="group">
+                  <summary className="cursor-pointer list-none hover:text-[#d4af37] transition-colors duration-300 flex items-center justify-center gap-1">
+                    {label}
+                    <ChevronDown
+                      size={18}
+                      className="transition-transform duration-300 group-open:rotate-180"
+                    />
+                  </summary>
+                  <ul className="mt-3 space-y-3 text-sm">
+                    {businessVerticals.map((sub) => (
+                      <li key={sub.href}>
+                        <Link
+                          href={sub.href}
+                          onClick={() => setMenuOpen(false)}
+                          className="block py-1 text-white/90 hover:text-[#d4af37] transition-all duration-300"
+                        >
+                          {sub.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </details>
+              ) : (
+                <Link
+                  href={href}
+                  onClick={() => setMenuOpen(false)}
+                  className="hover:text-[#d4af37] transition-colors duration-300"
+                >
+                  {label}
+                </Link>
+              )}
             </li>
           ))}
 
