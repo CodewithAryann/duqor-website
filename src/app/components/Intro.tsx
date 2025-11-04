@@ -2,35 +2,53 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-
-const highlights = [
-  "Luxury Residential Projects",
-  "Premium Commercial & Hospitality Interiors",
-  "Complete Design-to-Execution Under One Roof",
-  "Multi-Disciplinary Team with Decades of Expertise",
-  "Trusted by Property Developers, Brands & Homeowners",
-];
+import Link from "next/link";
+import Image from "next/image";
 
 const services = [
   {
-    title: "Residential Interior Design",
-    desc: "Bespoke concepts for villas, apartments, and penthouses.",
+    title: "Residential Interiors",
+    desc: "Where Luxury Meets Comfort.",
+    highlights: [
+      "Tailor-made luxury design concepts",
+      "Premium material and furniture selection",
+      "End-to-end project management",
+    ],
+    link: "/services/residential",
+    img: "/images/intro/residential.png",
   },
   {
-    title: "Commercial Design",
-    desc: "Elegant, sustainable, and functional spaces for modern businesses.",
+    title: "Commercial Interiors",
+    desc: "Redefining Workspaces with Purpose.",
+    highlights: [
+      "Workspace planning and brand-aligned aesthetics",
+      "Optimized lighting and spatial flow",
+      "Focus on durability and long-term value",
+    ],
+    link: "/services/commercial",
+    img: "/images/intro/commercial.png",
   },
   {
-    title: "Turnkey Fit-Out",
-    desc: "From initial concept to project handover.",
+    title: "Hospitality Interiors",
+    desc: "Crafting Hospitality with Heart",
+    highlights: [
+      "Bespoke ambiance creation",
+      "Custom furniture and décor for hospitality",
+      "Guest-focused design experience",
+    ],
+    link: "/services/hospitality",
+    img: "/images/intro/hospitality.png",
   },
   {
-    title: "Space Planning",
-    desc: "Intelligent design that maximizes comfort and efficiency.",
-  },
-  {
-    title: "Custom Furniture & Décor",
-    desc: "Tailored pieces that bring character and luxury to life.",
+    title: "Retail Interiors",
+    desc: "Designing Retail Experiences That Sell.",
+    highlights: [
+      "Strategic product display layouts",
+      "Lighting and signage integration",
+      "Customer flow and zoning optimization",
+    ],
+    link: "/services/retail",
+    img: "/images/intro/retail.png",
   },
 ];
 
@@ -45,16 +63,16 @@ const fadeUp = {
 
 const Introduction: React.FC = () => {
   return (
-    <section className="min-h-screen relative bg-linear-to-b from-[#0a0a0a] via-[#1a1a1a] to-[#0a0a0a] text-white overflow-hidden">
-      {/* Soft Golden Glow Overlay */}
+    <section className="min-h-screen relative bg-linear-to-b from-[#0a0a0a] via-[#121212] to-[#0a0a0a] text-white overflow-hidden">
+      {/* Background Glow Overlay */}
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 0.15 }}
+        animate={{ opacity: 0.12 }}
         transition={{ duration: 2 }}
-        className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(194,161,88,0.3),transparent_70%)]"
+        className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.25),transparent_75%)]"
       />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 py-24 text-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 py-24 text-center">
         {/* Heading */}
         <motion.h1
           initial={{ opacity: 0, y: -40 }}
@@ -73,76 +91,72 @@ const Introduction: React.FC = () => {
           className="text-lg md:text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto mb-16"
         >
           Duqor is a Dubai-based interior design and fit-out studio redefining
-          modern luxury. We create living and working environments that are
-          visually stunning yet functionally seamless. Every project is a story —
-          crafted through collaboration, creativity, and craftsmanship that
-          reflects your lifestyle and aspirations.
+          modern luxury. We craft environments that are visually stunning and
+          deeply functional — blending art, architecture, and innovation to
+          reflect your lifestyle and aspirations.
         </motion.p>
-
-        {/* Highlights */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-20"
-        >
-          {highlights.map((item, i) => (
-            <motion.div
-              key={i}
-              variants={fadeUp}
-              custom={i}
-              whileHover={{ scale: 1.05, rotate: 0.5 }}
-              className="bg-[#111] border border-[#2c2c2c] hover:border-[#d4af37] rounded-2xl p-6 shadow-lg hover:shadow-[0_0_20px_rgba(194,161,88,0.3)] transition-all duration-500"
-            >
-              <div className="flex items-center gap-4">
-                <motion.div
-                  animate={{
-                    scale: [1, 1.3, 1],
-                    opacity: [1, 0.7, 1],
-                    boxShadow: [
-                      "0 0 5px rgba(212,175,55,0.6)",
-                      "0 0 15px rgba(212,175,55,0.9)",
-                      "0 0 5px rgba(212,175,55,0.6)",
-                    ],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  className="w-5 h-5 rounded-full bg-[#d4af37] shrink-0"
-                />
-                <p className="text-gray-200 font-medium text-lg leading-snug text-left">
-                  {item}
-                </p>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
 
         {/* Services Grid */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
         >
           {services.map((service, i) => (
             <motion.div
-              key={i}
-              variants={fadeUp}
-              custom={i}
-              whileHover={{ scale: 1.05, y: -5 }}
-              className="bg-[#111] border border-[#2c2c2c] hover:border-[#d4af37] rounded-2xl p-8 shadow-lg hover:shadow-[0_0_25px_rgba(194,161,88,0.3)] transition-all duration-500 text-left"
-            >
-              <h3 className="text-xl font-semibold text-[#d4af37] mb-3">
-                {service.title}
-              </h3>
-              <p className="text-gray-300 mb-5">{service.desc}</p>
-              <button className="text-[#d4af37] flex items-center gap-2 hover:gap-3 transition-all font-medium">
-                Learn More <ArrowRight size={16} />
-              </button>
-            </motion.div>
+  key={i}
+  variants={fadeUp}
+  custom={i}
+  whileHover={{
+    scale: 1.06,
+    y: -8,
+    boxShadow:
+      "0 0 30px rgba(212,175,55,0.25), 0 0 15px rgba(212,175,55,0.15)",
+  }}
+  transition={{ type: "spring", stiffness: 150 }}
+  className="bg-linear-to-br from-[#1e1e1e] via-[#2a2a2a] to-[#151515] border border-[#2c2c2c] hover:border-[#d4af37]/60 rounded-2xl shadow-md flex flex-col overflow-hidden"
+>
+  {/* Image */}
+  <div className="overflow-hidden rounded-xl">
+    <Image
+      src={service.img}
+      alt={service.title}
+      width={400}
+      height={240}
+      className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-500"
+    />
+  </div>
+
+  {/* Content */}
+  <div className="p-6 flex flex-col flex-1">
+    {/* Title */}
+    <h3 className="text-xl font-semibold text-[#d4af37] mb-2 group-hover:text-[#f5d878] transition-colors">
+      {service.title}
+    </h3>
+
+    {/* Description + Highlights */}
+    <div className="flex-1 flex flex-col justify-start">
+      <p className="text-gray-300 mb-4 text-sm">{service.desc}</p>
+      <ul className="space-y-2">
+        {service.highlights.map((point, j) => (
+          <li key={j} className="flex items-start gap-2">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#d4af37] mt-1 shrink-0 animate-pulse"></span>
+            <span className="text-gray-300 text-sm leading-snug">{point}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    {/* Learn More Button */}
+    <Link href={service.link} className="mt-6">
+      <button className="w-full text-center px-4 py-2 bg-[#d4af37] text-black font-medium rounded-md hover:bg-[#f2cf63] transition-all cursor-pointer flex items-center justify-center gap-2">
+        Learn More <ArrowRight size={16} />
+      </button>
+    </Link>
+  </div>
+</motion.div>
+
           ))}
         </motion.div>
 

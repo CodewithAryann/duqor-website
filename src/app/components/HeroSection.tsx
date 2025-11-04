@@ -57,7 +57,7 @@ export default function HeroSection() {
       ))}
 
       {/* Golden overlay gradient */}
-      <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/65 to-black/45 z-10" />
+      <div className="absolute inset-0 bg-linear-to-r from-black/40 via-black/35 to-black/45 z-10" />
 
       {/* Floating golden sparkles */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-20 pointer-events-none">

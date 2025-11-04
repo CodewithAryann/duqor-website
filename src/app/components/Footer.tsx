@@ -5,7 +5,7 @@ import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 const Footer: React.FC = () => (
   <footer className="bg-black text-gray-300 py-16 relative overflow-hidden border-t border-[#d4af37]/20">
     {/* Soft golden background glow */}
-    <div className="absolute inset-0 bg-gradient-to-t from-[#d4af37]/10 via-transparent to-transparent pointer-events-none" />
+    <div className="absolute inset-0 bg-linear-to-t from-[#d4af37]/10 via-transparent to-transparent pointer-events-none" />
 
     <div className="max-w-7xl mx-auto px-6 relative z-10">
       {/* Top Grid Section */}
@@ -29,7 +29,7 @@ const Footer: React.FC = () => (
                   className="hover:text-[#d4af37] transition-all duration-300 relative group"
                 >
                   {service}
-                  <span className="absolute left-0 -bottom-[2px] w-0 h-[1.5px] bg-[#d4af37] transition-all duration-300 group-hover:w-full"></span>
+                  <span className="absolute left-0 -bottom-0.5 w-0 h-[1.5px] bg-[#d4af37] transition-all duration-300 group-hover:w-full"></span>
                 </a>
               </li>
             ))}
@@ -47,7 +47,7 @@ const Footer: React.FC = () => (
                   className="hover:text-[#d4af37] transition-all duration-300 relative group"
                 >
                   {link}
-                  <span className="absolute left-0 -bottom-[2px] w-0 h-[1.5px] bg-[#d4af37] transition-all duration-300 group-hover:w-full"></span>
+                  <span className="absolute left-0 -bottom-0.5 w-0 h-[1.5px] bg-[#d4af37] transition-all duration-300 group-hover:w-full"></span>
                 </a>
               </li>
             ))}
