@@ -21,10 +21,10 @@ const GOLD = "#d4af37";
 // --- Hero Section with Glowing Text + Particles ---
 function HeroSection() {
   const heroImages = [
-    "/images/commercial/1.png",
-    "/images/commercial/2.png",
-    "/images/commercial/3.png",
-    "/images/commercial/4.png",
+    "/images/residential/1.png",
+    "/images/residential/2.png",
+    "/images/residential/3.png",
+    "/images/residential/4.png",
   ];
 
   const [index, setIndex] = useState(0);
@@ -92,7 +92,7 @@ function HeroSection() {
         ))}
       </div>
 
-      <div className="absolute inset-0 bg-linear-to-b from-black/20 to-black/80 z-10" />
+      <div className="absolute inset-0 bg-linear-to-b from-black/20 to-black/20 z-10" />
 
       {/* Hero Content */}
       <div className="absolute inset-0 flex flex-col justify-center items-center text-center z-30 px-6">
@@ -133,8 +133,8 @@ function HeroSection() {
         >
           <Link href="/projects">
             <motion.button
-              whileHover={{ scale: 1.05 }}
-              className="px-8 py-3 border border-gray-600 text-white rounded-full hover:border-[#d4af37] transition-all"
+              whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(212,175,55,0.5)" }}
+              className="px-8 py-3 rounded-full border-2 border-[#d4af37] text-[#d4af37] font-semibold flex items-center gap-2 hover:bg-[#d4af37]/20 transition-all"
             >
               View Projects
             </motion.button>
@@ -258,54 +258,39 @@ function DesignApproach() {
 function SignatureProjects() {
   const slides = [
     {
-      img: "/images/residential/1.png",
+      img: "/images/residential/slider/1.png",
       title: "Serenity Villa",
       desc: "A private sanctuary combining modern elegance with timeless comfort and nature-inspired tranquility.",
     },
     {
-      img: "/images/residential/2.png",
+      img: "/images/residential/slider/2.png",
       title: "Horizon Penthouse",
       desc: "Sleek urban design with panoramic city views, curated for sophisticated metropolitan living.",
     },
     {
-      img: "/images/residential/3.png",
+      img: "/images/residential/slider/3.png",
       title: "The Oakwood Residence",
       desc: "Warm textures, natural materials, and thoughtful layouts create a refined and cozy home environment.",
     },
     {
-      img: "/images/residential/4.png",
+      img: "/images/residential/slider/4.png",
       title: "Elysium Lake House",
       desc: "Blending indoor-outdoor living, this lakeside retreat harmonizes with its serene surroundings.",
     },
     {
-      img: "/images/residential/5.png",
+      img: "/images/residential/slider/5.png",
       title: "Modern Heritage Villa",
       desc: "A contemporary take on classic architecture, preserving heritage charm with modern luxury.",
     },
     {
-      img: "/images/residential/6.png",
+      img: "/images/residential/slider/6.png",
       title: "Infinity Terrace Apartment",
       desc: "Open-plan living spaces with flowing interiors, floor-to-ceiling windows, and bespoke furnishings.",
     },
     {
-      img: "/images/residential/7.png",
+      img: "/images/residential/slider/7.png",
       title: "Palm Grove Residence",
       desc: "A tropical-inspired villa that merges indoor elegance with outdoor leisure and garden living.",
-    },
-    {
-      img: "/images/residential/8.png",
-      title: "Crestview Contemporary Home",
-      desc: "Minimalist interiors with sculptural accents and natural light, creating calm and balance.",
-    },
-    {
-      img: "/images/residential/9.png",
-      title: "The Verona Estate",
-      desc: "Grand residential living with luxury detailing, elegant materials, and a sense of timeless sophistication.",
-    },
-    {
-      img: "/images/residential/10.png",
-      title: "Skyline Residence",
-      desc: "A modern luxury apartment combining urban energy, functional design, and high-end finishes.",
     },
   ];
 
@@ -473,7 +458,12 @@ function FinalCTA() {
     <section
       className="py-32 relative text-center text-white overflow-hidden bg-cover bg-center bg-no-repeat"
       style={{
-        backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(17,17,17,0.8), rgba(0,0,0,0.8)), url('/images/commercial/1.png')`,
+        backgroundImage: `linear-gradient(
+          to bottom, 
+          rgba(0,0,0,0.5), 
+          rgba(17,17,17,0.5), 
+          rgba(0,0,0,0.5)
+        ), url('/images/residential/slider/bottom.png')`,
       }}
     >
       <motion.div
@@ -482,13 +472,13 @@ function FinalCTA() {
         transition={{ duration: 1 }}
       >
         <h2 className="text-4xl md:text-5xl font-bold mb-6">
-         Design Your <span style={{ color: "#d4af37" }}>Dream</span> Home with Duqor
+          Design Your <span style={{ color: "#d4af37" }}>Dream</span> Home with Duqor
         </h2>
-        <p className="text-gray-400 mb-10 max-w-2xl mx-auto">
+        <p className="text-gray-300 mb-10 max-w-2xl mx-auto">
           Where sophistication meets serenity — let’s create your personal masterpiece
         </p>
 
-        <div className="flex justify-center gap-6">
+        <div className="flex justify-center gap-6 flex-wrap">
           <Link href="/contact">
             <motion.button
               whileHover={{ scale: 1.05 }}
@@ -498,12 +488,13 @@ function FinalCTA() {
               Book Consultation <ArrowRight size={18} />
             </motion.button>
           </Link>
+
           <Link href="/projects">
             <motion.button
-              whileHover={{ scale: 1.05 }}
-              className="px-8 py-3 border border-gray-600 text-white rounded-full hover:border-[#d4af37] transition-all"
+              whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(212,175,55,0.5)" }}
+              className="px-8 py-3 rounded-full border-2 border-[#d4af37] text-[#d4af37] font-semibold flex items-center gap-2 hover:bg-[#d4af37]/20 transition-all"
             >
-              View Projects
+              View Projects <ArrowRight size={18} />
             </motion.button>
           </Link>
         </div>
@@ -511,6 +502,7 @@ function FinalCTA() {
     </section>
   );
 }
+
 
 
 // --- Export Full Page ---

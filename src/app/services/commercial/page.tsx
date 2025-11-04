@@ -21,10 +21,10 @@ const GOLD = "#d4af37";
 // --- Hero Section with Glowing Text + Particles ---
 function HeroSection() {
   const heroImages = [
-    "/images/commercial/1.png",
-    "/images/commercial/2.png",
-    "/images/commercial/3.png",
+    "/images/commercial/7.png",
     "/images/commercial/4.png",
+    "/images/commercial/3.png",
+    "/images/commercial/8.png",
   ];
 
   const [index, setIndex] = useState(0);
@@ -92,7 +92,7 @@ function HeroSection() {
         ))}
       </div>
 
-      <div className="absolute inset-0 bg-linear-to-b from-black/20 to-black/80 z-10" />
+      <div className="absolute inset-0 bg-linear-to-b from-black/20 to-black/20 z-10" />
 
       {/* Hero Content */}
       <div className="absolute inset-0 flex flex-col justify-center items-center text-center z-30 px-6">
@@ -133,13 +133,13 @@ function HeroSection() {
           className="mt-10 flex flex-wrap justify-center gap-4"
         >
           <Link href="/projects">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              className="px-8 py-3 border border-gray-600 text-white rounded-full hover:border-[#d4af37] transition-all"
-            >
-              View Projects
-            </motion.button>
-          </Link>
+                      <motion.button
+                        whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(212,175,55,0.5)" }}
+                        className="px-8 py-3 rounded-full border-2 border-[#d4af37] text-[#d4af37] font-semibold flex items-center gap-2 hover:bg-[#d4af37]/20 transition-all"
+                      >
+                        View Projects
+                      </motion.button>
+                    </Link>
           <Link href="/contact">
             <motion.button
               whileHover={{ scale: 1.05 }}
@@ -263,32 +263,32 @@ function DesignApproach() {
 function SignatureProjects() {
   const slides = [
     {
-      img: "/images/commercial/1.png",
+      img: "/images/commercial/9.png",
       title: "Corporate Elegance Tower",
       desc: "A bold workspace redefining productivity and prestige for leading enterprises.",
     },
     {
-      img: "/images/commercial/2.png",
+      img: "/images/commercial/6.png",
       title: "Innovation Hub HQ",
       desc: "A collaborative design that merges creativity, flexibility, and modern ergonomics.",
     },
     {
-      img: "/images/commercial/3.png",
+      img: "/images/commercial/10.png",
       title: "Executive Business Lounge",
       desc: "Luxury, comfort, and technology blended seamlessly in a modern corporate environment.",
     },
     {
-      img: "/images/commercial/4.png",
+      img: "/images/commercial/11.png",
       title: "Metropolitan Finance Center",
       desc: "An architectural icon that reflects strength, transparency, and innovation in the corporate sector.",
     },
     {
-      img: "/images/commercial/5.png",
+      img: "/images/commercial/1.png",
       title: "TechnoPark Business Plaza",
       desc: "Smart and sustainable infrastructure designed to empower next-generation businesses.",
     },
     {
-      img: "/images/commercial/6.png",
+      img: "/images/commercial/2.png",
       title: "Harborview Trade Complex",
       desc: "A vibrant commercial hub combining modern aesthetics with seamless operational flow.",
     },
@@ -298,17 +298,17 @@ function SignatureProjects() {
       desc: "A dynamic environment designed for innovation, collaboration, and sustainable growth.",
     },
     {
-      img: "/images/commercial/8.png",
+      img: "/images/commercial/3.png",
       title: "Global Enterprise Tower",
       desc: "A landmark project symbolizing global standards of excellence in workspace architecture.",
     },
     {
-      img: "/images/commercial/9.png",
+      img: "/images/commercial/4.png",
       title: "Prime Business Gateway",
       desc: "Cutting-edge design and spatial intelligence converge to redefine the modern headquarters.",
     },
     {
-      img: "/images/commercial/10.png",
+      img: "/images/commercial/5.png",
       title: "Summit Corporate Center",
       desc: "Where innovation meets sophistication—crafted for ambitious organizations shaping the future.",
     },
@@ -475,7 +475,12 @@ function FinalCTA() {
     <section
       className="py-32 relative text-center text-white overflow-hidden bg-cover bg-center bg-no-repeat"
       style={{
-        backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(17,17,17,0.8), rgba(0,0,0,0.8)), url('/images/commercial/1.png')`,
+        backgroundImage: `linear-gradient(
+          to bottom, 
+          rgba(0,0,0,0.5), 
+          rgba(17,17,17,0.5), 
+          rgba(0,0,0,0.5)
+        ), url('/images/commercial/new/7.png')`,
       }}
     >
       <motion.div
@@ -486,7 +491,7 @@ function FinalCTA() {
         <h2 className="text-4xl md:text-5xl font-bold mb-6">
           Let’s <span style={{ color: "#d4af37" }}>Transform</span> Experiences That Last
         </h2>
-        <p className="text-gray-400 mb-10 max-w-2xl mx-auto">
+        <p className="text-gray-300 mb-10 max-w-2xl mx-auto">
           Collaborate with Duqor to design hospitality spaces that inspire every guest.
         </p>
 
@@ -502,10 +507,10 @@ function FinalCTA() {
           </Link>
           <Link href="/projects">
             <motion.button
-              whileHover={{ scale: 1.05 }}
-              className="px-8 py-3 border border-gray-600 text-white rounded-full hover:border-[#d4af37] transition-all"
+              whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(212,175,55,0.5)" }}
+              className="px-8 py-3 rounded-full border-2 border-[#d4af37] text-[#d4af37] font-semibold flex items-center gap-2 hover:bg-[#d4af37]/20 transition-all"
             >
-              View Projects
+              View Projects <ArrowRight size={18} />
             </motion.button>
           </Link>
         </div>

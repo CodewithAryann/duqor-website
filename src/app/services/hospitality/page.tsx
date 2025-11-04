@@ -23,10 +23,10 @@ const GOLD = "#d4af37";
 // --- Hero Section with Glowing Text + Particles ---
 function HeroSection() {
   const heroImages = [
-    "/images/commercial/1.png",
-    "/images/commercial/2.png",
-    "/images/commercial/3.png",
-    "/images/commercial/4.png",
+    "/images/hospitality/1.png",
+    "/images/hospitality/8.png",
+    "/images/hospitality/3.png",
+    "/images/hospitality/4.png",
   ];
 
   const [index, setIndex] = useState(0);
@@ -94,7 +94,7 @@ function HeroSection() {
         ))}
       </div>
 
-      <div className="absolute inset-0 bg-linear-to-b from-black/20 to-black/80 z-10" />
+      <div className="absolute inset-0 bg-linear-to-b from-black/20 to-black/20 z-10" />
 
       {/* Hero Content */}
       <div className="absolute inset-0 flex flex-col justify-center items-center text-center z-30 px-6">
@@ -134,12 +134,12 @@ function HeroSection() {
           className="mt-10 flex flex-wrap justify-center gap-4"
         >
           <Link href="/projects">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              className="px-8 py-3 border border-gray-600 text-white rounded-full hover:border-[#d4af37] transition-all"
-            >
-              View Projects
-            </motion.button>
+             <motion.button
+                                    whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(212,175,55,0.5)" }}
+                                    className="px-8 py-3 rounded-full border-2 border-[#d4af37] text-[#d4af37] font-semibold flex items-center gap-2 hover:bg-[#d4af37]/20 transition-all"
+                                  >
+                                    View Projects
+                                  </motion.button>
           </Link>
           <Link href="/contact">
             <motion.button
@@ -260,7 +260,7 @@ function DesignApproach() {
 function SignatureProjects() {
   const slides = [
     {
-      img: "/images/hospitality/1.png",
+      img: "/images/hospitality/5.png",
       title: "Azure Grand Hotel",
       desc: "A refined fusion of comfort and contemporary design offering guests an immersive luxury experience.",
     },
@@ -270,44 +270,19 @@ function SignatureProjects() {
       desc: "Tranquil spaces inspired by nature — crafted to rejuvenate the mind, body, and soul.",
     },
     {
-      img: "/images/hospitality/3.png",
+      img: "/images/hospitality/6.png",
       title: "The Marlowe Boutique Hotel",
       desc: "A timeless blend of artful detailing and urban sophistication designed for the modern traveler.",
     },
     {
-      img: "/images/hospitality/4.png",
+      img: "/images/hospitality/7.png",
       title: "Elysian Beach Retreat",
       desc: "Seamless harmony between coastal serenity and understated elegance defines this oceanfront sanctuary.",
     },
     {
-      img: "/images/hospitality/5.png",
+      img: "/images/hospitality/8.png",
       title: "Verve Urban Lounge",
       desc: "Chic lighting, warm tones, and bespoke furnishings create the perfect social destination for refined indulgence.",
-    },
-    {
-      img: "/images/hospitality/6.png",
-      title: "The Monarch Dining Hall",
-      desc: "An elevated culinary environment balancing grandeur and intimacy through spatial rhythm and ambiance.",
-    },
-    {
-      img: "/images/hospitality/7.png",
-      title: "Palm Court Suites",
-      desc: "Luxury redefined through curated materials, soft palettes, and bespoke craftsmanship.",
-    },
-    {
-      img: "/images/hospitality/8.png",
-      title: "Aria Sky Lounge",
-      desc: "A sophisticated rooftop retreat that celebrates light, skyline views, and cosmopolitan living.",
-    },
-    {
-      img: "/images/hospitality/9.png",
-      title: "Serene Mountain Lodge",
-      desc: "Rustic textures meet modern comforts — a welcoming retreat immersed in natural tranquility.",
-    },
-    {
-      img: "/images/hospitality/10.png",
-      title: "The Ember Fine Dining",
-      desc: "A dramatic interplay of lighting, material, and form evokes intimacy and culinary artistry.",
     },
   ];
 
@@ -474,7 +449,7 @@ function FinalCTA() {
     <section
       className="py-32 relative text-center text-white overflow-hidden bg-cover bg-center bg-no-repeat"
       style={{
-        backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(17,17,17,0.8), rgba(0,0,0,0.8)), url('/images/commercial/1.png')`,
+        backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(17,17,17,0.8), rgba(0,0,0,0.8)), url('/images/hospitality/9.png')`,
       }}
     >
       <motion.div
