@@ -23,10 +23,10 @@ const GOLD = "#d4af37";
 // --- Hero Section with Glowing Text + Particles ---
 function HeroSection() {
   const heroImages = [
-    "/images/commercial/1.png",
-    "/images/commercial/2.png",
-    "/images/commercial/3.png",
-    "/images/commercial/4.png",
+    "/images/retail/1.png",
+    "/images/retail/2.png",
+    "/images/retail/4.png",
+    "/images/retail/3.png",
   ];
 
   const [index, setIndex] = useState(0);
@@ -94,7 +94,7 @@ function HeroSection() {
         ))}
       </div>
 
-      <div className="absolute inset-0 bg-linear-to-b from-black/20 to-black/80 z-10" />
+      <div className="absolute inset-0 bg-linear-to-b from-black/20 to-black/20 z-10" />
 
       {/* Hero Content */}
       <div className="absolute inset-0 flex flex-col justify-center items-center text-center z-30 px-6">
@@ -135,8 +135,8 @@ function HeroSection() {
         >
           <Link href="/projects">
             <motion.button
-              whileHover={{ scale: 1.05 }}
-              className="px-8 py-3 border border-gray-600 text-white rounded-full hover:border-[#d4af37] transition-all"
+              whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(212,175,55,0.5)" }}
+              className="px-8 py-3 rounded-full border-2 border-[#d4af37] text-[#d4af37] font-semibold flex items-center gap-2 hover:bg-[#d4af37]/20 transition-all"
             >
               View Projects
             </motion.button>
@@ -260,54 +260,19 @@ function DesignApproach() {
 function SignatureProjects() {
   const slides = [
     {
-      img: "/images/retail/1.png",
+      img: "/images/retail/5.png",
       title: "Luxe Boutique Flagship",
       desc: "A curated shopping experience blending brand identity with immersive interior design.",
     },
     {
-      img: "/images/retail/2.png",
+      img: "/images/retail/6.png",
       title: "Urban Concept Store",
       desc: "Modern retail design with flexible layouts, dynamic lighting, and interactive product zones.",
     },
     {
-      img: "/images/retail/3.png",
+      img: "/images/retail/7.png",
       title: "Heritage Brand Outlet",
       desc: "A sophisticated retail space that balances historical character with contemporary display aesthetics.",
-    },
-    {
-      img: "/images/retail/4.png",
-      title: "Skyline Fashion Hub",
-      desc: "Luxury retail with striking visual merchandising and a seamless customer journey.",
-    },
-    {
-      img: "/images/retail/5.png",
-      title: "Boutique Café & Retail",
-      desc: "An integrated lifestyle space merging retail, café, and interactive design elements.",
-    },
-    {
-      img: "/images/retail/6.png",
-      title: "Premium Pop-up Experience",
-      desc: "Temporary yet impactful retail interiors designed to leave a lasting brand impression.",
-    },
-    {
-      img: "/images/retail/7.png",
-      title: "Luxury Concept Mall Kiosk",
-      desc: "Compact yet memorable design creating high engagement and brand storytelling.",
-    },
-    {
-      img: "/images/retail/8.png",
-      title: "Designer Showroom",
-      desc: "Elegant interiors showcasing premium products with focus on lighting, texture, and flow.",
-    },
-    {
-      img: "/images/retail/9.png",
-      title: "Modern Lifestyle Store",
-      desc: "Open, inviting layouts that encourage exploration and a curated shopping experience.",
-    },
-    {
-      img: "/images/retail/10.png",
-      title: "Signature Brand Gallery",
-      desc: "Immersive retail environment combining aesthetics, functionality, and brand identity.",
     },
   ];
 
@@ -473,7 +438,12 @@ function FinalCTA() {
     <section
       className="py-32 relative text-center text-white overflow-hidden bg-cover bg-center bg-no-repeat"
       style={{
-        backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(17,17,17,0.8), rgba(0,0,0,0.8)), url('/images/commercial/1.png')`,
+        backgroundImage: `linear-gradient(
+          to bottom, 
+          rgba(0,0,0,0.5), 
+          rgba(17,17,17,0.5), 
+          rgba(0,0,0,0.5)
+        ), url('/images/retail/7.png')`,
       }}
     >
       <motion.div
@@ -484,7 +454,7 @@ function FinalCTA() {
         <h2 className="text-4xl md:text-5xl font-bold mb-6">
          Let’s Redefine <span style={{ color: "#d4af37" }}>Retail</span> Together
         </h2>
-        <p className="text-gray-400 mb-10 max-w-2xl mx-auto">
+        <p className="text-gray-300 mb-10 max-w-2xl mx-auto">
           Transform your retail space into a brand experience your customers remember
         </p>
 
@@ -500,11 +470,11 @@ function FinalCTA() {
           </Link>
           <Link href="/projects">
             <motion.button
-              whileHover={{ scale: 1.05 }}
-              className="px-8 py-3 border border-gray-600 text-white rounded-full hover:border-[#d4af37] transition-all"
-            >
-              View Projects
-            </motion.button>
+                          whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(212,175,55,0.5)" }}
+                          className="px-8 py-3 rounded-full border-2 border-[#d4af37] text-[#d4af37] font-semibold flex items-center gap-2 hover:bg-[#d4af37]/20 transition-all"
+                        >
+                          View Projects <ArrowRight size={18} />
+                        </motion.button>
           </Link>
         </div>
       </motion.div>

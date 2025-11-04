@@ -449,7 +449,12 @@ function FinalCTA() {
     <section
       className="py-32 relative text-center text-white overflow-hidden bg-cover bg-center bg-no-repeat"
       style={{
-        backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(17,17,17,0.8), rgba(0,0,0,0.8)), url('/images/hospitality/9.png')`,
+        backgroundImage: `linear-gradient(
+          to bottom, 
+          rgba(0,0,0,0.5), 
+          rgba(17,17,17,0.5), 
+          rgba(0,0,0,0.5)
+        ), url('/images/hospitality/9.png')`,
       }}
     >
       <motion.div
@@ -460,7 +465,7 @@ function FinalCTA() {
         <h2 className="text-4xl md:text-5xl font-bold mb-6">
           Let’s <span style={{ color: "#d4af37" }}>Transform</span> Experiences That Last
         </h2>
-        <p className="text-gray-400 mb-10 max-w-2xl mx-auto">
+        <p className="text-gray-300 mb-10 max-w-2xl mx-auto">
           Collaborate with Duqor to design hospitality spaces that inspire every guest.
         </p>
 
@@ -475,12 +480,12 @@ function FinalCTA() {
             </motion.button>
           </Link>
           <Link href="/projects">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              className="px-8 py-3 border border-gray-600 text-white rounded-full hover:border-[#d4af37] transition-all"
-            >
-              View Projects
-            </motion.button>
+                        <motion.button
+                          whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(212,175,55,0.5)" }}
+                          className="px-8 py-3 rounded-full border-2 border-[#d4af37] text-[#d4af37] font-semibold flex items-center gap-2 hover:bg-[#d4af37]/20 transition-all"
+                        >
+                          View Projects <ArrowRight size={18} />
+                        </motion.button>
           </Link>
         </div>
       </motion.div>
