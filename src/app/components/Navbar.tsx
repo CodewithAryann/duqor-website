@@ -25,10 +25,10 @@ const Navbar: React.FC = () => {
   ];
 
   const businessVerticals = [
-    { label: "Residential Interiors", href: "/services/residential" },
-    { label: "Commercial Spaces", href: "/services/commercial" },
-    { label: "Retail Design", href: "/services/retail" },
-    { label: "Hospitality", href: "/services/hospitality" },
+    { label: "Residential Interiors", href: "/residential" },
+    { label: "Commercial Spaces", href: "/commercial" },
+    { label: "Retail Design", href: "/retail" },
+    { label: "Hospitality", href: "/hospitality" },
   ];
 
   return (
@@ -115,16 +115,17 @@ const Navbar: React.FC = () => {
         {/* Social Icons (Desktop) */}
         <div className="hidden md:flex items-center space-x-6">
           {[
-            { icon: <HiOutlineMail size={18} />, link: "mailto:info@duqor.com" },
-            { icon: <FaInstagram size={18} />, link: "https://www.instagram.com/duqor" },
-            { icon: <FaFacebookF size={18} />, link: "https://www.facebook.com/duqor" },
-            { icon: <FaLinkedinIn size={18} />, link: "https://www.linkedin.com/company/duqor" },
-          ].map(({ icon, link }, i) => (
+            { icon: <HiOutlineMail size={18} />, link: "mailto:info@duqor.com", label: "Email Duqor" },
+            { icon: <FaInstagram size={18} />, link: "https://www.instagram.com/duqor", label: "Duqor Instagram" },
+            { icon: <FaFacebookF size={18} />, link: "https://www.facebook.com/duqor", label: "Duqor Facebook" },
+            { icon: <FaLinkedinIn size={18} />, link: "https://www.linkedin.com/company/duqor", label: "Duqor LinkedIn" },
+          ].map(({ icon, link, label }, i) => (
             <a
               key={i}
               href={link}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={label}
               className="text-white/90 hover:text-[#d4af37] hover:scale-110 transition-all duration-300"
             >
               {icon}
@@ -136,6 +137,7 @@ const Navbar: React.FC = () => {
         <button
           className="md:hidden focus:outline-none transition-transform duration-300 hover:scale-110 text-white"
           onClick={() => setMenuOpen(!menuOpen)}
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
         >
           {menuOpen ? <X size={26} /> : <Menu size={26} />}
         </button>
@@ -190,16 +192,17 @@ const Navbar: React.FC = () => {
           {/* Mobile Social Icons */}
           <div className="flex items-center space-x-6 pt-6 border-t border-[#d4af37]/20 w-3/4 justify-center">
             {[
-              { icon: <HiOutlineMail size={20} />, link: "mailto:info@duqor.com" },
-              { icon: <FaInstagram size={20} />, link: "https://www.instagram.com/duqor" },
-              { icon: <FaFacebookF size={20} />, link: "https://www.facebook.com/duqor" },
-              { icon: <FaLinkedinIn size={20} />, link: "https://www.linkedin.com/company/duqor" },
-            ].map(({ icon, link }, i) => (
+              { icon: <HiOutlineMail size={20} />, link: "mailto:info@duqor.com", label: "Email Duqor" },
+              { icon: <FaInstagram size={20} />, link: "https://www.instagram.com/duqor", label: "Duqor Instagram" },
+              { icon: <FaFacebookF size={20} />, link: "https://www.facebook.com/duqor", label: "Duqor Facebook" },
+              { icon: <FaLinkedinIn size={20} />, link: "https://www.linkedin.com/company/duqor", label: "Duqor LinkedIn" },
+            ].map(({ icon, link, label }, i) => (
               <a
                 key={i}
                 href={link}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label={label}
                 className="hover:text-[#d4af37] hover:scale-110 transition-all duration-300"
               >
                 {icon}

@@ -14,7 +14,7 @@ const services = [
       "Premium material and furniture selection",
       "End-to-end project management",
     ],
-    link: "/services/residential",
+    link: "/residential",
     img: "/images/intro/residential.png",
   },
   {
@@ -25,7 +25,7 @@ const services = [
       "Optimized lighting and spatial flow",
       "Focus on durability and long-term value",
     ],
-    link: "/services/commercial",
+    link: "/commercial",
     img: "/images/intro/commercial.png",
   },
   {
@@ -36,7 +36,7 @@ const services = [
       "Custom furniture and décor for hospitality",
       "Guest-focused design experience",
     ],
-    link: "/services/hospitality",
+    link: "/hospitality",
     img: "/images/intro/hospitality.png",
   },
   {
@@ -47,7 +47,7 @@ const services = [
       "Lighting and signage integration",
       "Customer flow and zoning optimization",
     ],
-    link: "/services/retail",
+    link: "/retail",
     img: "/images/intro/retail.png",
   },
 ];
