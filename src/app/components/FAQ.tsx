@@ -6,24 +6,24 @@ import { ChevronDown } from 'lucide-react';
 
 const faqs = [
   {
-    question: 'How long does a typical project take?',
+    question: 'What types of projects does Duqor handle?',
     answer:
-      'Depending on the scope, projects usually range from 8 to 20 weeks from design to handover.',
+      'Duqor specializes in residential, commercial, and hospitality interior design, offering tailored solutions for each project type.',
   },
   {
-    question: 'Do you handle both design and execution?',
+    question: 'Do you provide turnkey services?',
     answer:
-      'Yes, Duqor offers complete turnkey solutions, covering concept, design, fit-out, and on-site supervision.',
+      'Yes, we offer end-to-end solutions, including concept design, space planning, material sourcing, execution, and post-project support.',
   },
   {
-    question: 'Can I request a custom design package?',
+    question: 'Can I customize my design package?',
     answer:
-      'Absolutely. Every Duqor project is personalized to fit your vision, timeline, and budget.',
+      'Absolutely. We work closely with clients to create fully personalized designs that align with their vision, style, and budget.',
   },
   {
-    question: 'Do you offer maintenance after handover?',
+    question: 'Do you offer maintenance after project completion?',
     answer:
-      'Yes, optional maintenance and post-handover support services are available for long-term peace of mind.',
+      'Yes, Duqor provides optional maintenance and post-handover support services to ensure your space remains pristine and functional.',
   },
 ];
 
@@ -56,8 +56,7 @@ const FAQ: React.FC = () => {
             Frequently Asked Questions
           </h2>
           <p className="text-gray-400 mt-4 text-lg max-w-2xl mx-auto">
-            Everything you need to know about working with Duqor — from project timelines
-            to personalized design solutions.
+            Everything you need to know about working with Duqor — from design approach to project execution.
           </p>
         </motion.div>
 

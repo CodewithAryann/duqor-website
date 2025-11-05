@@ -13,26 +13,38 @@ interface Project {
 
 const featuredProjects: Project[] = [
   {
+    title: 'Innovation Hub HQ – City Walk',
+    images: [
+      '/images/portfolio/project-1/pic-1.png',
+      '/images/portfolio/project-1/pic-2.png',
+      '/images/portfolio/project-1/pic-3.png',
+      '/images/portfolio/project-1/pic-4.png',
+      '/images/portfolio/project-1/pic-5.png',
+      '/images/portfolio/project-1/pic-6.png',
+      '/images/portfolio/project-1/pic-7.png',
+    ],
+  },
+  {
     title: 'Private Villa – Palm Jumeirah',
     images: [
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600',
-      'https://images.unsplash.com/photo-1600585154341-a6f59b1b5b1f?w=1600',
-      'https://images.unsplash.com/photo-1600585154342-123456789abc?w=1600',
+      '/images/portfolio/project-2/pic-1.png',
+      '/images/portfolio/project-2/pic-2.png',
+      '/images/portfolio/project-2/pic-3.png',
+      '/images/portfolio/project-2/pic-4.png',
+      '/images/portfolio/project-2/pic-5.png',
+      '/images/portfolio/project-2/pic-6.png',
     ],
   },
   {
-    title: 'Boutique Café – City Walk',
+    title: 'Corporate Office – Downtown',
     images: [
-      'https://images.unsplash.com/photo-1598300051089-5c88a6fbe7d2?w=1600',
-      'https://images.unsplash.com/photo-1598300051090-abcdef123456?w=1600',
-    ],
-  },
-  {
-    title: 'Corporate Office – Downtown Dubai',
-    images: [
-      'https://images.unsplash.com/photo-1581090700227-1e37b190418e?w=1600',
-      'https://images.unsplash.com/photo-1581090700228-1a2b3c4d5e6f?w=1600',
-      'https://images.unsplash.com/photo-1581090700229-abcdef987654?w=1600',
+      '/images/portfolio/project-3/pic-1.png',
+      '/images/portfolio/project-3/pic-2.png',
+      '/images/portfolio/project-3/pic-3.png',
+      '/images/portfolio/project-3/pic-4.png',
+      '/images/portfolio/project-3/pic-5.png',
+      '/images/portfolio/project-3/pic-6.png',
+      '/images/portfolio/project-3/pic-7.png',
     ],
   },
 ];
