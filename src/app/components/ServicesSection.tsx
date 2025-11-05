@@ -25,14 +25,14 @@ const ServicesSection: React.FC = () => {
       description:
         "Bespoke concepts blending innovation, functionality, and elegance — including space planning, photorealistic 3D renders, and curated material selection.",
       icon: <FaPaintBrush size={36} className="text-[#d4af37]" />,
-      image: "/images/img.1.png",
+      image: "/images/services/pic-1.png",
     },
     {
       title: "Turnkey Fit-Out Execution",
       description:
         "Comprehensive design-to-delivery solutions ensuring precision craftsmanship, superior quality control, and seamless project execution.",
       icon: <FaTools size={36} className="text-[#d4af37]" />,
-      image: "https://images.unsplash.com/photo-1600210492493-0946911123ea?w=800",
+      image: "/images/services/pic-2.png",
     },
     {
       title: "Furniture, Fixtures & Equipment",
@@ -40,7 +40,7 @@ const ServicesSection: React.FC = () => {
         "Premium sourcing and custom manufacturing of furniture and décor elements, meticulously selected to match and elevate your design intent.",
       icon: <FaCouch size={36} className="text-[#d4af37]" />,
       image:
-        "https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=800",
+        "/images/services/pic-3.png",
     },
     {
       title: "Joinery & Bespoke Woodwork",
@@ -48,7 +48,7 @@ const ServicesSection: React.FC = () => {
         "In-house production of luxury joinery elements crafted with meticulous attention to detail and exceptional craftsmanship.",
       icon: <FaRulerCombined size={36} className="text-[#d4af37]" />,
       image:
-        "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800",
+        "/images/services/pic-4.png",
     },
     {
       title: "Renovation & Refurbishment",
@@ -56,7 +56,7 @@ const ServicesSection: React.FC = () => {
         "Expertly transforming existing spaces into fresh, modern environments while preserving and enhancing functional value.",
       icon: <FaRedo size={36} className="text-[#d4af37]" />,
       image:
-        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800",
+        "/images/services/pic-5.png",
     },
     {
       title: "Lighting & Décor Styling",
@@ -64,7 +64,7 @@ const ServicesSection: React.FC = () => {
         "Curated lighting design and carefully selected accessories that enhance the aesthetic appeal and ambiance of every space.",
       icon: <FaLightbulb size={36} className="text-[#d4af37]" />,
       image:
-        "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800",
+        "/images/services/pic-6.png",
     },
   ];
 

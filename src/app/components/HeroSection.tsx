@@ -6,10 +6,10 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 const images = [
-  "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1920",
-  "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920",
-  "https://images.unsplash.com/photo-1537726235470-8504e3beef77?w=1920",
-  "https://images.unsplash.com/photo-1606744888344-493238951221?w=1920",
+  "/images/hero-section/pic-1.png",
+  "/images/hero-section/pic-2.png",
+  "/images/hero-section/pic-3.png",
+  "/images/hero-section/pic-4.png",
 ];
 
 export default function HeroSection() {
