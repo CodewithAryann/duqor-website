@@ -64,14 +64,6 @@ export default function AboutPage() {
 
         {/* Hero Content */}
         <div className="relative z-30 max-w-3xl px-6">
-          <motion.img
-            src="/images/logo/logo.png"
-            alt="Duqor Logo"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1 }}
-            className="w-40 md:w-48 mx-auto mb-6 drop-shadow-[0_0_25px_rgba(212,175,55,0.5)]"
-          />
           <motion.h1
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
