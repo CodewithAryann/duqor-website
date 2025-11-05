@@ -49,7 +49,8 @@ const ContactSection: React.FC = () => {
       } else {
         setSuccess('Failed to send message. Please try again later.');
       }
-    } catch (err) {
+    } catch {
+      // removed unused 'err' variable
       setSuccess('Failed to send message. Please check your internet connection.');
     } finally {
       setLoading(false);
