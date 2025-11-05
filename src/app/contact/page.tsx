@@ -1,16 +1,22 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
 export default function ContactPage() {
-  const [particles] = useState(
-    Array.from({ length: 50 }, () => ({
-      x: Math.random() * window.innerWidth,
-      y: Math.random() * window.innerHeight,
-      color: ["#d4af37", "#ffd700"][Math.floor(Math.random() * 2)], 
-    }))
-  );
+  const [particles, setParticles] = useState<{ x: number; y: number; color: string }[]>([]);
+
+  // Generate particles on client side only
+  useEffect(() => {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    const generated = Array.from({ length: 50 }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      color: ["#d4af37", "#ffd700"][Math.floor(Math.random() * 2)],
+    }));
+    setParticles(generated);
+  }, []);
 
   return (
     <section className="bg-[#0a0a0a] text-white overflow-hidden">
