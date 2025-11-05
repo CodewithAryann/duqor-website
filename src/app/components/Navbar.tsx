@@ -58,8 +58,12 @@ const Navbar: React.FC = () => {
             <li
               key={href}
               className="relative group"
-              onMouseEnter={() => label === "Business Vertical" && setDropdownOpen(true)}
-              onMouseLeave={() => label === "Business Vertical" && setDropdownOpen(false)}
+              onMouseEnter={() =>
+                label === "Business Vertical" && setDropdownOpen(true)
+              }
+              onMouseLeave={() =>
+                label === "Business Vertical" && setDropdownOpen(false)
+              }
             >
               {label === "Business Vertical" ? (
                 <>
@@ -76,7 +80,7 @@ const Navbar: React.FC = () => {
                     />
                   </div>
 
-                  {/* Dropdown (stays open when hovering) */}
+                  {/* Dropdown */}
                   <div
                     onMouseEnter={() => setDropdownOpen(true)}
                     onMouseLeave={() => setDropdownOpen(false)}
@@ -115,10 +119,26 @@ const Navbar: React.FC = () => {
         {/* Social Icons (Desktop) */}
         <div className="hidden md:flex items-center space-x-6">
           {[
-            { icon: <HiOutlineMail size={18} />, link: "mailto:info@duqor.com", label: "Email Duqor" },
-            { icon: <FaInstagram size={18} />, link: "https://www.instagram.com/duqor", label: "Duqor Instagram" },
-            { icon: <FaFacebookF size={18} />, link: "https://www.facebook.com/duqor", label: "Duqor Facebook" },
-            { icon: <FaLinkedinIn size={18} />, link: "https://www.linkedin.com/company/duqor", label: "Duqor LinkedIn" },
+            {
+              icon: <HiOutlineMail size={18} aria-hidden="true" />,
+              link: "mailto:info@duqor.com",
+              label: "Email Duqor",
+            },
+            {
+              icon: <FaInstagram size={18} aria-hidden="true" />,
+              link: "https://www.instagram.com/duqor",
+              label: "Visit Duqor Instagram",
+            },
+            {
+              icon: <FaFacebookF size={18} aria-hidden="true" />,
+              link: "https://www.facebook.com/duqor",
+              label: "Visit Duqor Facebook",
+            },
+            {
+              icon: <FaLinkedinIn size={18} aria-hidden="true" />,
+              link: "https://www.linkedin.com/company/duqor",
+              label: "Visit Duqor LinkedIn",
+            },
           ].map(({ icon, link, label }, i) => (
             <a
               key={i}
@@ -192,10 +212,26 @@ const Navbar: React.FC = () => {
           {/* Mobile Social Icons */}
           <div className="flex items-center space-x-6 pt-6 border-t border-[#d4af37]/20 w-3/4 justify-center">
             {[
-              { icon: <HiOutlineMail size={20} />, link: "mailto:info@duqor.com", label: "Email Duqor" },
-              { icon: <FaInstagram size={20} />, link: "https://www.instagram.com/duqor", label: "Duqor Instagram" },
-              { icon: <FaFacebookF size={20} />, link: "https://www.facebook.com/duqor", label: "Duqor Facebook" },
-              { icon: <FaLinkedinIn size={20} />, link: "https://www.linkedin.com/company/duqor", label: "Duqor LinkedIn" },
+              {
+                icon: <HiOutlineMail size={20} aria-hidden="true" />,
+                link: "mailto:info@duqor.com",
+                label: "Email Duqor",
+              },
+              {
+                icon: <FaInstagram size={20} aria-hidden="true" />,
+                link: "https://www.instagram.com/duqor",
+                label: "Visit Duqor Instagram",
+              },
+              {
+                icon: <FaFacebookF size={20} aria-hidden="true" />,
+                link: "https://www.facebook.com/duqor",
+                label: "Visit Duqor Facebook",
+              },
+              {
+                icon: <FaLinkedinIn size={20} aria-hidden="true" />,
+                link: "https://www.linkedin.com/company/duqor",
+                label: "Visit Duqor LinkedIn",
+              },
             ].map(({ icon, link, label }, i) => (
               <a
                 key={i}
