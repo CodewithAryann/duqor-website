@@ -1,28 +1,29 @@
-"use client";
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown } from "lucide-react";
+'use client';
+
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronDown } from 'lucide-react';
 
 const faqs = [
   {
-    question: "How long does a typical project take?",
+    question: 'How long does a typical project take?',
     answer:
-      "Depending on the scope, projects usually range from 8 to 20 weeks from design to handover.",
+      'Depending on the scope, projects usually range from 8 to 20 weeks from design to handover.',
   },
   {
-    question: "Do you handle both design and execution?",
+    question: 'Do you handle both design and execution?',
     answer:
-      "Yes, Duqor offers complete turnkey solutions, covering concept, design, fit-out, and on-site supervision.",
+      'Yes, Duqor offers complete turnkey solutions, covering concept, design, fit-out, and on-site supervision.',
   },
   {
-    question: "Can I request a custom design package?",
+    question: 'Can I request a custom design package?',
     answer:
-      "Absolutely. Every Duqor project is personalized to fit your vision, timeline, and budget.",
+      'Absolutely. Every Duqor project is personalized to fit your vision, timeline, and budget.',
   },
   {
-    question: "Do you offer maintenance after handover?",
+    question: 'Do you offer maintenance after handover?',
     answer:
-      "Yes, optional maintenance and post-handover support services are available for long-term peace of mind.",
+      'Yes, optional maintenance and post-handover support services are available for long-term peace of mind.',
   },
 ];
 
@@ -67,28 +68,29 @@ const FAQ: React.FC = () => {
             return (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
                 className={`group relative overflow-hidden rounded-2xl border transition-all duration-500 ${
                   isOpen
-                    ? "border-[#d4af37] shadow-[0_0_30px_rgba(212,175,55,0.3)]"
-                    : "border-[#2c2c2c] hover:border-[#d4af37]/60 hover:shadow-[0_0_15px_rgba(212,175,55,0.2)]"
+                    ? 'border-[#d4af37] shadow-[0_0_30px_rgba(212,175,55,0.3)]'
+                    : 'border-[#2c2c2c] hover:border-[#d4af37]/60 hover:shadow-[0_0_15px_rgba(212,175,55,0.2)]'
                 } bg-[#111]/60 backdrop-blur-sm`}
               >
-                {/* Question Button */}
+                {/* Question */}
                 <button
                   onClick={() => toggleFAQ(i)}
-                  className="w-full flex justify-between items-center text-left px-8 py-6"
+                  aria-expanded={isOpen}
+                  aria-controls={`faq-answer-${i}`}
+                  className="w-full flex justify-between items-center text-left px-8 py-6 focus:outline-none focus:ring-2 focus:ring-[#d4af37] rounded-lg"
                 >
-                  <motion.span
-                    className={`text-lg md:text-xl font-medium ${
-                      isOpen ? "text-[#d4af37]" : "text-gray-200"
-                    } transition-colors duration-300`}
+                  <span
+                    className={`text-lg md:text-xl font-medium transition-colors duration-300 ${
+                      isOpen ? 'text-[#d4af37]' : 'text-gray-200'
+                    }`}
                   >
                     {faq.question}
-                  </motion.span>
-
+                  </span>
                   <motion.span
                     animate={{ rotate: isOpen ? 180 : 0 }}
                     transition={{ duration: 0.3 }}
@@ -98,7 +100,7 @@ const FAQ: React.FC = () => {
                   </motion.span>
                 </button>
 
-                {/* Animated Gold Divider */}
+                {/* Animated Divider */}
                 <motion.div
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: isOpen ? 1 : 0 }}
@@ -110,11 +112,12 @@ const FAQ: React.FC = () => {
                 <AnimatePresence>
                   {isOpen && (
                     <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.5 }}
-                      className="px-8 pb-6 pt-2 text-gray-400 text-base leading-relaxed"
+                      id={`faq-answer-${i}`}
+                      initial={{ opacity: 0, height: 0, paddingTop: 0, paddingBottom: 0 }}
+                      animate={{ opacity: 1, height: 'auto', paddingTop: '1rem', paddingBottom: '1rem' }}
+                      exit={{ opacity: 0, height: 0, paddingTop: 0, paddingBottom: 0 }}
+                      transition={{ duration: 0.4 }}
+                      className="px-8 text-gray-400 text-base leading-relaxed"
                     >
                       {faq.answer}
                     </motion.div>
@@ -128,7 +131,7 @@ const FAQ: React.FC = () => {
         {/* Bottom Accent Line */}
         <motion.div
           initial={{ width: 0 }}
-          whileInView={{ width: "60%" }}
+          whileInView={{ width: '60%' }}
           transition={{ duration: 1.2, delay: 0.5 }}
           className="mx-auto mt-20 h-0.5 bg-linear-to-r from-transparent via-[#d4af37] to-transparent"
         />

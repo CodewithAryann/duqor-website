@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { MapPin, Phone, Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
-import emailjs from '@emailjs/browser';
 
 interface FormState {
   name: string;
@@ -31,20 +30,30 @@ const ContactSection: React.FC = () => {
     setLoading(true);
     setSuccess(null);
 
-    // try {
-    //   await emailjs.send(
-    //     'service_y4hh2jh',
-    //     'template_kalvrfm',
-    //     // form,
-    //     'HCWuVxfAeo6lDUDAK'
-    //   );
-    //   setSuccess('Message sent successfully!');
-    //   setForm({ name: '', email: '', phone: '', message: '' });
-    // } catch (error) {
-    //   setSuccess('Failed to send message. Please try again later.');
-    // } finally {
-    //   setLoading(false);
-    // }
+    const formData = new FormData();
+    Object.entries(form).forEach(([key, value]) => formData.append(key, value as string));
+    formData.append('access_key', 'YOUR_WEB3FORMS_ACCESS_KEY'); // replace with your key
+    formData.append('subject', 'New Contact Message from DUQOR');
+    formData.append('redirect', ''); // optional redirect URL
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData,
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        setSuccess('Message sent successfully!');
+        setForm({ name: '', email: '', phone: '', message: '' });
+      } else {
+        setSuccess('Failed to send message. Please try again later.');
+      }
+    } catch (err) {
+      setSuccess('Failed to send message. Please check your internet connection.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const contactInfo = [
@@ -58,7 +67,7 @@ const ContactSection: React.FC = () => {
       id="contact"
       className="relative py-28 overflow-hidden bg-linear-to-br from-black via-[#1a1a1a] to-[#0f0f0f] text-white"
     >
-      {/* Glowing background accents */}
+      {/* Glowing background */}
       <motion.div
         className="absolute inset-0 -z-10 opacity-30"
         style={{
@@ -81,7 +90,7 @@ const ContactSection: React.FC = () => {
         </motion.h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* LEFT — Contact Info + Map */}
+          {/* Left - Contact Info + Map */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -122,7 +131,7 @@ const ContactSection: React.FC = () => {
             </motion.div>
           </motion.div>
 
-          {/* RIGHT — Contact Form */}
+          {/* Right - Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
