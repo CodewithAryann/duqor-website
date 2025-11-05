@@ -84,7 +84,7 @@ export default function HeroSection() {
       <div className="relative z-30 flex flex-col items-center justify-center h-full text-center text-white px-6">
         {/* Static Logo */}
         <motion.img
-          src="/images/d-2.png"
+          src="/images/logo/logo.png"
           alt="Duqor Logo"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}

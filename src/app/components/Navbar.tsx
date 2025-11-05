@@ -19,7 +19,7 @@ const Navbar: React.FC = () => {
 
   const navLinks = [
     { href: "#services", label: "Services" },
-    { href: "/projects", label: "Projects" },
+    { href: "/portfolio", label: "Portfolio" },
     { href: "/business-vertical", label: "Business Vertical" },
     { href: "/about-us", label: "About Us" },
   ];
@@ -43,7 +43,7 @@ const Navbar: React.FC = () => {
         {/* Logo */}
         <Link href="/" className="flex items-center shrink-0">
           <Image
-            src="/images/d-2.png"
+            src="/images/logo/logo.png"
             alt="Duqor Logo"
             width={120}
             height={40}
