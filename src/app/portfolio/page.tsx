@@ -10,19 +10,44 @@ const projectCategories = [
     desc: "Elegant and functional spaces designed for modern living.",
     projects: [
       {
-        title: "Palm Jumeirah Villa",
+        title: 'Private Villa – Palm Jumeirah',
         images: [
-          "/images/projects/residential1.png",
-          "/images/projects/residential2.png",
-          "/images/projects/residential3.png",
+          '/images/portfolio/project-2/pic-1.png',
+          '/images/portfolio/project-2/pic-2.png',
+          '/images/portfolio/project-2/pic-3.png',
+          '/images/portfolio/project-2/pic-4.png',
+          '/images/portfolio/project-2/pic-5.png',
+          '/images/portfolio/project-2/pic-6.png',
+          '/images/portfolio/project-2/pic-8.png',
+          '/images/portfolio/project-2/pic-9.png',
+          '/images/portfolio/project-2/pic-11.png',
+          '/images/portfolio/project-2/pic-12.png',
+          '/images/portfolio/project-2/pic-13.png',
+          '/images/portfolio/project-2/pic-14.png',
         ],
       },
       {
-        title: "Downtown Penthouse",
+        title: "Seaside Villa – Jumeirah Bay",
         images: [
-          "/images/projects/residential4.png",
-          "/images/projects/residential5.png",
-          "/images/projects/residential6.png",
+          "/images/portfolio/residential/project-2/pic-1.png",
+          "/images/portfolio/residential/project-2/pic-2.png",
+          "/images/portfolio/residential/project-2/pic-3.png",
+          "/images/portfolio/residential/project-2/pic-4.png",
+          "/images/portfolio/residential/project-2/pic-5.png",
+          "/images/portfolio/residential/project-2/pic-6.png",
+          "/images/portfolio/residential/project-2/pic-7.png",
+          "/images/portfolio/residential/project-2/pic-8.png",
+        ],
+      },
+      {
+        title: "Signature Villa – The World Islands",
+        images: [
+          "/images/portfolio/residential/project-3/pic-1.png",
+          "/images/portfolio/residential/project-3/pic-2.png",
+          "/images/portfolio/residential/project-3/pic-3.png",
+          "/images/portfolio/residential/project-3/pic-4.png",
+          "/images/portfolio/residential/project-3/pic-5.png",
+          "/images/portfolio/residential/project-3/pic-6.png",
         ],
       },
     ],
@@ -32,19 +57,42 @@ const projectCategories = [
     desc: "Inspiring workplaces that enhance creativity and efficiency.",
     projects: [
       {
-        title: "Corporate Elegance Tower",
+        title: 'Innovation Hub HQ – City Walk',
         images: [
-          "/images/projects/commercial1.png",
-          "/images/projects/commercial2.png",
-          "/images/projects/commercial3.png",
+          '/images/portfolio/project-1/pic-1.png',
+          '/images/portfolio/project-1/pic-2.png',
+          '/images/portfolio/project-1/pic-3.png',
+          '/images/portfolio/project-1/pic-4.png',
+          '/images/portfolio/project-1/pic-5.png',
+          '/images/portfolio/project-1/pic-6.png',
+          '/images/portfolio/project-1/pic-7.png',
         ],
       },
       {
-        title: "Innovation Hub HQ",
+        title: 'Corporate Office – Downtown',
         images: [
-          "/images/projects/commercial4.png",
-          "/images/projects/commercial5.png",
-          "/images/projects/commercial6.png",
+          '/images/portfolio/project-3/pic-1.png',
+          '/images/portfolio/project-3/pic-2.png',
+          '/images/portfolio/project-3/pic-3.png',
+          '/images/portfolio/project-3/pic-4.png',
+          '/images/portfolio/project-3/pic-5.png',
+          '/images/portfolio/project-3/pic-6.png',
+          '/images/portfolio/project-3/pic-7.png',
+        ],
+      },
+      {
+        title: 'Corporate Office – Downtown',
+        images: [
+          '/images/portfolio/commercial/project-3/pic-1.png',
+          '/images/portfolio/commercial/project-3/pic-2.png',
+          '/images/portfolio/commercial/project-3/pic-3.png',
+          '/images/portfolio/commercial/project-3/pic-4.png',
+          '/images/portfolio/commercial/project-3/pic-5.png',
+          '/images/portfolio/commercial/project-3/pic-6.png',
+          '/images/portfolio/commercial/project-3/pic-7.png',
+          '/images/portfolio/commercial/project-3/pic-8.png',
+          '/images/portfolio/commercial/project-3/pic-9.png',
+          '/images/portfolio/commercial/project-3/pic-10.png',
         ],
       },
     ],
@@ -54,19 +102,61 @@ const projectCategories = [
     desc: "Immersive guest experiences that balance luxury and comfort.",
     projects: [
       {
-        title: "Seaside Luxury Resort",
+        title: "Luma Boutique Hotel",
         images: [
-          "/images/projects/hospitality1.png",
-          "/images/projects/hospitality2.png",
-          "/images/projects/hospitality3.png",
+          "/images/portfolio/hospitality/project-1/pic-1.png",
+          "/images/portfolio/hospitality/project-1/pic-2.png",
+          "/images/portfolio/hospitality/project-1/pic-3.png",
+          "/images/portfolio/hospitality/project-1/pic-4.png",
+          "/images/portfolio/hospitality/project-1/pic-5.png",
         ],
       },
       {
-        title: "Urban Boutique Hotel",
+        title: "Serenno Suites",
         images: [
-          "/images/projects/hospitality4.png",
-          "/images/projects/hospitality5.png",
-          "/images/projects/hospitality6.png",
+          "/images/portfolio/hospitality/project-2/pic-1.png",
+          "/images/portfolio/hospitality/project-2/pic-2.png",
+          "/images/portfolio/hospitality/project-2/pic-3.png",
+          "/images/portfolio/hospitality/project-2/pic-4.png",
+          "/images/portfolio/hospitality/project-2/pic-5.png",
+        ],
+      },
+      {
+        title: "Maison Verra Hotel",
+        images: [
+          "/images/portfolio/hospitality/project-3/pic-1.png",
+          "/images/portfolio/hospitality/project-3/pic-2.png",
+          "/images/portfolio/hospitality/project-3/pic-3.png",
+          "/images/portfolio/hospitality/project-3/pic-4.png",
+          "/images/portfolio/hospitality/project-3/pic-5.png",
+          "/images/portfolio/hospitality/project-3/pic-6.png",
+          "/images/portfolio/hospitality/project-3/pic-7.png",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Retail Interiors",
+    desc: "Immersive guest experiences that balance luxury and comfort.",
+    projects: [
+      {
+        title: "Verra Luxe",
+        images: [
+          "/images/portfolio/retail/project-1/pic-1.png",
+          "/images/portfolio/retail/project-1/pic-2.png",
+          "/images/portfolio/retail/project-1/pic-3.png",
+          "/images/portfolio/retail/project-1/pic-4.png",
+        ],
+      },
+      {
+        title: "The Atelier",
+        images: [
+          "/images/portfolio/retail/project-2/pic-1.png",
+          "/images/portfolio/retail/project-2/pic-2.png",
+          "/images/portfolio/retail/project-2/pic-3.png",
+          "/images/portfolio/retail/project-2/pic-4.png",
+          "/images/portfolio/retail/project-2/pic-5.png",
+          "/images/portfolio/retail/project-2/pic-6.png",
         ],
       },
     ],
@@ -147,7 +237,7 @@ export default function ProjectsPage() {
                     height={300}
                     className="w-full h-56 object-cover transition-transform duration-700 hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-black/40 hover:bg-black/20 transition-all"></div>
+                  <div className="absolute inset-0 bg-black/5 hover:bg-black/15 transition-all"></div>
                 </div>
 
                 <div className="p-6">

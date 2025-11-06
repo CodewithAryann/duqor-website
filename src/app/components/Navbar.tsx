@@ -43,7 +43,7 @@ const Navbar: React.FC = () => {
         {/* Logo */}
         <Link href="/" className="flex items-center shrink-0">
           <Image
-            src="/images/logo/logo.png"
+            src="/images/011.png"
             alt="Duqor Logo"
             width={120}
             height={40}

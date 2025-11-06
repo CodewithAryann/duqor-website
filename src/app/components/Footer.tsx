@@ -14,7 +14,7 @@ const Footer: React.FC = () => (
         {/* Brand / Logo */}
         <div className="flex flex-col items-start">
           <Image
-            src="/images/logo/logo.png"
+            src="/images/011.png"
             alt="Duqor Logo"
             width={150}
             height={50}
