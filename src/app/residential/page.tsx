@@ -139,7 +139,7 @@ function HeroSection() {
               View Projects
             </motion.button>
           </Link>
-          <Link href="/contact">
+          <Link href="/consultation">
             <motion.button
               whileHover={{ scale: 1.05 }}
               className="px-8 py-3 rounded-full font-semibold flex items-center gap-2 shadow-[0_0_25px_rgba(212,175,55,0.4)]"

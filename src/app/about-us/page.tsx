@@ -29,20 +29,21 @@ export default function AboutPage() {
   return (
     <section className="bg-[#0a0a0a] text-white overflow-hidden">
       {/* --- Hero Section --- */}
-      <div className="relative h-[80vh] w-full overflow-hidden flex items-center justify-center text-center">
+      <div className="relative min-h-screen w-full flex flex-col items-center justify-center text-center">
         {/* Background Image */}
         <Image
           src="/images/about/hero.png"
           alt="Hero Background"
           fill
           className="object-cover"
+          priority
         />
 
         {/* Overlay */}
-        <div className="absolute inset-0 bg-black/50 z-10" />
+        <div className="absolute inset-0 bg-black/60 z-10 backdrop-blur-[1px]" />
 
         {/* Floating Golden Particles */}
-        <div className="absolute inset-0 w-full h-full overflow-hidden z-20 pointer-events-none">
+        <div className="absolute inset-0 z-20 pointer-events-none overflow-hidden">
           {particles.map((p, i) => (
             <motion.span
               key={i}
@@ -63,12 +64,12 @@ export default function AboutPage() {
         </div>
 
         {/* Hero Content */}
-        <div className="relative z-30 max-w-3xl px-6">
+        <div className="relative z-30 px-6 max-w-3xl mt-20 sm:mt-32">
           <motion.h1
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="text-4xl md:text-6xl font-bold mb-4 tracking-tight text-[#d4af37] drop-shadow-[0_0_20px_rgba(212,175,55,0.6)]"
+            className="text-4xl md:text-6xl font-bold mb-6 tracking-tight text-[#d4af37] drop-shadow-[0_0_25px_rgba(212,175,55,0.7)] leading-tight"
           >
             Crafting Spaces that Inspire, Reflect, and Endure.
           </motion.h1>
@@ -76,10 +77,10 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4 }}
-            className="text-lg md:text-2xl mb-12 max-w-2xl font-light text-gray-200 drop-shadow-[0_0_10px_rgba(0,0,0,0.5)]"
+            className="text-lg md:text-2xl mb-12 font-light text-gray-200 drop-shadow-[0_0_10px_rgba(0,0,0,0.5)]"
           >
-             At Duqor, we merge design excellence with timeless craftsmanship to
-          create environments that tell stories of elegance and purpose.
+            At Duqor, we merge design excellence with timeless craftsmanship to
+            create environments that tell stories of elegance and purpose.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -87,13 +88,13 @@ export default function AboutPage() {
             transition={{ duration: 1, delay: 0.6 }}
             className="flex flex-wrap justify-center gap-6"
           >
-            <Link href="/projects">
-              <button className="bg-[#d4af37] text-black px-9 py-3 rounded-full font-semibold text-lg tracking-wide hover:bg-[#e7c968] hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.6)]">
+            <Link href="/portfolio">
+              <button className="bg-[#d4af37] text-black px-10 py-3 rounded-full font-semibold text-lg tracking-wide hover:bg-[#e7c968] hover:scale-105 transition-all duration-300 shadow-[0_0_25px_rgba(212,175,55,0.6)]">
                 Explore Projects
               </button>
             </Link>
             <Link href="/consultation">
-              <button className="border-2 border-[#d4af37] text-[#d4af37] px-9 py-3 rounded-full font-semibold text-lg tracking-wide hover:bg-[#d4af37] hover:text-black hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.5)]">
+              <button className="border-2 border-[#d4af37] text-[#d4af37] px-10 py-3 rounded-full font-semibold text-lg tracking-wide hover:bg-[#d4af37] hover:text-black hover:scale-105 transition-all duration-300 shadow-[0_0_25px_rgba(212,175,55,0.6)]">
                 Get Consultation
               </button>
             </Link>
@@ -103,7 +104,6 @@ export default function AboutPage() {
 
       {/* --- Philosophy Section --- */}
       <div className="py-24 px-6 max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-        {/* Image Animation with Hover */}
         <motion.div
           initial={{ opacity: 0, x: -60, scale: 0.95 }}
           whileInView={{ opacity: 1, x: 0, scale: 1 }}
@@ -120,12 +120,11 @@ export default function AboutPage() {
             src="/images/about/design.png"
             alt="Design Philosophy"
             width={600}
-            height={200}
+            height={400}
             className="rounded-2xl shadow-lg transition-transform duration-700"
           />
         </motion.div>
 
-        {/* Text Animation */}
         <motion.div
           initial={{ opacity: 0, x: 60 }}
           whileInView={{ opacity: 1, x: 0 }}
