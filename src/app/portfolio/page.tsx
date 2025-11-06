@@ -198,7 +198,7 @@ export default function ProjectsPage() {
         <h1 className="text-4xl md:text-6xl font-bold mb-4 text-[#d4af37] drop-shadow-[0_0_15px_rgba(212,175,55,0.4)]">
           Our Signature Projects
         </h1>
-        <p className="text-gray-400 max-w-2xl mx-auto">
+        <p className="text-gray-300 max-w-2xl mx-auto">
           From luxurious residences to visionary commercial spaces, explore the
           artistry that defines Duqor.
         </p>
@@ -216,7 +216,7 @@ export default function ProjectsPage() {
           <h2 className="text-3xl font-semibold mb-2 text-[#d4af37] text-center md:text-left">
             {category.title}
           </h2>
-          <p className="text-gray-400 mb-8 text-center md:text-left">
+          <p className="text-gray-300 mb-8 text-center md:text-left">
             {category.desc}
           </p>
 
@@ -244,7 +244,7 @@ export default function ProjectsPage() {
                   <h3 className="text-xl font-semibold text-[#d4af37] mb-1">
                     {project.title}
                   </h3>
-                  <div className="flex items-center text-gray-400 text-sm">
+                  <div className="flex items-center text-gray-300 text-sm">
                     <span className="mr-1">View Gallery</span>
                     <motion.div
                       whileHover={{ x: 5 }}
@@ -285,7 +285,7 @@ export default function ProjectsPage() {
                 {/* Left arrow */}
                 <button
                   onClick={prevImage}
-                  className="absolute left-2 md:left-6 text-gray-400 hover:text-[#d4af37] transition"
+                  className="absolute left-2 md:left-6 text-gray-300 hover:text-[#d4af37] transition"
                 >
                   <ArrowLeft size={36} />
                 </button>
@@ -310,7 +310,7 @@ export default function ProjectsPage() {
                 {/* Right arrow */}
                 <button
                   onClick={nextImage}
-                  className="absolute right-2 md:right-6 text-gray-400 hover:text-[#d4af37] transition"
+                  className="absolute right-2 md:right-6 text-gray-300 hover:text-[#d4af37] transition"
                 >
                   <ArrowRight size={36} />
                 </button>
