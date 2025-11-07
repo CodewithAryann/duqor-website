@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { FaInstagram, FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 import Image from "next/image";
@@ -10,12 +11,25 @@ const Navbar: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Smooth scroll if hash exists
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const hash = window.location.hash;
+      if (hash) {
+        const el = document.querySelector(hash);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [pathname]);
 
   const navLinks = [
     { href: "#services", label: "Services" },
@@ -30,6 +44,17 @@ const Navbar: React.FC = () => {
     { label: "Retail Design", href: "/retail" },
     { label: "Hospitality", href: "/hospitality" },
   ];
+
+  const handleServiceClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    if (pathname === "/") {
+      const el = document.querySelector("#services");
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    } else {
+      router.push("/#services");
+    }
+    setMenuOpen(false);
+  };
 
   return (
     <nav
@@ -101,6 +126,17 @@ const Navbar: React.FC = () => {
                     ))}
                   </div>
                 </>
+              ) : label === "Services" ? (
+                <a
+                  href="#services"
+                  onClick={handleServiceClick}
+                  className="relative group text-white/90 transition-all duration-300 hover:text-[#d4af37]"
+                >
+                  <span className="relative pb-0.5 group">
+                    {label}
+                    <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#d4af37] rounded-full transition-all duration-300 group-hover:w-full shadow-[0_0_6px_rgba(212,175,55,0.8)]"></span>
+                  </span>
+                </a>
               ) : (
                 <Link
                   href={href}
@@ -117,41 +153,43 @@ const Navbar: React.FC = () => {
         </ul>
 
         {/* Social Icons (Desktop) */}
-        <div className="hidden md:flex items-center space-x-6">
-          {[
-            {
-              icon: <HiOutlineMail size={18} aria-hidden="true" />,
-              link: "mailto:info@duqor.com",
-              label: "Email Duqor",
-            },
-            {
-              icon: <FaInstagram size={18} aria-hidden="true" />,
-              link: "https://www.instagram.com/duqor",
-              label: "Visit Duqor Instagram",
-            },
-            {
-              icon: <FaFacebookF size={18} aria-hidden="true" />,
-              link: "https://www.facebook.com/duqor",
-              label: "Visit Duqor Facebook",
-            },
-            {
-              icon: <FaLinkedinIn size={18} aria-hidden="true" />,
-              link: "https://www.linkedin.com/company/duqor",
-              label: "Visit Duqor LinkedIn",
-            },
-          ].map(({ icon, link, label }, i) => (
-            <a
-              key={i}
-              href={link}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={label}
-              className="text-white/90 hover:text-[#d4af37] hover:scale-110 transition-all duration-300"
-            >
-              {icon}
-            </a>
-          ))}
-        </div>
+       {/* Social Icons (Desktop) */}
+<div className="hidden md:flex items-center space-x-6">
+  {[
+    {
+      icon: <HiOutlineMail size={18} aria-hidden="true" />,
+      link: "mailto:info@duqor.com",
+      label: "Email Duqor",
+    },
+    {
+      icon: <FaInstagram size={18} aria-hidden="true" />,
+      link: "https://www.instagram.com/duqor",
+      label: "Visit Duqor Instagram",
+    },
+    {
+      icon: <FaFacebookF size={18} aria-hidden="true" />,
+      link: "https://www.facebook.com/people/Gulf-Duqors/pfbid0QVjHSrRKVddYkpsanbymk5nPDjfJAjNBA2UAcwv8nzXD38JAeSsxhGS6JyAoGzdhl/",
+      label: "Visit Duqor Facebook",
+    },
+    {
+      icon: <FaLinkedinIn size={18} aria-hidden="true" />,
+      link: "https://www.linkedin.com/company/duqor/",
+      label: "Visit Duqor LinkedIn",
+    },
+  ].map(({ icon, link, label }, i) => (
+    <a
+      key={i}
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={label}
+      className="text-white/90 hover:text-[#d4af37] hover:scale-110 transition-all duration-300"
+    >
+      {icon}
+    </a>
+  ))}
+</div>
+
 
         {/* Mobile Toggle */}
         <button
@@ -197,6 +235,14 @@ const Navbar: React.FC = () => {
                     ))}
                   </ul>
                 </details>
+              ) : label === "Services" ? (
+                <a
+                  href="#services"
+                  onClick={handleServiceClick}
+                  className="hover:text-[#d4af37] transition-colors duration-300"
+                >
+                  {label}
+                </a>
               ) : (
                 <Link
                   href={href}
@@ -210,41 +256,43 @@ const Navbar: React.FC = () => {
           ))}
 
           {/* Mobile Social Icons */}
-          <div className="flex items-center space-x-6 pt-6 border-t border-[#d4af37]/20 w-3/4 justify-center">
-            {[
-              {
-                icon: <HiOutlineMail size={20} aria-hidden="true" />,
-                link: "mailto:info@duqor.com",
-                label: "Email Duqor",
-              },
-              {
-                icon: <FaInstagram size={20} aria-hidden="true" />,
-                link: "https://www.instagram.com/duqor",
-                label: "Visit Duqor Instagram",
-              },
-              {
-                icon: <FaFacebookF size={20} aria-hidden="true" />,
-                link: "https://www.facebook.com/duqor",
-                label: "Visit Duqor Facebook",
-              },
-              {
-                icon: <FaLinkedinIn size={20} aria-hidden="true" />,
-                link: "https://www.linkedin.com/company/duqor",
-                label: "Visit Duqor LinkedIn",
-              },
-            ].map(({ icon, link, label }, i) => (
-              <a
-                key={i}
-                href={link}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={label}
-                className="hover:text-[#d4af37] hover:scale-110 transition-all duration-300"
-              >
-                {icon}
-              </a>
-            ))}
-          </div>
+          {/* Mobile Social Icons */}
+<div className="flex items-center space-x-6 pt-6 border-t border-[#d4af37]/20 w-3/4 justify-center">
+  {[
+    {
+      icon: <HiOutlineMail size={20} aria-hidden="true" />,
+      link: "mailto:info@duqor.com",
+      label: "Email Duqor",
+    },
+    {
+      icon: <FaInstagram size={20} aria-hidden="true" />,
+      link: "https://www.instagram.com/duqor",
+      label: "Visit Duqor Instagram",
+    },
+    {
+      icon: <FaFacebookF size={20} aria-hidden="true" />,
+      link: "https://www.facebook.com/duqor",
+      label: "Visit Duqor Facebook",
+    },
+    {
+      icon: <FaLinkedinIn size={20} aria-hidden="true" />,
+      link: "https://www.linkedin.com/company/duqor",
+      label: "Visit Duqor LinkedIn",
+    },
+  ].map(({ icon, link, label }, i) => (
+    <a
+      key={i}
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={label}
+      className="hover:text-[#d4af37] hover:scale-110 transition-all duration-300"
+    >
+      {icon}
+    </a>
+  ))}
+</div>
+
         </ul>
       </div>
     </nav>

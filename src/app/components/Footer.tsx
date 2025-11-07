@@ -21,7 +21,7 @@ const Footer: React.FC = () => (
             className="mb-4 select-none"
           />
           <p className="text-sm text-gray-400 leading-relaxed max-w-xs">
-            Excellence in interior design and construction since 2008. We craft spaces that blend innovation, luxury, and timeless design.
+            Excellence in interior design and construction. We craft spaces that blend innovation, luxury, and timeless design.
           </p>
         </div>
 
@@ -66,8 +66,8 @@ const Footer: React.FC = () => (
           <h4 className="text-lg font-semibold text-[#d4af37] mb-4 uppercase tracking-wide">Follow Us</h4>
           <div className="flex gap-4">
             {[
-              { icon: <FaFacebookF />, link: "https://www.facebook.com/duqor" },
-              { icon: <FaLinkedinIn />, link: "https://www.linkedin.com/company/duqor" },
+              { icon: <FaFacebookF />, link: "https://www.facebook.com/people/Gulf-Duqors/pfbid0QVjHSrRKVddYkpsanbymk5nPDjfJAjNBA2UAcwv8nzXD38JAeSsxhGS6JyAoGzdhl/" },
+              { icon: <FaLinkedinIn />, link: "https://www.linkedin.com/company/duqor/" },
               { icon: <FaInstagram />, link: "https://www.instagram.com/duqor" },
             ].map(({ icon, link }, i) => (
               <a

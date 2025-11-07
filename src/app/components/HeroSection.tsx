@@ -128,7 +128,7 @@ export default function HeroSection() {
 
           <Link href="/consultation">
             <button className="border-2 border-[#d4af37] text-[#d4af37] px-9 py-3 rounded-full font-semibold text-lg tracking-wide hover:bg-[#d4af37] hover:text-black hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.5)]">
-              Get Consultation
+              Get a Quote
             </button>
           </Link>
         </motion.div>

@@ -108,15 +108,15 @@ const FAQ: React.FC = () => {
                 />
 
                 {/* Answer */}
-                <AnimatePresence>
+                <AnimatePresence initial={false}>
                   {isOpen && (
                     <motion.div
                       id={`faq-answer-${i}`}
-                      initial={{ opacity: 0, height: 0, paddingTop: 0, paddingBottom: 0 }}
-                      animate={{ opacity: 1, height: 'auto', paddingTop: '1rem', paddingBottom: '1rem' }}
-                      exit={{ opacity: 0, height: 0, paddingTop: 0, paddingBottom: 0 }}
-                      transition={{ duration: 0.4 }}
-                      className="px-8 text-gray-400 text-base leading-relaxed"
+                      initial={{ opacity: 0, maxHeight: 0, paddingTop: 0, paddingBottom: 0 }}
+                      animate={{ opacity: 1, maxHeight: 500, paddingTop: 16, paddingBottom: 16 }}
+                      exit={{ opacity: 0, maxHeight: 0, paddingTop: 0, paddingBottom: 0 }}
+                      transition={{ duration: 0.5, ease: 'easeInOut' }}
+                      className="px-8 text-gray-400 text-base leading-relaxed overflow-hidden"
                     >
                       {faq.answer}
                     </motion.div>
