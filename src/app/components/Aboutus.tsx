@@ -52,7 +52,7 @@ const AboutPage: React.FC = () => {
           DUQOR is a premier UAE-based interior design and fit-out firm dedicated
           to crafting modern, sophisticated, and luxurious spaces that go beyond
           aesthetics. We believe exceptional design embodies lifestyle,
-          functionality, and innovation in perfect harmony. Our visionary
+          functionality, innovation, and sustainability in perfect harmony. Our visionary
           designers, master craftsmen, and project managers deliver end-to-end
           solutions across residential, commercial, retail, and hospitality
           sectors throughout the UAE and GCC.
