@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'https://www.duqor.com', // your live website URL
+  siteUrl: 'https://www.duqor.ae', // your live website URL
   generateRobotsTxt: true,         // generates robots.txt
   sitemapSize: 5000,
   changefreq: 'weekly',

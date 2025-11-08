@@ -66,16 +66,15 @@ const Navbar: React.FC = () => {
     >
       <div className="flex items-center justify-between px-6 py-4 md:px-10 text-white">
         {/* Logo */}
-        <Link href="/" className="flex items-center shrink-0">
-          <Image
-            src="/images/011.png"
-            alt="Duqor Logo"
-            width={120}
-            height={40}
-            priority
-            className="w-auto h-auto transition-transform duration-500 hover:scale-105 select-none"
-          />
-        </Link>
+        <Image
+  src="/images/011.png"
+  alt="Duqor Logo"
+  width={120}
+  height={40}
+  priority
+  className="h-8 w-auto transition-transform duration-500 hover:scale-105 select-none"
+/>
+
 
         {/* Desktop Navigation */}
         <ul className="hidden md:flex space-x-8 text-[15px] font-medium tracking-wide relative">

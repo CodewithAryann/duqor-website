@@ -1,7 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export', // required for static export
-  trailingSlash: true, // optional, makes URLs like /about/
+  output: 'export', // static export mode
+  images: {
+    unoptimized: true, // disables Next.js image optimization
+  },
 };
 
-module.exports = nextConfig;
+export default nextConfig;

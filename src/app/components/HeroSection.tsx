@@ -109,8 +109,7 @@ export default function HeroSection() {
           transition={{ duration: 1, delay: 0.4 }}
           className="text-lg md:text-2xl mb-12 max-w-2xl font-light text-gray-200 drop-shadow-[0_0_10px_rgba(0,0,0,0.5)]"
         >
-          Transforming spaces into sophisticated sanctuaries of style and comfort
-          across the UAE and GCC region.
+          Transforming spaces into elegant retreats of style and comfort across the UAE and GCC.
         </motion.p>
 
         {/* Buttons */}

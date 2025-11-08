@@ -85,16 +85,17 @@ const Introduction: React.FC = () => {
 
         {/* Intro Text */}
         <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.3 }}
-          className="text-lg md:text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto mb-16"
-        >
-          Duqor is a Dubai-based interior design and fit-out studio redefining
-          modern luxury. We craft environments that are visually stunning and
-          deeply functional — blending art, architecture, and innovation to
-          reflect your lifestyle and aspirations.
-        </motion.p>
+  initial={{ opacity: 0, y: 30 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 1, delay: 0.3 }}
+  className="text-center text-base md:text-lg lg:text-xl text-gray-300 leading-relaxed md:leading-loose max-w-3xl mx-auto mb-12 px-4"
+>
+  Duqor is a Dubai-based interior design and fit-out studio redefining modern
+  luxury with sustainability at its heart. Each space we design balances
+  beauty, function, and environmental responsibility — a harmony of art,
+  architecture, and innovation inspired by your lifestyle.
+</motion.p>
+
 
         {/* Services Grid */}
         <motion.div
