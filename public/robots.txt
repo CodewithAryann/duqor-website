@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://www.duqor.com
+Host: https://www.duqor.ae
 
 # Sitemaps
-Sitemap: https://www.duqor.com/sitemap.xml
+Sitemap: https://www.duqor.ae/sitemap.xml
