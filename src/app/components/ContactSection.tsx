@@ -68,11 +68,38 @@ const ContactSection: React.FC = () => {
   };
 
   // Contact info data
-  const contactInfo = [
-    { icon: <MapPin size={26} className="text-[#d4af37]" />, label: 'Address', value: 'Dubai, UAE' },
-    { icon: <Phone size={26} className="text-[#d4af37]" />, label: 'Phone', value: '+971 XXX XXX XXX' },
-    { icon: <Mail size={26} className="text-[#d4af37]" />, label: 'Email', value: 'info@duqor.ae' },
-  ];
+  // Contact info data
+const contactInfo = [
+  {
+    icon: <MapPin size={26} className="text-[#d4af37]" />,
+    label: 'Address',
+    value: 'Dubai, UAE',
+  },
+  {
+    icon: <Phone size={26} className="text-[#d4af37]" />,
+    label: 'Phone',
+    value: (
+      <a
+        href="tel:+97142871395"
+        className="hover:text-[#d4af37] transition-colors duration-200"
+      >
+        +971 4 287 1395
+      </a>
+    ),
+  },
+  {
+    icon: <Mail size={26} className="text-[#d4af37]" />,
+    label: 'Email',
+    value: (
+      <a
+        href="mailto:info@duqor.ae"
+        className="hover:text-[#d4af37] transition-colors duration-200"
+      >
+        info@duqor.ae
+      </a>
+    ),
+  },
+];
 
   return (
     <section

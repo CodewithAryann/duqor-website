@@ -14,7 +14,7 @@ const Footer: React.FC = () => (
         {/* Brand / Logo */}
         <div className="flex flex-col items-start">
           <Image
-            src="/images/011.png"
+            src="/images/copper-logo.png"
             alt="Duqor Logo"
             width={150}
             height={50}
@@ -66,7 +66,7 @@ const Footer: React.FC = () => (
           <h4 className="text-lg font-semibold text-[#d4af37] mb-4 uppercase tracking-wide">Follow Us</h4>
           <div className="flex gap-4">
             {[
-              { icon: <FaFacebookF />, link: "https://www.facebook.com/people/Gulf-Duqors/pfbid0QVjHSrRKVddYkpsanbymk5nPDjfJAjNBA2UAcwv8nzXD38JAeSsxhGS6JyAoGzdhl/" },
+              { icon: <FaFacebookF />, link: "https://www.facebook.com/profile.php?id=61583173334874" },
               { icon: <FaLinkedinIn />, link: "https://www.linkedin.com/company/duqor/" },
               { icon: <FaInstagram />, link: "https://www.instagram.com/duqor" },
             ].map(({ icon, link }, i) => (

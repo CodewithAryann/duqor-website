@@ -84,7 +84,7 @@ export default function HeroSection() {
       <div className="relative z-30 flex flex-col items-center justify-center h-full text-center text-white px-6">
         {/* Static Logo */}
         <motion.img
-          src="/images/011.png"
+          src="/images/copper-logo.png"
           alt="Duqor Logo"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -119,15 +119,15 @@ export default function HeroSection() {
           transition={{ duration: 1, delay: 0.6 }}
           className="flex flex-wrap justify-center gap-6"
         >
-          <Link href="/projects">
+          <Link href="/portfolio">
             <button className="bg-[#d4af37] text-black px-9 py-3 rounded-full font-semibold text-lg tracking-wide hover:bg-[#e7c968] hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.6)]">
               Explore Projects
             </button>
           </Link>
 
-          <Link href="/consultation">
+          <Link href="/contact">
             <button className="border-2 border-[#d4af37] text-[#d4af37] px-9 py-3 rounded-full font-semibold text-lg tracking-wide hover:bg-[#d4af37] hover:text-black hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.5)]">
-              Get a Quote
+              Contact Us
             </button>
           </Link>
         </motion.div>

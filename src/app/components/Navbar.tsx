@@ -67,7 +67,7 @@ const Navbar: React.FC = () => {
       <div className="flex items-center justify-between px-6 py-4 md:px-10 text-white">
         {/* Logo */}
         <Image
-  src="/images/011.png"
+  src="/images/copper-logo.png"
   alt="Duqor Logo"
   width={120}
   height={40}
@@ -167,7 +167,7 @@ const Navbar: React.FC = () => {
     },
     {
       icon: <FaFacebookF size={18} aria-hidden="true" />,
-      link: "https://www.facebook.com/people/Gulf-Duqors/pfbid0QVjHSrRKVddYkpsanbymk5nPDjfJAjNBA2UAcwv8nzXD38JAeSsxhGS6JyAoGzdhl/",
+      link: "https://www.facebook.com/profile.php?id=61583173334874",
       label: "Visit Duqor Facebook",
     },
     {

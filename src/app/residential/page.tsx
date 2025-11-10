@@ -131,7 +131,7 @@ function HeroSection() {
           transition={{ delay: 0.5, duration: 1 }}
           className="mt-10 flex flex-wrap justify-center gap-4"
         >
-          <Link href="/projects">
+          <Link href="/portfolio">
             <motion.button
               whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(212,175,55,0.5)" }}
               className="px-8 py-3 rounded-full border-2 border-[#d4af37] text-[#d4af37] font-semibold flex items-center gap-2 hover:bg-[#d4af37]/20 transition-all"
@@ -139,13 +139,13 @@ function HeroSection() {
               View Projects
             </motion.button>
           </Link>
-          <Link href="/consultation">
+          <Link href="/contact">
             <motion.button
               whileHover={{ scale: 1.05 }}
               className="px-8 py-3 rounded-full font-semibold flex items-center gap-2 shadow-[0_0_25px_rgba(212,175,55,0.4)]"
               style={{ background: GOLD, color: "#000" }}
             >
-              Book Consultation <ArrowRight size={18} />
+              Contact Us <ArrowRight size={18} />
             </motion.button>
           </Link>
         </motion.div>
@@ -485,11 +485,11 @@ function FinalCTA() {
               className="px-8 py-3 rounded-full font-semibold flex items-center gap-2"
               style={{ background: "#d4af37", color: "#000" }}
             >
-              Book Consultation <ArrowRight size={18} />
+              Contact Us <ArrowRight size={18} />
             </motion.button>
           </Link>
 
-          <Link href="/projects">
+          <Link href="/portfolio">
             <motion.button
               whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(212,175,55,0.5)" }}
               className="px-8 py-3 rounded-full border-2 border-[#d4af37] text-[#d4af37] font-semibold flex items-center gap-2 hover:bg-[#d4af37]/20 transition-all"
