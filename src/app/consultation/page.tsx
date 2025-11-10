@@ -13,21 +13,54 @@ const ConsultationPage: React.FC = () => {
     message: "",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const [status, setStatus] = useState<string | null>(null);
+
+  // 🔹 handle input
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // 🔹 handle form submit (Web3Forms API)
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Thank you! We’ll contact you soon.");
-    setFormData({ name: "", email: "", phone: "", project: "", message: "" });
+    setStatus("loading");
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "YOUR_ACCESS_KEY_HERE", // 🟡 replace with your real access key from https://web3forms.com
+          subject: "New Consultation Request",
+          ...formData,
+        }),
+      });
+
+      const data = await res.json();
+      if (data.success) {
+        setStatus("success");
+        setFormData({ name: "", email: "", phone: "", project: "", message: "" });
+      } else {
+        setStatus("error");
+        console.error("Web3Forms error:", data);
+      }
+    } catch (error) {
+      console.error("Submission error:", error);
+      setStatus("error");
+    }
   };
 
-  // Particles state
-  const [particles, setParticles] = useState<{ x: number; y: number; color: string }[]>([]);
+  // 🔹 background particle animation
+  const [particles, setParticles] = useState<
+    { x: number; y: number; color: string }[]
+  >([]);
   const [mounted, setMounted] = useState(false);
 
-  // Generate particles only on client
   useEffect(() => {
     setMounted(true);
     const width = window.innerWidth;
@@ -61,8 +94,16 @@ const ConsultationPage: React.FC = () => {
               key={i}
               className="absolute w-0.5 h-0.5 rounded-full opacity-60"
               style={{ top: p.y, left: p.x, backgroundColor: p.color }}
-              animate={{ y: [p.y, p.y - 80, p.y], opacity: [0.2, 1, 0.2], scale: [1, 1.8, 1] }}
-              transition={{ duration: 4 + Math.random() * 4, repeat: Infinity, ease: "easeInOut" }}
+              animate={{
+                y: [p.y, p.y - 80, p.y],
+                opacity: [0.2, 1, 0.2],
+                scale: [1, 1.8, 1],
+              }}
+              transition={{
+                duration: 4 + Math.random() * 4,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
             />
           ))}
         </div>
@@ -163,11 +204,24 @@ const ConsultationPage: React.FC = () => {
           <div className="md:col-span-2 flex justify-center">
             <button
               type="submit"
-              className="bg-[#d4af37] text-black px-10 py-3 rounded-full font-semibold text-lg tracking-wide hover:bg-[#ffd700] hover:scale-105 transition-all duration-300 shadow-[0_0_25px_rgba(212,175,55,0.7)]"
+              disabled={status === "loading"}
+              className="bg-[#d4af37] text-black px-10 py-3 rounded-full font-semibold text-lg tracking-wide hover:bg-[#ffd700] hover:scale-105 transition-all duration-300 shadow-[0_0_25px_rgba(212,175,55,0.7)] disabled:opacity-70"
             >
-              Submit Request
+              {status === "loading" ? "Submitting..." : "Submit Request"}
             </button>
           </div>
+
+          {/* Status Message */}
+          {status === "success" && (
+            <p className="md:col-span-2 text-center text-green-400 font-medium mt-4">
+              ✅ Thank you! Your request has been submitted.
+            </p>
+          )}
+          {status === "error" && (
+            <p className="md:col-span-2 text-center text-red-400 font-medium mt-4">
+              ❌ Oops! Something went wrong. Please try again later.
+            </p>
+          )}
         </motion.form>
       </div>
     </section>

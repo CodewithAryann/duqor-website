@@ -18,30 +18,40 @@ const ContactSection: React.FC = () => {
     phone: '',
     message: '',
   });
+
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState<string | null>(null);
 
+  // Handle form input
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  // Handle submit
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setSuccess(null);
 
-    const formData = new FormData();
-    Object.entries(form).forEach(([key, value]) => formData.append(key, value as string));
-    formData.append('access_key', 'YOUR_WEB3FORMS_ACCESS_KEY'); // replace with your key
-    formData.append('subject', 'New Contact Message from DUQOR');
-    formData.append('redirect', ''); // optional redirect URL
-
     try {
       const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        body: formData,
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: '11ce7814-b7a8-4543-9fa2-7892e049afc1', // 🔑 Replace with your actual Web3Forms Access Key
+          subject: 'New Contact Message from DUQOR',
+          from_name: form.name,
+          from_email: form.email,
+          phone: form.phone,
+          message: form.message,
+        }),
       });
+
       const data = await res.json();
+      console.log('Web3Forms Response:', data);
 
       if (data.success) {
         setSuccess('Message sent successfully!');
@@ -49,14 +59,15 @@ const ContactSection: React.FC = () => {
       } else {
         setSuccess('Failed to send message. Please try again later.');
       }
-    } catch {
-      // removed unused 'err' variable
-      setSuccess('Failed to send message. Please check your internet connection.');
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setSuccess('Network error. Please check your internet connection.');
     } finally {
       setLoading(false);
     }
   };
 
+  // Contact info data
   const contactInfo = [
     { icon: <MapPin size={26} className="text-[#d4af37]" />, label: 'Address', value: 'Dubai, UAE' },
     { icon: <Phone size={26} className="text-[#d4af37]" />, label: 'Phone', value: '+971 XXX XXX XXX' },
@@ -79,6 +90,7 @@ const ContactSection: React.FC = () => {
       />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
+        {/* Heading */}
         <motion.h2
           initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -91,7 +103,7 @@ const ContactSection: React.FC = () => {
         </motion.h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* Left - Contact Info + Map */}
+          {/* Left side: contact info + map */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -115,6 +127,7 @@ const ContactSection: React.FC = () => {
               </motion.div>
             ))}
 
+            {/* Google Map */}
             <motion.div
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.6 }}
@@ -132,7 +145,7 @@ const ContactSection: React.FC = () => {
             </motion.div>
           </motion.div>
 
-          {/* Right - Contact Form */}
+          {/* Right side: contact form */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -140,6 +153,7 @@ const ContactSection: React.FC = () => {
             className="p-8 rounded-2xl bg-white/10 backdrop-blur-lg shadow-[0_0_30px_rgba(212,175,55,0.15)] border border-[#d4af37]/20"
           >
             <form onSubmit={handleSubmit} className="space-y-5">
+              {/* Inputs */}
               {(['name', 'email', 'phone'] as const).map((field) => (
                 <input
                   key={field}
@@ -157,6 +171,7 @@ const ContactSection: React.FC = () => {
                 />
               ))}
 
+              {/* Message box */}
               <textarea
                 name="message"
                 placeholder="Project Details"
@@ -167,6 +182,7 @@ const ContactSection: React.FC = () => {
                 className="w-full px-4 py-3 text-white bg-transparent border border-[#d4af37]/40 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d4af37] placeholder-gray-400 transition-all"
               />
 
+              {/* Submit button */}
               <motion.button
                 type="submit"
                 disabled={loading}
@@ -176,6 +192,7 @@ const ContactSection: React.FC = () => {
                 {loading ? 'Sending...' : 'Send Message'}
               </motion.button>
 
+              {/* Status message */}
               {success && (
                 <motion.p
                   initial={{ opacity: 0 }}
