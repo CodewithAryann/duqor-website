@@ -1,4 +1,5 @@
 "use client";
+
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
@@ -76,11 +77,7 @@ const Introduction: React.FC = () => {
                      drop-shadow-[0_3px_8px_rgba(0,0,0,0.6)]
                      [text-shadow:0_0_6px_rgba(255,220,120,0.5),
                                   0_0_14px_rgba(195,138,39,0.4),
-                                  0_0_24px_rgba(139,91,16,0.3)] 
-                     after:content-[''] after:absolute after:inset-0 
-                     after:bg-linear-to-t after:from-white/20 after:to-transparent
-                     after:bg-clip-text after:text-transparent
-          "
+                                  0_0_24px_rgba(139,91,16,0.3)]"
         >
           Welcome to DUQOR
         </motion.h1>
@@ -107,44 +104,44 @@ const Introduction: React.FC = () => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="bg-linear-to-br from-[#1e1e1e] via-[#2a2a2a] to-[#151515] border border-[#2c2c2c] hover:border-[#d4af37]/60 rounded-2xl shadow-md flex flex-col overflow-hidden transition-transform duration-300 hover:-translate-y-1 hover:scale-102"
+              className="bg-linear-to-br from-[#1e1e1e] via-[#2a2a2a] to-[#151515] border border-[#2c2c2c] hover:border-[#d4af37]/60 rounded-2xl shadow-md flex flex-col overflow-hidden transition-transform duration-300 hover:-translate-y-1 hover:scale-105"
             >
               {/* Image */}
-              <div className="overflow-hidden rounded-xl">
+              <div className="overflow-hidden rounded-t-2xl h-48 sm:h-52 md:h-56 lg:h-48">
                 <Image
                   src={service.img}
                   alt={service.title}
                   width={400}
                   height={240}
-                  className="w-full h-40 object-cover"
+                  className="w-full h-full object-cover"
                   loading="lazy"
                 />
               </div>
 
               {/* Content */}
-              <div className="p-6 flex flex-col flex-1">
-                {/* Title */}
-                <motion.h3
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.1 * i }}
-                  className="relative text-xl font-serif font-semibold
-                             bg-linear-to-b from-[#e7c675] via-[#c38a27] to-[#8b5b10]
-                             bg-clip-text text-transparent
-                             drop-shadow-[0_2px_6px_rgba(0,0,0,0.5)]
-                             mb-2"
-                >
-                  {service.title}
-                </motion.h3>
+              <div className="flex flex-col flex-1 justify-between p-6">
+                {/* Title & Description */}
+                <div>
+                  <motion.h3
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.1 * i }}
+                    className="text-xl sm:text-lg md:text-xl font-serif font-semibold
+                               bg-linear-to-b from-[#e7c675] via-[#c38a27] to-[#8b5b10]
+                               bg-clip-text text-transparent
+                               drop-shadow-[0_2px_6px_rgba(0,0,0,0.5)]
+                               mb-2"
+                  >
+                    {service.title}
+                  </motion.h3>
 
-                {/* Description + Highlights */}
-                <div className="flex-1 flex flex-col justify-start">
-                  <p className="text-gray-300 mb-4 text-sm">{service.desc}</p>
+                  <p className="text-gray-300 mb-4 text-sm sm:text-base">{service.desc}</p>
+
                   <ul className="space-y-2">
                     {service.highlights.map((point, j) => (
                       <li key={j} className="flex items-start gap-2">
                         <span className="w-2.5 h-2.5 rounded-full bg-[#d4af37] mt-1 shrink-0 animate-pulse"></span>
-                        <span className="text-gray-300 text-sm leading-snug">{point}</span>
+                        <span className="text-gray-300 text-sm sm:text-base leading-snug">{point}</span>
                       </li>
                     ))}
                   </ul>
@@ -153,11 +150,11 @@ const Introduction: React.FC = () => {
                 {/* Learn More Button */}
                 <Link href={service.link} className="mt-6 block">
                   <button
-                    className="relative overflow-hidden px-10 py-3 rounded-full font-serif font-semibold text-lg tracking-wide text-black
+                    className="w-full relative overflow-hidden px-8 sm:px-10 py-3 rounded-full font-serif font-semibold text-base sm:text-lg text-black
                                bg-linear-to-b from-[#f5d67a] via-[#c38a27] to-[#8b5b10]
                                shadow-[0_4px_20px_rgba(195,138,39,0.6)]
                                hover:scale-105 hover:shadow-[0_0_25px_rgba(212,175,55,0.8)]
-                               transition-all duration-300 flex items-center justify-center gap-2 group"
+                               transition-all duration-300 flex items-center justify-center gap-2"
                   >
                     Learn More <ArrowRight size={16} />
                   </button>
@@ -168,18 +165,16 @@ const Introduction: React.FC = () => {
         </div>
 
         {/* Bottom Line */}
-       <motion.div
-  initial={{ scaleX: 0, opacity: 0 }}
-  whileInView={{ scaleX: 1, opacity: 1 }}
-  transition={{ duration: 1.2, delay: 0.5, ease: "easeInOut" }}
-  className="mx-auto mt-20 h-1 w-3/5 
-             bg-linear-to-r from-[#f5d67a] via-[#c38a27] to-[#8b5b10] 
-             rounded-full 
-             shadow-[0_0_15px_rgba(212,175,55,0.6),0_0_25px_rgba(195,138,39,0.4)] 
-             origin-center"
-/>
-
-
+        <motion.div
+          initial={{ scaleX: 0, opacity: 0 }}
+          whileInView={{ scaleX: 1, opacity: 1 }}
+          transition={{ duration: 1.2, delay: 0.5, ease: "easeInOut" }}
+          className="mx-auto mt-20 h-1 w-3/5 
+                     bg-linear-to-r from-[#f5d67a] via-[#c38a27] to-[#8b5b10] 
+                     rounded-full 
+                     shadow-[0_0_15px_rgba(212,175,55,0.6),0_0_25px_rgba(195,138,39,0.4)] 
+                     origin-center"
+        />
       </div>
     </section>
   );
