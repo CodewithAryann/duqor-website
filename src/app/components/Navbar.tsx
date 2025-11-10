@@ -60,7 +60,7 @@ const Navbar: React.FC = () => {
     <nav
       className={`fixed inset-x-0 top-0 z-50 w-full transition-all duration-700 ease-in-out ${
         scrolled
-          ? "bg-black/95 backdrop-blur-md border-b border-[#d4af37]/40 shadow-[0_4px_20px_rgba(212,175,55,0.15)]"
+          ? "bg-black/95 backdrop-blur-md border-b border-[#c97a00]/40 shadow-[0_4px_20px_rgba(212,175,55,0.15)]"
           : "bg-linear-to-b from-black/95 to-transparent border-b border-transparent"
       }`}
     >
@@ -91,15 +91,15 @@ const Navbar: React.FC = () => {
             >
               {label === "Business Vertical" ? (
                 <>
-                  <div className="flex items-center gap-1 cursor-pointer text-white/90 transition-all duration-300 hover:text-[#d4af37]">
+                  <div className="flex items-center gap-1 cursor-pointer text-white/90 transition-all duration-300 hover:text-[#c97a00]">
                     <span className="relative pb-0.5 group">
                       {label}
-                      <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#d4af37] rounded-full transition-all duration-300 group-hover:w-full shadow-[0_0_6px_rgba(212,175,55,0.8)]"></span>
+                      <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#c97a00] rounded-full transition-all duration-300 group-hover:w-full shadow-[0_0_6px_rgba(212,175,55,0.8)]"></span>
                     </span>
                     <ChevronDown
                       size={16}
                       className={`transition-transform duration-300 ${
-                        dropdownOpen ? "rotate-180 text-[#d4af37]" : ""
+                        dropdownOpen ? "rotate-180 text-[#c97a00]" : ""
                       }`}
                     />
                   </div>
@@ -108,7 +108,7 @@ const Navbar: React.FC = () => {
                   <div
                     onMouseEnter={() => setDropdownOpen(true)}
                     onMouseLeave={() => setDropdownOpen(false)}
-                    className={`absolute left-0 mt-3 w-56 bg-black/95 border border-[#d4af37]/30 rounded-xl shadow-[0_0_15px_rgba(212,175,55,0.15)] py-3 backdrop-blur-md transition-all duration-300 ${
+                    className={`absolute left-0 mt-3 w-56 bg-black/95 border border-[#c97a00]/30 rounded-xl shadow-[0_0_15px_rgba(212,175,55,0.15)] py-3 backdrop-blur-md transition-all duration-300 ${
                       dropdownOpen
                         ? "opacity-100 translate-y-0 visible"
                         : "opacity-0 -translate-y-3 invisible"
@@ -118,7 +118,7 @@ const Navbar: React.FC = () => {
                       <Link
                         key={sub.href}
                         href={sub.href}
-                        className="block px-5 py-2 text-sm text-white/90 hover:text-[#d4af37] hover:bg-[#1a1a1a]/70 transition-all duration-300"
+                        className="block px-5 py-2 text-sm text-white/90 hover:text-[#c97a00] hover:bg-[#1a1a1a]/70 transition-all duration-300"
                       >
                         {sub.label}
                       </Link>
@@ -129,21 +129,21 @@ const Navbar: React.FC = () => {
                 <a
                   href="#services"
                   onClick={handleServiceClick}
-                  className="relative group text-white/90 transition-all duration-300 hover:text-[#d4af37]"
+                  className="relative group text-white/90 transition-all duration-300 hover:text-[#c97a00]"
                 >
                   <span className="relative pb-0.5 group">
                     {label}
-                    <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#d4af37] rounded-full transition-all duration-300 group-hover:w-full shadow-[0_0_6px_rgba(212,175,55,0.8)]"></span>
+                    <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#c97a00] rounded-full transition-all duration-300 group-hover:w-full shadow-[0_0_6px_rgba(212,175,55,0.8)]"></span>
                   </span>
                 </a>
               ) : (
                 <Link
                   href={href}
-                  className="relative group text-white/90 transition-all duration-300 hover:text-[#d4af37]"
+                  className="relative group text-white/90 transition-all duration-300 hover:text-[#c97a00]"
                 >
                   <span className="relative pb-0.5 group">
                     {label}
-                    <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#d4af37] rounded-full transition-all duration-300 group-hover:w-full shadow-[0_0_6px_rgba(212,175,55,0.8)]"></span>
+                    <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#c97a00] rounded-full transition-all duration-300 group-hover:w-full shadow-[0_0_6px_rgba(212,175,55,0.8)]"></span>
                   </span>
                 </Link>
               )}
@@ -182,7 +182,7 @@ const Navbar: React.FC = () => {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      className="text-white/90 hover:text-[#d4af37] hover:scale-110 transition-all duration-300"
+      className="text-white/90 hover:text-[#c97a00] hover:scale-110 transition-all duration-300"
     >
       {icon}
     </a>
@@ -206,14 +206,14 @@ const Navbar: React.FC = () => {
           menuOpen
             ? "opacity-100 translate-y-0 visible"
             : "opacity-0 -translate-y-10 invisible"
-        } bg-black/95 border-t border-[#d4af37]/20 text-white`}
+        } bg-black/95 border-t border-[#c97a00]/20 text-white`}
       >
         <ul className="flex flex-col items-center space-y-6 py-8 text-lg font-medium">
           {navLinks.map(({ href, label }) => (
             <li key={href} className="w-full text-center">
               {label === "Business Vertical" ? (
                 <details className="group">
-                  <summary className="cursor-pointer list-none hover:text-[#d4af37] transition-colors duration-300 flex items-center justify-center gap-1">
+                  <summary className="cursor-pointer list-none hover:text-[#c97a00] transition-colors duration-300 flex items-center justify-center gap-1">
                     {label}
                     <ChevronDown
                       size={18}
@@ -226,7 +226,7 @@ const Navbar: React.FC = () => {
                         <Link
                           href={sub.href}
                           onClick={() => setMenuOpen(false)}
-                          className="block py-1 text-white/90 hover:text-[#d4af37] transition-all duration-300"
+                          className="block py-1 text-white/90 hover:text-[#c97a00] transition-all duration-300"
                         >
                           {sub.label}
                         </Link>
@@ -238,7 +238,7 @@ const Navbar: React.FC = () => {
                 <a
                   href="#services"
                   onClick={handleServiceClick}
-                  className="hover:text-[#d4af37] transition-colors duration-300"
+                  className="hover:text-[#c97a00] transition-colors duration-300"
                 >
                   {label}
                 </a>
@@ -246,7 +246,7 @@ const Navbar: React.FC = () => {
                 <Link
                   href={href}
                   onClick={() => setMenuOpen(false)}
-                  className="hover:text-[#d4af37] transition-colors duration-300"
+                  className="hover:text-[#c97a00] transition-colors duration-300"
                 >
                   {label}
                 </Link>
@@ -285,7 +285,7 @@ const Navbar: React.FC = () => {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      className="hover:text-[#d4af37] hover:scale-110 transition-all duration-300"
+      className="hover:text-[#c97a00] hover:scale-110 transition-all duration-300"
     >
       {icon}
     </a>

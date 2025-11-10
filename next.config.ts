@@ -1,13 +1,9 @@
 // next.config.js
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export', // Enables static site export
-  images: {
-    unoptimized: true, // Disable Next.js image optimization (required for export)
-  },
-  reactStrictMode: true, // Helps catch potential issues in development
-  swcMinify: true, // Enables faster builds and smaller JS bundles
+  output: "export",
+  images: { unoptimized: true },
+  trailingSlash: true, // <– IMPORTANT for static hosting
 };
 
-export default nextConfig;
+module.exports = nextConfig;
