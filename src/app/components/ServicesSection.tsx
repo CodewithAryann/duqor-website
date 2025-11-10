@@ -39,32 +39,28 @@ const ServicesSection: React.FC = () => {
       description:
         "Premium sourcing and custom manufacturing of furniture and décor elements, meticulously selected to match and elevate your design intent.",
       icon: <FaCouch size={36} className="text-[#d4af37]" />,
-      image:
-        "/images/services/pic-3.png",
+      image: "/images/services/pic-3.png",
     },
     {
       title: "Joinery & Bespoke Woodwork",
       description:
         "In-house production of luxury joinery elements crafted with meticulous attention to detail and exceptional craftsmanship.",
       icon: <FaRulerCombined size={36} className="text-[#d4af37]" />,
-      image:
-        "/images/services/pic-4.png",
+      image: "/images/services/pic-4.png",
     },
     {
       title: "Renovation & Refurbishment",
       description:
         "Expertly transforming existing spaces into fresh, modern environments while preserving and enhancing functional value.",
       icon: <FaRedo size={36} className="text-[#d4af37]" />,
-      image:
-        "/images/services/pic-5.png",
+      image: "/images/services/pic-5.png",
     },
     {
       title: "Lighting & Décor Styling",
       description:
         "Curated lighting design and carefully selected accessories that enhance the aesthetic appeal and ambiance of every space.",
       icon: <FaLightbulb size={36} className="text-[#d4af37]" />,
-      image:
-        "/images/services/pic-6.png",
+      image: "/images/services/pic-6.png",
     },
   ];
 
@@ -76,7 +72,7 @@ const ServicesSection: React.FC = () => {
       {/* Subtle gold glow background */}
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 0.1 }}
+        animate={{ opacity: 0.15 }}
         transition={{ duration: 2 }}
         className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(194,161,88,0.25),transparent_70%)]"
       />
@@ -84,22 +80,35 @@ const ServicesSection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
           className="text-center mb-20"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-linear-to-r text-[#d4af37] drop-shadow-[0_0_15px_rgba(212,175,55,0.5)] bg-clip-text">
-            Our Services
-          </h2>
-          <motion.div
-            initial={{ width: 0 }}
-            whileInView={{ width: "120px" }}
+          <motion.h2
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
-            className="h-0.5 mx-auto mb-6 bg-linear-to-r from-transparent via-[#c2a158] to-transparent"
+            className="relative text-4xl md:text-5xl font-serif font-bold
+                       bg-linear-to-b from-[#e7c675] via-[#c38a27] to-[#8b5b10]
+                       bg-clip-text text-transparent
+                       drop-shadow-[0_3px_8px_rgba(0,0,0,0.6)]
+                       [text-shadow:0_0_6px_rgba(255,220,120,0.5),
+                                    0_0_14px_rgba(195,138,39,0.4),
+                                    0_0_24px_rgba(139,91,16,0.3)]
+          ">
+            Our Services
+          </motion.h2>
+
+          <motion.div
+            initial={{ scaleX: 0, opacity: 0 }}
+            whileInView={{ scaleX: 1, opacity: 1 }}
+            transition={{ duration: 1, delay: 0.3, ease: "easeInOut" }}
+            className="h-1 w-32 mx-auto mt-4 bg-linear-to-r from-[#f5d67a] via-[#c38a27] to-[#8b5b10] rounded-full shadow-[0_0_15px_rgba(212,175,55,0.6),0_0_25px_rgba(195,138,39,0.4)] origin-center"
           />
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+
+          <p className="text-lg text-gray-300 max-w-2xl mx-auto mt-4">
             Design. Build. Transform. — The DUQOR Way.
           </p>
         </motion.div>
@@ -109,18 +118,17 @@ const ServicesSection: React.FC = () => {
           {services.map((service, idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: idx * 0.1 }}
               viewport={{ once: true }}
-              whileHover={{
-                scale: 1.04,
-                boxShadow: "0 0 30px rgba(194,161,88,0.3)",
-              }}
-              className="relative bg-[#111] border border-[#2c2c2c] hover:border-[#d4af37]/70 rounded-2xl overflow-hidden transition-all duration-500 group"
+              whileHover={{ scale: 1.04, y: -2, boxShadow: "0 0 25px rgba(212,175,55,0.4)" }}
+              className="relative bg-linear-to-br from-[#1e1e1e] via-[#2a2a2a] to-[#151515]
+                         border border-[#2c2c2c] hover:border-[#d4af37]/60 rounded-2xl overflow-hidden
+                         transition-all duration-300 group"
             >
               {/* Image */}
-              <div className="relative w-full h-56 overflow-hidden">
+              <div className="relative w-full h-56 overflow-hidden rounded-t-2xl">
                 <Image
                   src={service.image}
                   alt={service.title}
@@ -139,14 +147,21 @@ const ServicesSection: React.FC = () => {
               </div>
 
               {/* Content */}
-              <div className="p-7">
+              <div className="p-6 flex flex-col flex-1">
                 <div className="flex items-center gap-3 mb-4">
                   {service.icon}
-                  <h3 className="text-xl font-semibold text-white group-hover:text-[#c2a158] transition-colors duration-300">
+                  <motion.h3
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: idx * 0.1 }}
+                    className="relative text-lg md:text-xl font-serif font-semibold
+                               bg-linear-to-b from-[#e7c675] via-[#c38a27] to-[#8b5b10]
+                               bg-clip-text text-transparent drop-shadow-[0_2px_6px_rgba(0,0,0,0.5)]"
+                  >
                     {service.title}
-                  </h3>
+                  </motion.h3>
                 </div>
-                <p className="text-gray-300 text-sm leading-relaxed">
+                <p className="text-gray-300 text-sm md:text-base leading-relaxed flex-1">
                   {service.description}
                 </p>
               </div>
@@ -154,12 +169,15 @@ const ServicesSection: React.FC = () => {
           ))}
         </div>
 
-        {/* Decorative underline */}
+        {/* Decorative Footer Line - Center Radiating */}
         <motion.div
-          initial={{ width: 0 }}
-          whileInView={{ width: "70%" }}
-          transition={{ duration: 1.2, delay: 0.4 }}
-          className="mx-auto mt-20 h-px bg-linear-to-r from-transparent via-[#d4af37] to-transparent"
+          initial={{ scaleX: 0, opacity: 0 }}
+          whileInView={{ scaleX: 1, opacity: 1 }}
+          transition={{ duration: 1.2, delay: 0.4, ease: "easeInOut" }}
+          className="mx-auto mt-20 h-1 w-3/5 
+                     bg-linear-to-r from-[#f5d67a] via-[#c38a27] to-[#8b5b10]
+                     rounded-full shadow-[0_0_15px_rgba(212,175,55,0.6),0_0_25px_rgba(195,138,39,0.4)]
+                     origin-center"
         />
       </div>
     </section>

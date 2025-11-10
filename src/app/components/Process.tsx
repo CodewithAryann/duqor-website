@@ -51,7 +51,7 @@ const OurProcess: React.FC = () => {
       {/* Subtle golden background glow */}
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 0.2 }}
+        animate={{ opacity: 0.15 }}
         transition={{ duration: 2 }}
         className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(194,161,88,0.3),transparent_70%)]"
       />
@@ -64,10 +64,22 @@ const OurProcess: React.FC = () => {
         viewport={{ once: true }}
         className="relative z-10 text-center mb-24 px-6"
       >
-        <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-5">
-          Our <span className="bg-linear-to-r text-[#d4af37] drop-shadow-[0_0_15px_rgba(212,175,55,0.5)] bg-clip-text">Process</span>
-        </h2>
-        <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+        <motion.h2
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          className="relative text-4xl md:text-5xl font-serif font-bold
+                     leading-[1.1] pb-1
+                     bg-linear-to-b from-[#e7c675] via-[#c38a27] to-[#8b5b10]
+                     bg-clip-text text-transparent
+                     drop-shadow-[0_3px_8px_rgba(0,0,0,0.6)]
+                     [text-shadow:0_0_6px_rgba(255,220,120,0.5),
+                                  0_0_14px_rgba(195,138,39,0.4),
+                                  0_0_24px_rgba(139,91,16,0.3)]"
+        >
+          Our Design <span className="font-semibold text-[#d4af37]">Process</span>
+        </motion.h2>
+        <p className="text-gray-400 text-lg max-w-2xl mx-auto mt-4">
           Every masterpiece begins with a story — our 5-stage journey from concept to completion.
         </p>
       </motion.div>
@@ -98,7 +110,9 @@ const OurProcess: React.FC = () => {
                 <motion.div
                   whileHover={{ scale: 1.2, rotate: 10 }}
                   transition={{ type: "spring", stiffness: 300 }}
-                  className="w-14 h-14 flex items-center justify-center rounded-full bg-[#c2a158]/10 border border-[#c2a158]/50 text-[#d4af37] text-2xl shadow-[0_0_15px_rgba(194,161,88,0.2)] backdrop-blur-md"
+                  className="w-14 h-14 flex items-center justify-center rounded-full
+                             bg-linear-to-b from-[#e7c675] via-[#c38a27] to-[#8b5b10]
+                             text-black text-2xl shadow-[0_0_25px_rgba(212,175,55,0.6)]"
                 >
                   {step.icon}
                 </motion.div>
@@ -109,12 +123,19 @@ const OurProcess: React.FC = () => {
               <motion.div
                 whileHover={{ y: -5 }}
                 transition={{ duration: 0.3 }}
-                className="relative z-10 bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-[#c2a158]/20 hover:border-[#c2a158]/60 shadow-[0_0_25px_rgba(194,161,88,0.2)] transition-all duration-500 md:w-[80%]"
+                className="relative z-10 bg-[#111] border border-[#2c2c2c]
+                           hover:border-[#d4af37]/70 p-8 rounded-2xl shadow-lg
+                           hover:shadow-[0_0_25px_rgba(194,161,88,0.3)] transition-all duration-500 md:w-[80%]"
               >
-                <h3 className="text-2xl font-semibold mb-3 text-[#f3f3f3] group-hover:text-[#c2a158] transition-colors duration-300">
+                <h3 className="text-2xl font-semibold mb-3
+                               bg-linear-to-b from-[#e7c675] via-[#c38a27] to-[#8b5b10]
+                               bg-clip-text text-transparent
+                               drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]
+                               group-hover:drop-shadow-[0_0_20px_rgba(212,175,55,0.6)]
+                               transition-all duration-300">
                   {step.title}
                 </h3>
-                <p className="text-gray-400 leading-relaxed">{step.description}</p>
+                <p className="text-gray-300 leading-relaxed">{step.description}</p>
 
                 {/* Decorative underline */}
                 <motion.div
@@ -122,7 +143,7 @@ const OurProcess: React.FC = () => {
                   whileInView={{ width: "60%" }}
                   transition={{ duration: 0.8, delay: 0.2 }}
                   viewport={{ once: true }}
-                  className="h-0.5 mt-5 bg-linear-to-r from-[#d4af37] to-transparent"
+                  className="h-0.5 mt-5 bg-linear-to-r from-transparent via-[#d4af37] to-transparent rounded-full"
                 />
               </motion.div>
             </motion.div>

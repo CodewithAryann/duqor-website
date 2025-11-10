@@ -15,7 +15,7 @@ const services = [
       "End-to-end project management",
     ],
     link: "/residential",
-    img: "/images/intro/residential.png",
+    img: "/images/intro/img1.png",
   },
   {
     title: "Commercial Interiors",
@@ -26,7 +26,7 @@ const services = [
       "Focus on durability and long-term value",
     ],
     link: "/commercial",
-    img: "/images/intro/commercial.png",
+    img: "/images/intro/img2.png",
   },
   {
     title: "Hospitality Interiors",
@@ -37,7 +37,7 @@ const services = [
       "Guest-focused design experience",
     ],
     link: "/hospitality",
-    img: "/images/intro/hospitality.png",
+    img: "/images/intro/img3.png",
   },
   {
     title: "Retail Interiors",
@@ -48,14 +48,14 @@ const services = [
       "Customer flow and zoning optimization",
     ],
     link: "/retail",
-    img: "/images/intro/retail.png",
+    img: "/images/intro/img4.png",
   },
 ];
 
-// Single fade-up variant
+// Optimized fade-up variant for all cards
 const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  hidden: { opacity: 0, y: 15 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 };
 
 const Introduction: React.FC = () => {
@@ -67,19 +67,29 @@ const Introduction: React.FC = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-24 text-center">
         {/* Heading */}
         <motion.h1
-          initial={{ opacity: 0, y: -30 }}
+          initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="text-4xl md:text-6xl font-bold mb-6 text-[#d4af37] drop-shadow-[0_0_15px_rgba(212,175,55,0.5)]"
+          transition={{ duration: 1, delay: 0.2 }}
+          className="relative text-4xl md:text-5xl font-serif font-bold tracking-wide leading-tight
+                     bg-linear-to-b from-[#e7c675] via-[#c38a27] to-[#8b5b10]
+                     bg-clip-text text-transparent
+                     drop-shadow-[0_3px_8px_rgba(0,0,0,0.6)]
+                     [text-shadow:0_0_6px_rgba(255,220,120,0.5),
+                                  0_0_14px_rgba(195,138,39,0.4),
+                                  0_0_24px_rgba(139,91,16,0.3)] 
+                     after:content-[''] after:absolute after:inset-0 
+                     after:bg-linear-to-t after:from-white/20 after:to-transparent
+                     after:bg-clip-text after:text-transparent
+          "
         >
           Welcome to DUQOR
         </motion.h1>
 
         {/* Intro Text */}
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.3 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
           className="text-center text-base md:text-lg lg:text-xl text-gray-300 leading-relaxed md:leading-loose max-w-3xl mx-auto mb-12 px-4"
         >
           Duqor is a Dubai-based interior design and fit-out studio redefining modern
@@ -97,7 +107,7 @@ const Introduction: React.FC = () => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="bg-linear-to-br from-[#1e1e1e] via-[#2a2a2a] to-[#151515] border border-[#2c2c2c] hover:border-[#d4af37]/60 rounded-2xl shadow-md flex flex-col overflow-hidden transition-transform duration-300 hover:-translate-y-2 hover:scale-105"
+              className="bg-linear-to-br from-[#1e1e1e] via-[#2a2a2a] to-[#151515] border border-[#2c2c2c] hover:border-[#d4af37]/60 rounded-2xl shadow-md flex flex-col overflow-hidden transition-transform duration-300 hover:-translate-y-1 hover:scale-102"
             >
               {/* Image */}
               <div className="overflow-hidden rounded-xl">
@@ -114,7 +124,18 @@ const Introduction: React.FC = () => {
               {/* Content */}
               <div className="p-6 flex flex-col flex-1">
                 {/* Title */}
-                <h3 className="text-xl font-semibold text-[#d4af37] mb-2">{service.title}</h3>
+                <motion.h3
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.1 * i }}
+                  className="relative text-xl font-serif font-semibold
+                             bg-linear-to-b from-[#e7c675] via-[#c38a27] to-[#8b5b10]
+                             bg-clip-text text-transparent
+                             drop-shadow-[0_2px_6px_rgba(0,0,0,0.5)]
+                             mb-2"
+                >
+                  {service.title}
+                </motion.h3>
 
                 {/* Description + Highlights */}
                 <div className="flex-1 flex flex-col justify-start">
@@ -131,9 +152,14 @@ const Introduction: React.FC = () => {
 
                 {/* Learn More Button */}
                 <Link href={service.link} className="mt-6 block">
-                  <button className="w-full text-center px-4 py-2 bg-[#d4af37] text-black font-medium rounded-md hover:bg-[#f2cf63] flex items-center justify-center gap-2">
-                    <span className="font-semibold">Learn More</span>
-                    <ArrowRight size={16} />
+                  <button
+                    className="relative overflow-hidden px-10 py-3 rounded-full font-serif font-semibold text-lg tracking-wide text-black
+                               bg-linear-to-b from-[#f5d67a] via-[#c38a27] to-[#8b5b10]
+                               shadow-[0_4px_20px_rgba(195,138,39,0.6)]
+                               hover:scale-105 hover:shadow-[0_0_25px_rgba(212,175,55,0.8)]
+                               transition-all duration-300 flex items-center justify-center gap-2 group"
+                  >
+                    Learn More <ArrowRight size={16} />
                   </button>
                 </Link>
               </div>
@@ -142,12 +168,18 @@ const Introduction: React.FC = () => {
         </div>
 
         {/* Bottom Line */}
-        <motion.div
-          initial={{ width: 0 }}
-          whileInView={{ width: "60%" }}
-          transition={{ duration: 1.2, delay: 0.5 }}
-          className="mx-auto mt-20 h-0.5 bg-linear-to-r from-transparent via-[#d4af37] to-transparent"
-        />
+       <motion.div
+  initial={{ scaleX: 0, opacity: 0 }}
+  whileInView={{ scaleX: 1, opacity: 1 }}
+  transition={{ duration: 1.2, delay: 0.5, ease: "easeInOut" }}
+  className="mx-auto mt-20 h-1 w-3/5 
+             bg-linear-to-r from-[#f5d67a] via-[#c38a27] to-[#8b5b10] 
+             rounded-full 
+             shadow-[0_0_15px_rgba(212,175,55,0.6),0_0_25px_rgba(195,138,39,0.4)] 
+             origin-center"
+/>
+
+
       </div>
     </section>
   );

@@ -10,9 +10,9 @@ interface Stat {
 const StatsSection: React.FC = () => {
   const stats: Stat[] = React.useMemo(
     () => [
-      { number: "500", label: "Projects Completed" },
+      { number: "500+", label: "Projects Completed" },
       { number: "15", label: "Years Experience" },
-      { number: "98", label: "Client Satisfaction" },
+      { number: "98%", label: "Client Satisfaction" },
       { number: "50", label: "Expert Team Members" },
     ],
     []
@@ -89,27 +89,41 @@ const StatsSection: React.FC = () => {
               className="text-center relative"
             >
               <motion.h3
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={
-                  visible ? { scale: 1, opacity: 1 } : { scale: 0.9, opacity: 0 }
-                }
-                transition={{ duration: 0.8, delay: idx * 0.1 }}
-                className="text-5xl md:text-6xl font-extrabold mb-3 bg-linear-to-r text-[#d4af37] drop-shadow-[0_0_15px_rgba(212,175,55,0.5)] bg-clip-text"
-              >
-                {counts[idx]}
-                {stat.number.includes("+") && "+"}
-                {stat.number.includes("%") && "%"}
-              </motion.h3>
-              <p className="text-gray-300 text-sm md:text-base tracking-wide uppercase">
+  initial={{ scale: 0.9, opacity: 0 }}
+  animate={visible ? { scale: 1, opacity: 1 } : { scale: 0.9, opacity: 0 }}
+  transition={{ duration: 0.8, delay: idx * 0.1 }}
+  className="text-5xl md:text-6xl font-extrabold mb-3 font-serif
+             leading-none pb-1
+             bg-linear-to-b from-[#e7c675] via-[#c38a27] to-[#8b5b10]
+             bg-clip-text text-transparent
+             drop-shadow-[0_2px_15px_rgba(0,0,0,0.6)] relative z-10"
+>
+  {counts[idx]}
+  {stat.number.includes("+") && "+"}
+  {stat.number.includes("%") && "%"}
+</motion.h3>
+
+
+              <p className="text-gray-300 text-sm md:text-base tracking-wide uppercase font-medium">
                 {stat.label}
               </p>
 
-              {/* Accent glow line below each stat */}
+              {/* Accent gold line */}
               <motion.div
-                initial={{ width: 0 }}
-                whileInView={{ width: "60%" }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="mx-auto mt-4 h-0.5 bg-linear-to-r from-transparent via-[#d4af37] to-transparent"
+                initial={{ scaleX: 0, opacity: 0 }}
+                whileInView={{ scaleX: 1, opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.3, ease: "easeInOut" }}
+                className="mx-auto mt-4 h-1 w-3/5 
+                           bg-linear-to-r from-[#f5d67a] via-[#c38a27] to-[#8b5b10]
+                           rounded-full shadow-[0_0_15px_rgba(212,175,55,0.6),0_0_25px_rgba(195,138,39,0.4)]
+                           origin-left"
+              />
+
+              {/* Optional shimmer glow overlay */}
+              <motion.div
+                className="absolute inset-0 opacity-0 group-hover:opacity-25
+                           bg-linear-to-r from-transparent via-[#c2a158]/10 to-transparent rounded-full"
+                transition={{ duration: 0.6 }}
               />
             </motion.div>
           ))}

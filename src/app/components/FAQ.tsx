@@ -27,6 +27,9 @@ const faqs = [
   },
 ];
 
+// Gold gradient for yellow elements
+const goldGradient = 'bg-linear-to-r from-[#e7c675] via-[#c38a27] to-[#8b5b10]';
+
 const FAQ: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
@@ -46,19 +49,28 @@ const FAQ: React.FC = () => {
 
       <div className="relative z-10 max-w-5xl mx-auto px-6">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: -30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-semibold text-[#d4af37] drop-shadow-[0_0_15px_rgba(212,175,55,0.5)]">
-            Frequently Asked Questions
-          </h2>
-          <p className="text-gray-400 mt-4 text-lg max-w-2xl mx-auto">
-            Everything you need to know about working with Duqor — from design approach to project execution.
-          </p>
-        </motion.div>
+       <motion.div
+  initial={{ opacity: 0, y: -30 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 1 }}
+  className="text-center mb-16"
+>
+  <h2
+    className={`relative text-4xl md:text-5xl font-serif font-bold leading-[1.1] pb-1
+               bg-linear-to-b from-[#e7c675] via-[#c38a27] to-[#8b5b10]
+               bg-clip-text text-transparent
+               drop-shadow-[0_3px_8px_rgba(0,0,0,0.6)]
+               [text-shadow:0_0_6px_rgba(255,220,120,0.5),
+                            0_0_14px_rgba(195,138,39,0.4),
+                            0_0_24px_rgba(139,91,16,0.3)]`}
+  >
+    Frequently Asked Questions
+  </h2>
+  <p className="text-gray-400 mt-4 text-lg max-w-2xl mx-auto">
+    Everything you need to know about working with <span className={`${goldGradient} bg-clip-text text-transparent font-semibold`}>DUQOR</span> — from design approach to project execution.
+  </p>
+</motion.div>
+
 
         {/* FAQ List */}
         <div className="space-y-6">
@@ -72,8 +84,8 @@ const FAQ: React.FC = () => {
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 className={`group relative overflow-hidden rounded-2xl border transition-all duration-500 ${
                   isOpen
-                    ? 'border-[#d4af37] shadow-[0_0_30px_rgba(212,175,55,0.3)]'
-                    : 'border-[#2c2c2c] hover:border-[#d4af37]/60 hover:shadow-[0_0_15px_rgba(212,175,55,0.2)]'
+                    ? `border-[#d4af37] shadow-[0_0_30px_rgba(212,175,55,0.3)]`
+                    : `border-[#2c2c2c] hover:border-[#d4af37]/60 hover:shadow-[0_0_15px_rgba(212,175,55,0.2)]`
                 } bg-[#111]/60 backdrop-blur-sm`}
               >
                 {/* Question */}
@@ -84,8 +96,8 @@ const FAQ: React.FC = () => {
                   className="w-full flex justify-between items-center text-left px-8 py-6 focus:outline-none focus:ring-2 focus:ring-[#d4af37] rounded-lg"
                 >
                   <span
-                    className={`text-lg md:text-xl font-medium transition-colors duration-300 ${
-                      isOpen ? 'text-[#d4af37]' : 'text-gray-200'
+                    className={`text-lg md:text-xl font-medium transition-all duration-300 ${
+                      isOpen ? `${goldGradient} bg-clip-text text-transparent` : 'text-gray-200'
                     }`}
                   >
                     {faq.question}
@@ -93,7 +105,7 @@ const FAQ: React.FC = () => {
                   <motion.span
                     animate={{ rotate: isOpen ? 180 : 0 }}
                     transition={{ duration: 0.3 }}
-                    className="text-[#d4af37]"
+                    className="text-[#d4af37]" // arrow remains unchanged
                   >
                     <ChevronDown size={26} />
                   </motion.span>
@@ -104,7 +116,7 @@ const FAQ: React.FC = () => {
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: isOpen ? 1 : 0 }}
                   transition={{ duration: 0.4 }}
-                  className="h-px bg-linear-to-r from-transparent via-[#d4af37] to-transparent origin-left"
+                  className={`h-px bg-linear-to-r from-transparent via-[#d4af37] to-transparent origin-left`}
                 />
 
                 {/* Answer */}

@@ -93,14 +93,25 @@ export default function HeroSection() {
         />
 
         {/* Main Heading */}
-        <motion.h1
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.2 }}
-          className="text-4xl md:text-6xl font-bold mb-4 tracking-tight text-[#d4af37] drop-shadow-[0_0_20px_rgba(212,175,55,0.6)]"
-        >
-          Where Elegance Inspires Luxury
-        </motion.h1>
+       <motion.h1
+  initial={{ opacity: 0, y: -20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 1, delay: 0.2 }}
+  className="relative text-4xl md:text-5xl font-serif font-bold tracking-wide leading-tight
+             bg-linear-to-b from-[#e7c675] via-[#c38a27] to-[#8b5b10]
+             bg-clip-text text-transparent
+             drop-shadow-[0_3px_8px_rgba(0,0,0,0.6)]
+             [text-shadow:0_0_6px_rgba(255,220,120,0.5),
+                          0_0_14px_rgba(195,138,39,0.4),
+                          0_0_24px_rgba(139,91,16,0.3)] 
+             after:content-[''] after:absolute after:inset-0 
+             after:bg-linear-to-t after:from-white/20 after:to-transparent
+             after:bg-clip-text after:text-transparent"
+>
+  Where Elegance Inspires Luxury
+</motion.h1>
+
+
 
         {/* Subheading */}
         <motion.p
@@ -113,24 +124,48 @@ export default function HeroSection() {
         </motion.p>
 
         {/* Buttons */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.6 }}
-          className="flex flex-wrap justify-center gap-6"
-        >
-          <Link href="/portfolio">
-            <button className="bg-[#d4af37] text-black px-9 py-3 rounded-full font-semibold text-lg tracking-wide hover:bg-[#e7c968] hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.6)]">
-              Explore Projects
-            </button>
-          </Link>
+       <motion.div
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 1, delay: 0.4 }}
+  className="flex flex-wrap gap-6 justify-center"
+>
+  {/* Explore Projects Button */}
+  <Link href="/portfolio">
+    <button
+      className="relative overflow-hidden px-10 py-3 rounded-full font-serif font-semibold text-lg tracking-wide text-black
+                 bg-linear-to-b from-[#f5d67a] via-[#c38a27] to-[#8b5b10]
+                 shadow-[0_4px_20px_rgba(195,138,39,0.6)]
+                 hover:scale-105 hover:shadow-[0_0_25px_rgba(212,175,55,0.8)]
+                 transition-all duration-300 group"
+    >
+      <span className="relative z-10">Explore Projects</span>
+      <span className="absolute inset-0 bg-linear-to-t from-white/40 to-transparent opacity-60 rounded-full"></span>
 
-          <Link href="/contact">
-            <button className="border-2 border-[#d4af37] text-[#d4af37] px-9 py-3 rounded-full font-semibold text-lg tracking-wide hover:bg-[#d4af37] hover:text-black hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.5)]">
-              Contact Us
-            </button>
-          </Link>
-        </motion.div>
+      {/* ✨ Shimmer effect */}
+      <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/70 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out rounded-full"></span>
+    </button>
+  </Link>
+
+  {/* Contact Us Button */}
+  <Link href="/contact">
+    <button
+      className="relative overflow-hidden px-10 py-3 rounded-full font-serif font-semibold text-lg tracking-wide text-black
+                 bg-linear-to-b from-[#f5d67a] via-[#c38a27] to-[#8b5b10]
+                 border-2 border-[#c38a27]
+                 shadow-[0_4px_20px_rgba(195,138,39,0.5)]
+                 hover:scale-105 hover:shadow-[0_0_25px_rgba(212,175,55,0.8)]
+                 transition-all duration-300 group"
+    >
+      <span className="relative z-10">Contact Us</span>
+      <span className="absolute inset-0 bg-linear-to-t from-white/40 to-transparent opacity-60 rounded-full"></span>
+
+      {/* ✨ Shimmer effect */}
+      <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/70 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out rounded-full"></span>
+    </button>
+  </Link>
+</motion.div>
+
       </div>
 
       {/* Bottom glow */}
