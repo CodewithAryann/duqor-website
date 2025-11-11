@@ -67,7 +67,7 @@ const Navbar: React.FC = () => {
       <div className="flex items-center justify-between px-6 py-4 md:px-10 text-white">
         {/* Logo */}
         <Image
-  src="/images/copper-logo.png"
+  src="/images/new-logo.png"
   alt="Duqor Logo"
   width={120}
   height={40}
