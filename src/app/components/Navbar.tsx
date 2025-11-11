@@ -76,6 +76,7 @@ const Navbar: React.FC = () => {
       className="h-8 w-auto transition-transform duration-500 hover:scale-105 select-none cursor-pointer"
     />
   </Link>
+  
 
 
         {/* Desktop Navigation */}
