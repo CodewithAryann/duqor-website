@@ -96,8 +96,8 @@ export default function AboutPage() {
             <Link href="/portfolio">
               <button className={buttonClass}>Explore Projects</button>
             </Link>
-            <Link href="/consultation">
-              <button className={buttonClass}>Get Consultation</button>
+            <Link href="/contact">
+              <button className={buttonClass}>Contact Us</button>
             </Link>
           </motion.div>
         </div>
