@@ -16,8 +16,8 @@ export const metadata: Metadata = {
     'Duqor Interiors | Luxury Residential, Commercial & Hospitality Interior Design in UAE',
   description:
     'Duqor Interiors is a premier interior design company in Dubai, UAE, specializing in luxury residential, commercial, and hospitality interiors. Transforming spaces with modern elegance, functionality, and bespoke craftsmanship.',
+
   keywords: [
-    // Core SEO terms
     'Interior Design UAE',
     'Interior Design Dubai',
     'Residential Interior Design',
@@ -51,6 +51,25 @@ export const metadata: Metadata = {
     'Dubai Interior Designers',
     'Luxury Interiors UAE',
   ],
+
+  // --- FAVICONS ADDED HERE ---
+  icons: {
+    icon: [
+      { url: '/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180' },
+    ],
+    other: [
+      {
+        rel: 'manifest',
+        url: '/site.webmanifest',
+      },
+    ],
+  },
+
   openGraph: {
     title:
       'Duqor Interiors | Luxury Residential, Commercial & Hospitality Interior Design in UAE',
@@ -69,6 +88,7 @@ export const metadata: Metadata = {
     locale: 'en_AE',
     type: 'website',
   },
+
   twitter: {
     card: 'summary_large_image',
     title:
@@ -77,7 +97,9 @@ export const metadata: Metadata = {
       'Duqor Interiors transforms residential, commercial, and hospitality spaces across Dubai and the UAE with luxury interior design solutions.',
     images: ['https://www.duqor.ae/images/011.png'],
   },
+
   robots: 'index, follow',
+
   verification: {
     google: 'V3Yre0rwVk6SPt9ZiQ3uZYLzIBtCHdo0X5g5U_uYXBQ',
   },

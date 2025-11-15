@@ -40,9 +40,9 @@ const Navbar: React.FC = () => {
 
   const businessVerticals = [
     { label: "Residential Interiors", href: "/residential" },
-    { label: "Commercial Spaces", href: "/commercial" },
-    { label: "Retail Design", href: "/retail" },
-    { label: "Hospitality", href: "/hospitality" },
+    { label: "Commercial Interiors", href: "/commercial" },
+    { label: "Hospitality Interiors", href: "/hospitality" },
+    { label: "Retail Interiors", href: "/retail" },
   ];
 
   const handleServiceClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
