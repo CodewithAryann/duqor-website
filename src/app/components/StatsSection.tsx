@@ -10,8 +10,8 @@ interface Stat {
 const StatsSection: React.FC = () => {
   const stats: Stat[] = React.useMemo(
     () => [
-      { number: "500+", label: "Projects Completed" },
-      { number: "15", label: "Years Experience" },
+      { number: "200+", label: "Projects Completed" },
+      { number: "5", label: "Years Experience" },
       { number: "98%", label: "Client Satisfaction" },
       { number: "50", label: "Expert Team Members" },
     ],
