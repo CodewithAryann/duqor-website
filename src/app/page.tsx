@@ -1,6 +1,6 @@
 import HeroSection from './components/HeroSection';
 import ServicesSection from './components/ServicesSection';
-import StatsSection from './components/StatsSection';
+// import StatsSection from './components/StatsSection';
 import ContactSection from './components/ContactSection';
 import AboutPage from './components/Aboutus';
 import DesignPhilosophy from './components/PhilosophySection';
@@ -143,7 +143,7 @@ export default function Home() {
       <AboutPage />
       <ServicesSection />
       <DesignPhilosophy />
-      <StatsSection />
+      {/* <StatsSection /> */}
       <Process />
       <PortfolioSection />
       <FAQ />
