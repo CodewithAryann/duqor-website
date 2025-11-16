@@ -1,7 +1,7 @@
 "use client";
 
 export default function WhatsAppFloat() {
-  const whatsappNumber = "+971543517100"; 
+  const whatsappNumber = "+971545999795"; 
 const message = encodeURIComponent("Hello! I’m interested in learning more about Duqor's luxury interior design services.");
 
 
