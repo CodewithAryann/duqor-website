@@ -429,7 +429,7 @@ export default function HospitalityInteriors() {
           name="description"
           content="Duqor creates elegant and functional hospitality interiors for hotels, resorts, and restaurants."
         />
-        <link rel="canonical" href="https://www.duqor.com/hospitality" />
+        <link rel="canonical" href="https://www.duqor.ae/hospitality" />
       </Head>
 
       <main className="bg-black text-white">

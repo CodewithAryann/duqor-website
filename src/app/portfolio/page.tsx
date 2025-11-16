@@ -196,7 +196,7 @@ export default function ProjectsPage() {
           name="description"
           content="Explore Duqor's signature projects in residential, commercial, hospitality, and retail interiors. Timeless design with luxury and functionality."
         />
-        <link rel="canonical" href="https://www.duqor.com/projects" />
+        <link rel="canonical" href="https://www.duqor.ae/projects" />
       </Head>
 
       <section className="min-h-screen bg-[#0a0a0a] text-white py-24 px-4 md:px-6">

@@ -419,7 +419,7 @@ export default function RetailInteriors() {
     name="description"
     content="Duqor creates elegant and functional retail interiors for luxury brands. Transforming spaces into immersive, stylish, and sophisticated shopping environments."
   />
-  <link rel="canonical" href="https://www.duqor.com/retail" />
+  <link rel="canonical" href="https://www.duqor.ae/retail" />
 </Head>
 
 

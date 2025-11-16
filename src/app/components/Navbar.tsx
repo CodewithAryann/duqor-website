@@ -1,4 +1,5 @@
 "use client";
+
 import { useState, useEffect } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import Link from "next/link";
@@ -66,7 +67,7 @@ const Navbar: React.FC = () => {
       <div className="flex items-center justify-between px-6 py-4 md:px-10 text-white">
 
         {/* Logo */}
-        <Link href="/" className="flex items-center">
+        <Link href="/" aria-label="Go to homepage" className="flex items-center">
           <Image
             src="/images/copper-logo.png"
             alt="Duqor Logo"
@@ -95,9 +96,7 @@ const Navbar: React.FC = () => {
                     </span>
                     <ChevronDown
                       size={16}
-                      className={`transition-transform duration-300 ${
-                        dropdownOpen ? "rotate-180 text-[#c97a00]" : ""
-                      }`}
+                      className={`transition-transform duration-300 ${dropdownOpen ? "rotate-180 text-[#c97a00]" : ""}`}
                     />
                   </div>
 
@@ -106,9 +105,7 @@ const Navbar: React.FC = () => {
                     onMouseEnter={() => setDropdownOpen(true)}
                     onMouseLeave={() => setDropdownOpen(false)}
                     className={`absolute left-0 mt-3 w-56 bg-black/95 border border-[#c97a00]/30 rounded-xl shadow-[0_0_15px_rgba(212,175,55,0.15)] py-3 backdrop-blur-md transition-all duration-300 ${
-                      dropdownOpen
-                        ? "opacity-100 translate-y-0 visible"
-                        : "opacity-0 -translate-y-3 invisible"
+                      dropdownOpen ? "opacity-100 translate-y-0 visible" : "opacity-0 -translate-y-3 invisible"
                     }`}
                   >
                     {businessVerticals.map((sub) => (
@@ -150,58 +147,21 @@ const Navbar: React.FC = () => {
 
         {/* Social Icons + Contact (Desktop) */}
         <div className="hidden md:flex items-center space-x-6">
-
-          {/* Phone */}
-          <a
-            href="tel:+97142871395"
-            aria-label="Call Duqor"
-            className="text-white/90 hover:text-[#c97a00] hover:scale-110 transition-all duration-300"
-          >
+          <a href="tel:+97142871395" aria-label="Call Duqor" className="text-white/90 hover:text-[#c97a00] hover:scale-110 transition-all duration-300">
             <HiOutlinePhone size={18} />
           </a>
-
-          {/* Email */}
-          <a
-            href="mailto:info@duqor.ae"
-            aria-label="Email Duqor"
-            className="text-white/90 hover:text-[#c97a00] hover:scale-110 transition-all duration-300"
-          >
+          <a href="mailto:info@duqor.ae" aria-label="Email Duqor" className="text-white/90 hover:text-[#c97a00] hover:scale-110 transition-all duration-300">
             <HiOutlineMail size={18} />
           </a>
-
-          {/* Instagram */}
-          <a
-            href="https://www.instagram.com/duqor"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Visit Duqor Instagram"
-            className="text-white/90 hover:text-[#c97a00] hover:scale-110 transition-all duration-300"
-          >
+          <a href="https://www.instagram.com/duqor" target="_blank" rel="noopener noreferrer" aria-label="Visit Duqor Instagram" className="text-white/90 hover:text-[#c97a00] hover:scale-110 transition-all duration-300">
             <FaInstagram size={18} />
           </a>
-
-          {/* Facebook */}
-          <a
-            href="https://www.facebook.com/profile.php?id=61583173334874"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Visit Duqor Facebook"
-            className="text-white/90 hover:text-[#c97a00] hover:scale-110 transition-all duration-300"
-          >
+          <a href="https://www.facebook.com/profile.php?id=61583173334874" target="_blank" rel="noopener noreferrer" aria-label="Visit Duqor Facebook" className="text-white/90 hover:text-[#c97a00] hover:scale-110 transition-all duration-300">
             <FaFacebookF size={18} />
           </a>
-
-          {/* LinkedIn */}
-          <a
-            href="https://www.linkedin.com/company/duqor/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Visit Duqor LinkedIn"
-            className="text-white/90 hover:text-[#c97a00] hover:scale-110 transition-all duration-300"
-          >
+          <a href="https://www.linkedin.com/company/duqor/" target="_blank" rel="noopener noreferrer" aria-label="Visit Duqor LinkedIn" className="text-white/90 hover:text-[#c97a00] hover:scale-110 transition-all duration-300">
             <FaLinkedinIn size={18} />
           </a>
-
         </div>
 
         {/* Mobile Toggle */}
@@ -215,13 +175,7 @@ const Navbar: React.FC = () => {
       </div>
 
       {/* Mobile Menu */}
-      <div
-        className={`md:hidden fixed top-[70px] left-0 w-full transition-all duration-500 ease-in-out backdrop-blur-md ${
-          menuOpen
-            ? "opacity-100 translate-y-0 visible"
-            : "opacity-0 -translate-y-10 invisible"
-        } bg-black/95 border-t border-[#c97a00]/20 text-white`}
-      >
+      <div className={`md:hidden fixed top-[70px] left-0 w-full transition-all duration-500 ease-in-out backdrop-blur-md ${menuOpen ? "opacity-100 translate-y-0 visible" : "opacity-0 -translate-y-10 invisible"} bg-black/95 border-t border-[#c97a00]/20 text-white`}>
         <ul className="flex flex-col items-center space-y-6 py-8 text-lg font-medium">
           {navLinks.map(({ href, label }) => (
             <li key={href} className="w-full text-center">
@@ -229,19 +183,12 @@ const Navbar: React.FC = () => {
                 <details className="group">
                   <summary className="cursor-pointer list-none hover:text-[#c97a00] transition-colors duration-300 flex items-center justify-center gap-1">
                     {label}
-                    <ChevronDown
-                      size={18}
-                      className="transition-transform duration-300 group-open:rotate-180"
-                    />
+                    <ChevronDown size={18} className="transition-transform duration-300 group-open:rotate-180" />
                   </summary>
                   <ul className="mt-3 space-y-3 text-sm">
                     {businessVerticals.map((sub) => (
                       <li key={sub.href}>
-                        <Link
-                          href={sub.href}
-                          onClick={() => setMenuOpen(false)}
-                          className="block py-1 text-white/90 hover:text-[#c97a00] transition-all duration-300"
-                        >
+                        <Link href={sub.href} onClick={() => setMenuOpen(false)} className="block py-1 text-white/90 hover:text-[#c97a00] transition-all duration-300">
                           {sub.label}
                         </Link>
                       </li>
@@ -249,19 +196,11 @@ const Navbar: React.FC = () => {
                   </ul>
                 </details>
               ) : label === "Services" ? (
-                <a
-                  href="#services"
-                  onClick={handleServiceClick}
-                  className="hover:text-[#c97a00] transition-colors duration-300"
-                >
+                <a href="#services" onClick={handleServiceClick} className="hover:text-[#c97a00] transition-colors duration-300">
                   {label}
                 </a>
               ) : (
-                <Link
-                  href={href}
-                  onClick={() => setMenuOpen(false)}
-                  className="hover:text-[#c97a00] transition-colors duration-300"
-                >
+                <Link href={href} onClick={() => setMenuOpen(false)} className="hover:text-[#c97a00] transition-colors duration-300">
                   {label}
                 </Link>
               )}
@@ -270,58 +209,21 @@ const Navbar: React.FC = () => {
 
           {/* Mobile Social + Contact */}
           <div className="flex items-center space-x-6 pt-6 border-t border-[#d4af37]/20 w-3/4 justify-center">
-
-            {/* Phone */}
-            <a
-              href="tel:+971502297514"
-              aria-label="Call Duqor"
-              className="hover:text-[#c97a00] hover:scale-110 transition-all duration-300"
-            >
+            <a href="tel:+971502297514" aria-label="Call Duqor" className="hover:text-[#c97a00] hover:scale-110 transition-all duration-300">
               <HiOutlinePhone size={22} />
             </a>
-
-            {/* Email */}
-            <a
-              href="mailto:info@duqor.ae"
-              aria-label="Email Duqor"
-              className="hover:text-[#c97a00] hover:scale-110 transition-all duration-300"
-            >
+            <a href="mailto:info@duqor.ae" aria-label="Email Duqor" className="hover:text-[#c97a00] hover:scale-110 transition-all duration-300">
               <HiOutlineMail size={22} />
             </a>
-
-            {/* Instagram */}
-            <a
-              href="https://www.instagram.com/duqor"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Visit Duqor Instagram"
-              className="hover:text-[#c97a00] hover:scale-110 transition-all duration-300"
-            >
+            <a href="https://www.instagram.com/duqor" target="_blank" rel="noopener noreferrer" aria-label="Visit Duqor Instagram" className="hover:text-[#c97a00] hover:scale-110 transition-all duration-300">
               <FaInstagram size={22} />
             </a>
-
-            {/* Facebook */}
-            <a
-              href="https://www.facebook.com/profile.php?id=61583173334874"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Visit Duqor Facebook"
-              className="hover:text-[#c97a00] hover:scale-110 transition-all duration-300"
-            >
+            <a href="https://www.facebook.com/profile.php?id=61583173334874" target="_blank" rel="noopener noreferrer" aria-label="Visit Duqor Facebook" className="hover:text-[#c97a00] hover:scale-110 transition-all duration-300">
               <FaFacebookF size={22} />
             </a>
-
-            {/* LinkedIn */}
-            <a
-              href="https://www.linkedin.com/company/duqor/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Visit Duqor LinkedIn"
-              className="hover:text-[#c97a00] hover:scale-110 transition-all duration-300"
-            >
+            <a href="https://www.linkedin.com/company/duqor/" target="_blank" rel="noopener noreferrer" aria-label="Visit Duqor LinkedIn" className="hover:text-[#c97a00] hover:scale-110 transition-all duration-300">
               <FaLinkedinIn size={22} />
             </a>
-
           </div>
         </ul>
       </div>

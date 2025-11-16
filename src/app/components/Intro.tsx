@@ -70,7 +70,7 @@ const Introduction: React.FC = () => {
           name="description"
           content="Duqor Interiors, a Dubai-based design studio, creates luxurious residential, commercial, hospitality, and retail spaces with sustainability and elegance."
         />
-        <link rel="canonical" href="https://www.duqor.com/introduction" />
+        <link rel="canonical" href="https://www.duqor.ae/introduction" />
       </Head>
 
       <section className="min-h-screen relative bg-linear-to-b from-[#0a0a0a] via-[#121212] to-[#0a0a0a] text-white overflow-hidden">

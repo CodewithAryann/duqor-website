@@ -36,7 +36,7 @@ export default function AboutPage() {
       <Head>
         <title>Duqor | About Us - Crafting Timeless Interiors</title>
         <meta name="description" content="Duqor merges design excellence with timeless craftsmanship to create residential, commercial, hospitality, and retail interiors." />
-        <link rel="canonical" href="https://www.duqor.com/about-us" />
+        <link rel="canonical" href="https://www.duqor.ae/about-us" />
       </Head>
 
       <section className="bg-[#0a0a0a] text-white overflow-hidden">

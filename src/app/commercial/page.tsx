@@ -401,7 +401,7 @@ export default function CommercialInteriors() {
     name="description"
     content="Duqor creates elegant and functional commercial interiors for corporate offices and workspaces. Transforming spaces into productive, stylish, and sophisticated environments."
   />
-  <link rel="canonical" href="https://www.duqor.com/commercial" />
+  <link rel="canonical" href="https://www.duqor.ae/commercial" />
 </Head>
 
 
