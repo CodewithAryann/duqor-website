@@ -37,56 +37,54 @@ const Footer: React.FC = () => {
 
           {/* Services */}
           <div>
-  <h4 className="text-lg font-semibold text-transparent bg-clip-text bg-linear-to-b from-[#e7c675] via-[#c38a27] to-[#8b5b10] mb-4 uppercase tracking-wide">
-    Business Vertical
-  </h4>
+            <h4 className="text-lg font-semibold text-transparent bg-clip-text bg-linear-to-b from-[#e7c675] via-[#c38a27] to-[#8b5b10] mb-4 uppercase tracking-wide">
+              Business Vertical
+            </h4>
 
-  <ul className="space-y-2 text-sm">
-    {[
-      { label: "Residential Interiors", href: "/residential" },
-      { label: "Commercial Interiors", href: "/commercial" },
-      { label: "Hospitality Interiors", href: "/hospitality" },
-      { label: "Retail Interiors", href: "/retail" },
-    ].map(({ label, href }) => (
-      <li key={href}>
-        <a
-          href={href}
-          className="hover:text-[#d4af37] transition-all duration-300 relative group"
-        >
-          {label}
-          <span className="absolute left-0 -bottom-0.5 w-0 h-[1.5px] bg-[#d4af37] transition-all duration-300 group-hover:w-full"></span>
-        </a>
-      </li>
-    ))}
-  </ul>
-</div>
-
+            <ul className="space-y-2 text-sm">
+              {[
+                { label: "Residential Interiors", href: "/residential" },
+                { label: "Commercial Interiors", href: "/commercial" },
+                { label: "Hospitality Interiors", href: "/hospitality" },
+                { label: "Retail Interiors", href: "/retail" },
+              ].map(({ label, href }) => (
+                <li key={href}>
+                  <a
+                    href={href}
+                    className="hover:text-[#d4af37] transition-all duration-300 relative group"
+                  >
+                    {label}
+                    <span className="absolute left-0 -bottom-0.5 w-0 h-[1.5px] bg-[#d4af37] transition-all duration-300 group-hover:w-full"></span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
 
           {/* Company */}
-         <div>
-  <h4 className="text-lg font-semibold text-transparent bg-clip-text bg-linear-to-b from-[#e7c675] via-[#c38a27] to-[#8b5b10] mb-4 uppercase tracking-wide">
-    Company
-  </h4>
+          <div>
+            <h4 className="text-lg font-semibold text-transparent bg-clip-text bg-linear-to-b from-[#e7c675] via-[#c38a27] to-[#8b5b10] mb-4 uppercase tracking-wide">
+              Company
+            </h4>
 
-  <ul className="space-y-2 text-sm">
-    {[
-      { label: "About Us", href: "/about-us" },
-      { label: "Portfolio", href: "/portfolio" },
-      { label: "Contact", href: "/contact" }, 
-    ].map(({ label, href }) => (
-      <li key={href}>
-        <a
-          href={href}
-          className="hover:text-[#d4af37] transition-all duration-300 relative group"
-        >
-          {label}
-          <span className="absolute left-0 -bottom-0.5 w-0 h-[1.5px] bg-[#d4af37] transition-all duration-300 group-hover:w-full"></span>
-        </a>
-      </li>
-    ))}
-  </ul>
-</div>
-
+            <ul className="space-y-2 text-sm">
+              {[
+                { label: "About Us", href: "/about-us" },
+                { label: "Portfolio", href: "/portfolio" },
+                { label: "Contact", href: "/contact" }, 
+              ].map(({ label, href }) => (
+                <li key={href}>
+                  <a
+                    href={href}
+                    className="hover:text-[#d4af37] transition-all duration-300 relative group"
+                  >
+                    {label}
+                    <span className="absolute left-0 -bottom-0.5 w-0 h-[1.5px] bg-[#d4af37] transition-all duration-300 group-hover:w-full"></span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
 
           {/* Contact */}
           <div>
@@ -101,6 +99,14 @@ const Footer: React.FC = () => {
                   className="hover:text-[#d4af37] transition-all duration-300"
                 >
                   +971 54 351 7100
+                </a>
+              </li>
+              <li>
+                <a
+                  href="tel:+97142871395"
+                  className="hover:text-[#d4af37] transition-all duration-300"
+                >
+                  +971 4 287 1395
                 </a>
               </li>
               <li>

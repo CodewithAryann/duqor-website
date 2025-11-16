@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -12,72 +12,83 @@ ArrowRight,
   Sun,
   Maximize2,
   Diamond,
-  ChevronLeft,
-  ChevronRight,
   Quote
 } from "lucide-react";
+import Head from "next/head";
 
-// Keep the exact theme classes you used — adjust if your Tailwind config uses different names
-const COPPER_GRADIENT = "bg-clip-text text-transparent bg-linear-to-b from-[#e7c675] via-[#c38a27] to-[#8b5b10]";
+const COPPER_GRADIENT =
+  "bg-clip-text text-transparent bg-linear-to-b from-[#e7c675] via-[#c38a27] to-[#8b5b10]";
 
-// Utility: safe window check
-const isClient = typeof window !== "undefined";
+interface HeroImage {
+  src: string;
+  alt: string;
+}
 
-// --- HERO SECTION ---
+interface Particle {
+  x: number;
+  y: number;
+  dur: number;
+}
+
+// Utility: predictable pseudo-random
+function seededRandom(seed: number) {
+  return () => {
+    seed = (seed * 9301 + 49297) % 233280;
+    return seed / 233280;
+  };
+}
+
+/* ──────────────────────────── HERO SECTION ─────────────────────────── */
 function HeroSection() {
-  // Use webp images for smaller file size if you can convert them on the server
-  const heroImages = useMemo(
+  const heroImages: HeroImage[] = useMemo(
     () => [
-     "/images/residential/1.png",
-    "/images/residential/2.png",
-    "/images/residential/3.png",
-    "/images/residential/4.png",
+       { src: "/images/residential/living-room-modern.webp", alt: "Modern residential living room with warm lighting" },
     ],
     []
   );
 
-  const [slide, setSlide] = useState(0);
-  const slideRef = useRef<number>(0);
+  const [slide, setSlide] = useState<number>(0);
 
   const nextSlide = useCallback(() => {
-    setSlide((s) => {
-      const n = (s + 1) % heroImages.length;
-      slideRef.current = n;
-      return n;
-    });
+    setSlide((s) => (s + 1) % heroImages.length);
   }, [heroImages.length]);
 
-  // Auto-advance slides (only client)
   useEffect(() => {
-    if (!isClient) return;
-    const id = window.setInterval(nextSlide, 7000);
-    return () => window.clearInterval(id);
+    const id = setInterval(nextSlide, 7000);
+    return () => clearInterval(id);
   }, [nextSlide]);
 
-  // Simple lightweight particle layer (reduced count)
-  const particles = useMemo(() => {
-    if (!isClient) return [] as { x: number; y: number; dur: number }[];
-    return Array.from({ length: 18 }).map(() => ({
-      x: Math.random() * (window.innerWidth || 1200),
-      y: Math.random() * (window.innerHeight || 800),
-      dur: 3 + Math.random() * 4,
+  /* --- SAFE PARTICLES (no hydration mismatch) --- */
+  const [particles, setParticles] = useState<Particle[]>([]);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+
+    const rand = seededRandom(12345);
+    const generated: Particle[] = Array.from({ length: 12 }).map(() => ({
+      x: rand() * 1200,
+      y: rand() * 800,
+      dur: 3 + rand() * 4,
     }));
+    setParticles(generated);
   }, []);
 
   return (
     <section className="relative h-screen overflow-hidden bg-black text-white">
+      {/* Background Slider */}
       <AnimatePresence mode="wait">
         <motion.div
           key={slide}
           initial={{ opacity: 0, scale: 1.03 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.9, ease: "easeInOut" }}
+          transition={{ duration: 0.9 }}
           className="absolute inset-0"
         >
           <Image
-            src={heroImages[slide]}
-            alt={`Hero ${slide + 1}`}
+            src={heroImages[slide].src}
+            alt={heroImages[slide].alt}
             fill
             className="object-cover brightness-60"
             priority={slide === 0}
@@ -86,20 +97,26 @@ function HeroSection() {
         </motion.div>
       </AnimatePresence>
 
-      {/* Particles (very light) */}
-      <div className="absolute inset-0 pointer-events-none z-20">
-        {particles.map((p, i) => (
-          <motion.span
-            key={`p-${i}`}
-            className="absolute w-0.5 h-0.5 bg-[#d4af37] rounded-full opacity-60"
-            style={{ top: p.y, left: p.x }}
-            animate={{ y: [p.y, p.y - 40, p.y], opacity: [0.2, 1, 0.2], scale: [1, 1.5, 1] }}
-            transition={{ duration: p.dur, repeat: Infinity, ease: "easeInOut", delay: i * 0.05 }}
-          />
-        ))}
-      </div>
+      {/* Particles — ONLY render after mount */}
+      {mounted && (
+        <div className="absolute inset-0 pointer-events-none z-20">
+          {particles.map((p, i) => (
+            <motion.span
+              key={i}
+              className="absolute w-0.5 h-0.5 bg-[#d4af37] rounded-full opacity-60"
+              style={{ top: p.y, left: p.x }}
+              animate={{
+                y: [p.y, p.y - 30, p.y],
+                opacity: [0.2, 1, 0.2],
+                scale: [1, 1.4, 1],
+              }}
+              transition={{ duration: p.dur, repeat: Infinity, ease: "easeInOut" }}
+            />
+          ))}
+        </div>
+      )}
 
-      <div className="absolute inset-0 bg-linear-to-b from-black/20 to-black/20 z-10" />
+      <div className="absolute inset-0 bg-black/40 z-10" />
 
       <div className="absolute inset-0 flex flex-col justify-center items-center text-center z-30 px-6">
         <motion.h1
@@ -109,7 +126,7 @@ function HeroSection() {
           className="text-4xl md:text-6xl font-bold tracking-tight"
         >
           <span className="text-white/90">Where Luxury</span>
-          <span className={COPPER_GRADIENT}>Meets Comfort</span>
+          <span className={COPPER_GRADIENT}> Meets Comfort</span>
         </motion.h1>
 
         <motion.p
@@ -118,18 +135,23 @@ function HeroSection() {
           transition={{ delay: 0.2, duration: 0.8 }}
           className="mt-6 text-gray-300 text-lg md:text-xl max-w-2xl"
         >
-          Designing homes that reflect individuality, warmth, and timeless elegance
+          Designing homes that reflect individuality, warmth, and timeless elegance.
         </motion.p>
 
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }} className="mt-10 flex flex-wrap justify-center gap-4">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4 }}
+          className="mt-10 flex flex-wrap justify-center gap-4"
+        >
           <Link href="/portfolio">
-            <button className="px-8 py-3 rounded-full border-2 border-[#c38a27] text-[#c38a27] font-semibold flex items-center cursor-pointer gap-2 hover:bg-[#c38a27]/20 transition-all">
+            <button className="px-8 py-3 rounded-full border-2 border-[#c38a27] text-[#c38a27] font-semibold flex items-center cursor-pointer gap-2 hover:bg-[#c38a27]/20 transition">
               View Projects
             </button>
           </Link>
 
           <Link href="/contact">
-            <button className="px-8 py-3 rounded-full cursor-pointer font-semibold flex items-center gap-2 bg-[#c38a27] text-black">
+            <button className="px-8 py-3 rounded-full font-semibold bg-[#c38a27] text-black cursor-pointer flex items-center gap-2">
               Contact Us <ArrowRight size={18} />
             </button>
           </Link>
@@ -139,22 +161,33 @@ function HeroSection() {
   );
 }
 
-// --- INTRO ---
+/* ───────────────────────── INTRO SECTION ───────────────────────── */
 function Introduction() {
   return (
     <section className="py-24 bg-black text-white text-center px-6">
-      <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.9 }} viewport={{ once: true }} className="max-w-3xl mx-auto">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.9 }}
+        viewport={{ once: true }}
+        className="max-w-3xl mx-auto"
+      >
         <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
           At <span className={COPPER_GRADIENT}>Duqor</span>, home is more than space — it’s emotion, personality, and purpose. We craft bespoke villas and residences that blend refined aesthetics with functional beauty. Each design reflects your lifestyle, built to inspire and comfort.
         </p>
       </motion.div>
 
-      <motion.div initial={{ width: 0 }} whileInView={{ width: "60%" }} transition={{ duration: 1.2, delay: 0.5 }} className="mx-auto mt-20 h-0.5 bg-linear-to-r from-transparent via-[#c38a27] to-transparent" />
+      <motion.div
+        initial={{ width: 0 }}
+        whileInView={{ width: "60%" }}
+        transition={{ duration: 1.2, delay: 0.5 }}
+        className="mx-auto mt-20 h-0.5 bg-linear-to-r from-transparent via-[#c38a27] to-transparent"
+      />
     </section>
   );
 }
 
-// --- DESIGN APPROACH ---
+/* ───────────────────────── DESIGN APPROACH ───────────────────────── */
 function DesignApproach() {
   const approaches = useMemo(
     () => [
@@ -167,20 +200,31 @@ function DesignApproach() {
   );
 
   return (
-    <section className="relative py-28 bg-black text-white overflow-hidden px-6">
-      <div className="relative text-center mb-16 z-10">
+    <section className="py-28 bg-black text-white px-6">
+      <div className="text-center mb-16">
         <h2 className="text-4xl md:text-5xl font-bold">
           <span className={COPPER_GRADIENT}>Our</span> Design Approach
         </h2>
-        <p className="mt-2 text-gray-400 max-w-xl mx-auto text-sm md:text-base"> From concept to execution, we craft spaces that resonate with your brand and culture.</p>
+        <p className="text-gray-400 max-w-xl mx-auto mt-2">
+          From concept to execution, we craft spaces that resonate with your brand.
+        </p>
       </div>
 
-      <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
         {approaches.map((item, i) => (
-          <motion.div key={`approach-${i}`} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.15, duration: 0.6 }} whileHover={{ scale: 1.04 }} className="group bg-linear-to-br from-[#161616] via-[#1e1e1e] to-[#0f0f0f] border border-[#2c2c2c] hover:border-[#c38a27]/60 rounded-2xl p-8 transition-all duration-500">
-            <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center text-[#c38a27] bg-[#c38a27]/10 rounded-full">{item.icon}</div>
-            <h3 className="text-xl font-semibold text-[#c38a27] mb-3 text-center">{item.title}</h3>
-            <p className="text-gray-300 text-center leading-relaxed">{item.desc}</p>
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.15, duration: 0.6 }}
+            className="bg-linear-to-br from-[#161616] to-[#0f0f0f] border border-[#2c2c2c] hover:border-[#c38a27]/60 rounded-2xl p-8 text-center"
+          >
+            <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center text-[#c38a27] bg-[#c38a27]/10 rounded-full">
+              {item.icon}
+            </div>
+            <h3 className="text-xl font-semibold text-[#c38a27]">{item.title}</h3>
+            <p className="text-gray-300 mt-3">{item.desc}</p>
           </motion.div>
         ))}
       </div>
@@ -188,80 +232,97 @@ function DesignApproach() {
   );
 }
 
-// --- SIGNATURE PROJECTS (lightweight) ---
+/* ───────────────────────── SIGNATURE PROJECTS ───────────────────────── */
 function SignatureProjects() {
-  const slides = useMemo(
+  const slide = {
+    img: "/images/residential/slider/serenity-villa.webp",
+    title: "Serenity Villa",
+    desc: "A private sanctuary combining modern elegance with timeless comfort.",
+    alt: "Serenity Villa interior showcasing modern elegance and comfort"
+  };
+
+  return (
+    <section
+      className="py-24 bg-[#0a0a0a] text-white"
+      aria-label="Signature Projects Section"
+    >
+      <div className="text-center mb-12">
+        <h2 className="text-4xl font-bold">
+          Signature <span className={COPPER_GRADIENT}>Projects</span>
+        </h2>
+      </div>
+
+      <div
+        className="relative max-w-6xl mx-auto h-[60vh] md:h-[70vh] rounded-3xl overflow-hidden"
+        aria-labelledby="signature-title"
+      >
+        {/* Static Image */}
+        <Image
+          src={slide.img}
+          alt={slide.alt}
+          fill
+          sizes="100vw"
+          className="object-cover brightness-90"
+          priority
+        />
+
+        {/* Overlay to make text more visible */}
+        <div className="absolute inset-0 bg-black/40"></div>
+
+        {/* Text Overlay */}
+        <div className="absolute bottom-16 left-0 right-0 text-center px-4 z-10">
+          <h3
+            id="signature-title"
+            className="text-2xl md:text-3xl font-semibold text-[#c38a27]"
+          >
+            {slide.title}
+          </h3>
+
+          <p className="text-gray-100 mb-6 text-lg md:text-xl">
+            {slide.desc}
+          </p>
+
+          <Link href="/projects" aria-label="Explore all interior design projects">
+            <button className="px-8 py-3 rounded-full bg-[#c38a27] text-black cursor-pointer font-semibold hover:bg-[#d4b15a] transition">
+              Explore All Projects
+            </button>
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
+/* ───────────────────────── CORE CAPABILITIES ───────────────────────── */
+function CoreCapabilities() {
+  const items = useMemo(
     () => [
-       { img: "/images/residential/slider/1.png", title: "Serenity Villa", desc: "A private sanctuary combining modern elegance with timeless comfort." },
-    { img: "/images/residential/slider/2.png", title: "Horizon Penthouse", desc: "Sleek urban design with panoramic city views." },
-    { img: "/images/residential/slider/3.png", title: "The Oakwood Residence", desc: "Warm textures, natural materials, and thoughtful layouts." },
-    { img: "/images/residential/slider/4.png", title: "Elysium Lake House", desc: "Indoor-outdoor living harmonized with serene surroundings." },
-    { img: "/images/residential/slider/5.png", title: "Modern Heritage Villa", desc: "Contemporary take on classic architecture." },
-    { img: "/images/residential/slider/6.png", title: "Infinity Terrace Apartment", desc: "Open-plan living spaces with bespoke furnishings." },
-    { img: "/images/residential/slider/7.png", title: "Palm Grove Residence", desc: "Tropical-inspired villa merging indoor elegance with outdoor leisure." },
+      { icon: <PenTool size={36} />, label: "Personalized Design Concepts" },
+    { icon: <Sun size={36} />, label: "Natural Light Integration" },
+    { icon: <Maximize2 size={36} />, label: "Indoor-Outdoor Spatial Harmony" },
+    { icon: <Diamond size={36} />, label: "Luxury Finishes & Detailing" },
     ],
     []
   );
 
-  const [idx, setIdx] = useState(0);
-  const next = useCallback(() => setIdx((s) => (s + 1) % slides.length), [slides.length]);
-  const prev = useCallback(() => setIdx((s) => (s - 1 + slides.length) % slides.length), [slides.length]);
-
-  useEffect(() => {
-    const t = setInterval(next, 6000);
-    return () => clearInterval(t);
-  }, [next]);
-
-  return (
-    <section className="relative py-24 bg-[#0a0a0a] text-white overflow-hidden">
-      <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold">Signature <span className={COPPER_GRADIENT}>Projects</span></h2>
-      </div>
-
-      <div className="relative max-w-6xl mx-auto h-[60vh] md:h-[70vh] rounded-3xl overflow-hidden shadow-lg">
-        <AnimatePresence mode="wait">
-          <motion.div key={idx} initial={{ opacity: 0, scale: 1.02 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.9 }} className="absolute inset-0">
-            <Image src={slides[idx].img} alt={slides[idx].title} fill className="object-cover brightness-75" sizes="100vw" priority={idx === 0} />
-          </motion.div>
-        </AnimatePresence>
-
-        <button onClick={prev} aria-label="previous" className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 p-3 rounded-full hover:bg-black/70 transition z-20">
-          <ChevronLeft size={28} color="#c38a27" />
-        </button>
-        <button onClick={next} aria-label="next" className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 p-3 rounded-full hover:bg-black/70 transition z-20">
-          <ChevronRight size={28} color="#c38a27" />
-        </button>
-
-        <div className="absolute bottom-16 inset-x-0 text-center z-10 px-4">
-          <motion.h3 key={slides[idx].title} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} className="text-2xl font-semibold text-[#c38a27]">{slides[idx].title}</motion.h3>
-          <motion.p key={slides[idx].desc} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.08 }} className="text-gray-300 mb-6">{slides[idx].desc}</motion.p>
-          <Link href="/projects"><button className="px-8 py-3 rounded-full font-semibold bg-[#c38a27] text-black">Explore All Projects</button></Link>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// --- CORE CAPABILITIES ---
-function CoreCapabilities() {
-  const items = useMemo(() => [
-     { icon: <PenTool size={36} />, label: "Personalized Design Concepts" },
-    { icon: <Sun size={36} />, label: "Natural Light Integration" },
-    { icon: <Maximize2 size={36} />, label: "Indoor-Outdoor Spatial Harmony" },
-    { icon: <Diamond size={36} />, label: "Luxury Finishes & Detailing" },
-  ], []);
-
   return (
     <section className="py-24 bg-black text-white">
       <div className="text-center mb-14">
-        <h2 className="text-4xl font-bold">Core <span className={COPPER_GRADIENT}>Capabilities</span></h2>
+        <h2 className="text-4xl font-bold">
+          Core <span className={COPPER_GRADIENT}>Capabilities</span>
+        </h2>
       </div>
 
-      <div className="flex flex-wrap justify-center gap-10 max-w-5xl mx-auto px-6">
+      <div className="flex flex-wrap justify-center gap-10 max-w-5xl mx-auto">
         {items.map((item, i) => (
-          <motion.div key={`cap-${i}`} whileHover={{ scale: 1.06 }} className="w-56 h-56 bg-linear-to-br from-[#161616] via-[#1e1e1e] to-[#0f0f0f] border border-[#2c2c2c] hover:border-[#c38a27]/60 rounded-2xl flex flex-col items-center justify-center text-center p-6 transition-all duration-500">
-            <motion.div whileHover={{ scale: 1.15, rotate: 8 }} className="text-[#c38a27] mb-3">{item.icon}</motion.div>
-            <p className="text-gray-300 text-sm font-medium">{item.label}</p>
+          <motion.div
+            key={i}
+            whileHover={{ scale: 1.06 }}
+            className="w-56 h-56 bg-linear-to-br from-[#161616] to-[#0f0f0f] border border-[#2c2c2c] hover:border-[#c38a27]/60 rounded-2xl flex flex-col items-center justify-center text-center p-6"
+          >
+            <div className="text-[#c38a27] mb-3">{item.icon}</div>
+            <p className="text-gray-300 text-sm">{item.label}</p>
           </motion.div>
         ))}
       </div>
@@ -269,49 +330,85 @@ function CoreCapabilities() {
   );
 }
 
-// --- CLIENT EXPERIENCE ---
+/* ───────────────────────── CLIENT EXPERIENCE ───────────────────────── */
 function ClientExperience() {
   return (
     <section className="py-24 bg-black text-white px-6">
       <div className="max-w-4xl mx-auto text-center">
-        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }}>
-          <Quote className="mx-auto mb-6 text-[#c38a27] w-12 h-12" />
-          <p className="text-xl md:text-2xl font-semibold text-gray-300 leading-relaxed mb-6">“Our home finally feels like us — elegant, functional, and full of warmth.”</p>
-          <p className="text-gray-400 font-medium">— Design Your Dream Home with Duqor.</p>
-        </motion.div>
+        <Quote className="mx-auto mb-6 text-[#c38a27] w-12 h-12" />
+        <p className="text-xl md:text-2xl text-gray-300 font-semibold mb-6">
+          “Our home finally feels like us — elegant, functional, and full of warmth.”
+        </p>
+        <p className="text-gray-400">— Design Your Dream Home with Duqor.</p>
       </div>
     </section>
   );
 }
 
-// --- FINAL CTA ---
+/* ───────────────────────── FINAL CTA ───────────────────────── */
 function FinalCTA() {
   return (
-    <section className="py-32 relative text-center text-white overflow-hidden bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(17,17,17,0.5), rgba(0,0,0,0.5)), url('/images/residential/slider/bottom.png')` }}>
-      <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.9 }}>
-        <h2 className="text-4xl md:text-5xl font-bold mb-6"> Design Your<span className={COPPER_GRADIENT}>Dream</span> Home with Duqor</h2>
-        <p className="text-gray-300 mb-10 max-w-2xl mx-auto"> Where sophistication meets serenity — let’s create your personal masterpiece</p>
+    <section
+      className="py-32 text-center bg-cover bg-center relative"
+      style={{
+        backgroundImage:
+          "linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(17,17,17,0.5), rgba(0,0,0,0.5)), url('/images/residential/slider/bottom.png')",
+      }}
+    >
+      {/* Accessibility label for background image */}
+  <span
+    className="sr-only"
+    role="img"
+    aria-label="Residential living room interior with modern design and cozy ambiance"
+  />
+      <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+        Design Your <span className={COPPER_GRADIENT}>Dream</span> Home with Duqor
+      </h2>
 
-        <div className="flex justify-center gap-6 flex-wrap">
-          <Link href="/contact"><button className="px-8 py-3 rounded-full font-semibold flex items-center gap-2 cursor-pointer bg-[#c38a27] text-black">Contact Us <ArrowRight size={18} /></button></Link>
-          <Link href="/portfolio"><button className="px-8 py-3 rounded-full border-2 border-[#c38a27] text-[#c38a27] font-semibold flex items-center gap-2 cursor-pointer hover:bg-[#c38a27]/20 transition-all">View Projects <ArrowRight size={18} /></button></Link>
-        </div>
-      </motion.div>
+      <p className="text-gray-300 max-w-2xl mx-auto mb-10">
+        Where sophistication meets serenity — let’s create your personal masterpiece
+      </p>
+
+      <div className="flex justify-center gap-6 flex-wrap">
+        <Link href="/contact">
+          <button className="px-8 py-3 bg-[#c38a27] cursor-pointer text-black rounded-full font-semibold flex items-center gap-2">
+            Contact Us <ArrowRight size={18} />
+          </button>
+        </Link>
+
+        <Link href="/portfolio">
+          <button className="px-8 py-3 border-2 cursor-pointer border-[#c38a27] text-[#c38a27] rounded-full font-semibold">
+            View Projects
+          </button>
+        </Link>
+      </div>
     </section>
   );
 }
 
-// --- Export full page ---
+/* ───────────────────────── PAGE EXPORT ───────────────────────── */
 export default function ResidentialInteriors() {
   return (
-    <main className="bg-black text-white">
-      <HeroSection />
-      <Introduction />
-      <DesignApproach />
-      <SignatureProjects />
-      <CoreCapabilities />
-      <ClientExperience />
-      <FinalCTA />
-    </main>
+    <>
+      <Head>
+  <title>Duqor Residential Interior Design | Luxury Homes & Villas</title>
+  <meta
+    name="description"
+    content="Duqor creates elegant and functional residential interiors for luxury homes and villas. Transforming spaces into comfortable, stylish, and sophisticated living environments."
+  />
+  <link rel="canonical" href="https://www.duqor.com/residential" />
+</Head>
+
+
+      <main className="bg-black text-white">
+        <HeroSection />
+        <Introduction />
+        <DesignApproach />
+        <SignatureProjects />
+        <CoreCapabilities />
+        <ClientExperience />
+        <FinalCTA />
+      </main>
+    </>
   );
 }

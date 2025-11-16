@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { Metadata } from "next";
+import WhatsAppFloat from "./components/WhatsAppSticker";
 
 // --- Global SEO Metadata ---
 export const metadata: Metadata = {
@@ -121,7 +122,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
         {/* Page Content */}
         <main className="grow">{children}</main>
-
+        <WhatsAppFloat />
         {/* Footer on all pages */}
         <Footer />
       </body>

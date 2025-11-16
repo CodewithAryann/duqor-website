@@ -153,7 +153,7 @@ const Navbar: React.FC = () => {
 
           {/* Phone */}
           <a
-            href="tel:+971543517100"
+            href="tel:+97142871395"
             aria-label="Call Duqor"
             className="text-white/90 hover:text-[#c97a00] hover:scale-110 transition-all duration-300"
           >

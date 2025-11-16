@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { MapPin, Phone, Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -21,6 +21,21 @@ const ContactSection: React.FC = () => {
 
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState<string | null>(null);
+  const leftSideRef = useRef<HTMLDivElement>(null);
+  const [leftHeight, setLeftHeight] = useState<number>(0);
+
+  useEffect(() => {
+    if (leftSideRef.current) {
+      setLeftHeight(leftSideRef.current.offsetHeight);
+    }
+    const handleResize = () => {
+      if (leftSideRef.current) {
+        setLeftHeight(leftSideRef.current.offsetHeight);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -60,7 +75,6 @@ const ContactSection: React.FC = () => {
     }
   };
 
-  // Contact info with working gradient icons
   const contactInfo = [
     {
       icon: <MapPin size={26} stroke="url(#goldGradient)" />,
@@ -70,7 +84,16 @@ const ContactSection: React.FC = () => {
     {
       icon: <Phone size={26} stroke="url(#goldGradient)" />,
       label: 'Phone',
-      value: <a href="tel:+97142871395" className="hover:text-[#d4af37] transition-all duration-200">+971 4 287 1395</a>,
+      value: (
+        <div className="flex flex-col gap-1">
+          <a href="tel:+97142871395" className="hover:text-[#d4af37] transition-all duration-200">
+            +971 4 287 1395
+          </a>
+          <a href="tel:+971501234567" className="hover:text-[#d4af37] transition-all duration-200">
+            +971 50 123 4567
+          </a>
+        </div>
+      ),
     },
     {
       icon: <Mail size={26} stroke="url(#goldGradient)" />,
@@ -117,8 +140,8 @@ const ContactSection: React.FC = () => {
         </motion.h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* Left: contact info + map */}
-          <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 1 }} className="space-y-10">
+          {/* Left side */}
+          <motion.div ref={leftSideRef} initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 1 }} className="space-y-10">
             {contactInfo.map((item, idx) => (
               <motion.div key={idx} whileHover={{ scale: 1.05, x: 5 }} transition={{ duration: 0.3 }} className="flex items-start gap-4 group">
                 <div className="p-3 rounded-full bg-[#d4af37]/10 group-hover:bg-[#d4af37]/20 transition-all duration-300">
@@ -126,12 +149,12 @@ const ContactSection: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold bg-linear-to-b from-[#e7c675] via-[#c38a27] to-[#8b5b10] bg-clip-text text-transparent drop-shadow-[0_3px_8px_rgba(0,0,0,0.6)]">{item.label}</h3>
-                  <p className="text-gray-300">{item.value}</p>
+                  <div className="text-gray-300">{item.value}</div> {/* Changed from <p> to <div> */}
                 </div>
               </motion.div>
             ))}
 
-            {/* Google Map */}
+            {/* Map */}
             <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.6 }} className="w-full h-80 rounded-2xl overflow-hidden border border-[#d4af37]/30 shadow-[0_0_25px_rgba(212,175,55,0.15)]">
               <iframe
                 title="Duqor Location"
@@ -145,9 +168,15 @@ const ContactSection: React.FC = () => {
             </motion.div>
           </motion.div>
 
-          {/* Right: contact form */}
-          <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 1 }} className="p-8 rounded-2xl bg-white/10 backdrop-blur-lg shadow-[0_0_30px_rgba(212,175,55,0.15)] border border-[#d4af37]/20">
-            <form onSubmit={handleSubmit} className="space-y-5">
+          {/* Right side: Form */}
+          <motion.div
+            style={{ minHeight: leftHeight }}
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1 }}
+            className="p-8 rounded-2xl bg-white/10 backdrop-blur-lg shadow-[0_0_30px_rgba(212,175,55,0.15)] border border-[#d4af37]/20 flex flex-col"
+          >
+            <form onSubmit={handleSubmit} className="space-y-5 flex-1 flex flex-col">
               {(['name', 'email', 'phone'] as const).map((field) => (
                 <input
                   key={field}
@@ -168,14 +197,14 @@ const ContactSection: React.FC = () => {
                 value={form.message}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 text-white bg-transparent border border-[#d4af37]/40 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d4af37] placeholder-gray-400 transition-all"
+                className="w-full px-4 py-3 text-white bg-transparent border border-[#d4af37]/40 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d4af37] placeholder-gray-400 transition-all flex-1"
               />
 
               <motion.button
                 type="submit"
                 disabled={loading}
                 whileHover={{ scale: 1.05, boxShadow: '0 0 20px rgba(212,175,55,0.4)' }}
-                className="w-full bg-linear-to-b from-[#e7c675] via-[#c38a27] to-[#8b5b10] text-black py-3 rounded-lg font-semibold shadow-md hover:shadow-[0_0_25px_rgba(212,175,55,0.4)] transition-all duration-300"
+                className="w-full cursor-pointer bg-linear-to-b from-[#e7c675] via-[#c38a27] to-[#8b5b10] text-black py-3 rounded-lg font-semibold shadow-md hover:shadow-[0_0_25px_rgba(212,175,55,0.4)] transition-all duration-300 mt-2"
               >
                 {loading ? 'Sending...' : 'Send Message'}
               </motion.button>
