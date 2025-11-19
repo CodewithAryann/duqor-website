@@ -7,12 +7,10 @@ import WhatsAppFloat from "./components/WhatsAppSticker";
 
 // --- Global SEO Metadata ---
 export const metadata: Metadata = {
-  title:
-    "Duqor Interior Design | Luxury Residential, Commercial & Hospitality Interiors in UAE",
+  title: "Duqor Interiors | Luxury Interior Design in UAE",
   description:
-    "Duqor Interiors is a leading interior design company in Dubai, UAE, specializing in luxury residential, commercial, and hospitality projects. We create bespoke spaces that combine modern aesthetics, functionality, and timeless elegance.",
+    "Duqor Interiors delivers luxury residential, commercial, and hospitality interior design in Dubai, creating modern, functional, and elegant bespoke spaces.",
   keywords: [
-    // Core keywords
     "Interior Design UAE",
     "Interior Design Dubai",
     "Luxury Interior Design",
@@ -50,10 +48,9 @@ export const metadata: Metadata = {
     icon: "/favicon.ico",
   },
   openGraph: {
-    title:
-      "Duqor Interior Design | Luxury Residential, Commercial & Hospitality Interiors in UAE",
+    title: "Duqor Interiors | Luxury Interior Design in UAE",
     description:
-      "Duqor Interiors delivers high-end interior design services across Dubai and UAE, creating modern, classic, and bespoke spaces for residential, commercial, and hospitality projects.",
+      "Luxury residential, commercial & hospitality interior design services in Dubai by Duqor Interiors. Modern, bespoke & functional spaces.",
     url: "https://www.duqor.ae/",
     siteName: "Duqor Interiors",
     images: [
@@ -69,10 +66,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title:
-      "Duqor Interior Design | Luxury Residential, Commercial & Hospitality Interiors in UAE",
+    title: "Duqor Interiors | Luxury Interior Design in UAE",
     description:
-      "Duqor Interiors transforms residential, commercial, and hospitality spaces with luxurious and functional interior design in Dubai and across the UAE.",
+      "Duqor Interiors creates luxury residential, commercial and hospitality interiors in Dubai & UAE.",
     images: ["https://www.duqor.ae/images/011.png"],
   },
   robots: "index, follow",
@@ -122,8 +118,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
         {/* Page Content */}
         <main className="grow">{children}</main>
+
+        {/* WhatsApp Floating Button */}
         <WhatsAppFloat />
-        {/* Footer on all pages */}
+
+        {/* Footer */}
         <Footer />
       </body>
     </html>

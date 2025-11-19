@@ -9,7 +9,6 @@ import Head from "next/head";
 // Optimized hero images in WebP format
 const images = [
   "/images/hero-section/hero-section-img-1.webp",
-  "/images/hero-section/hero-section-img-2.webp",
   "/images/hero-section/hero-section-img-3.webp",
   "/images/hero-section/hero-section-img-4.webp",
 ];

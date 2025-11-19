@@ -15,13 +15,11 @@ const featuredProjects: Project[] = [
   {
     title: 'Innovation Hub HQ – City Walk',
     images: [
-      '/images/portfolio/project-1/pic-1.png',
       '/images/portfolio/project-1/pic-2.png',
       '/images/portfolio/project-1/pic-3.png',
-      '/images/portfolio/project-1/pic-4.png',
-      '/images/portfolio/project-1/pic-5.png',
-      '/images/portfolio/project-1/pic-6.png',
-      '/images/portfolio/project-1/pic-7.png',
+      // '/images/portfolio/project-1/pic-5.png',
+      // '/images/portfolio/project-1/pic-6.png',
+      // '/images/portfolio/project-1/pic-7.png',
     ],
   },
   {
@@ -29,10 +27,9 @@ const featuredProjects: Project[] = [
     images: [
       '/images/portfolio/project-2/pic-1.png',
       '/images/portfolio/project-2/pic-2.png',
-      '/images/portfolio/project-2/pic-3.png',
-      '/images/portfolio/project-2/pic-4.png',
-      '/images/portfolio/project-2/pic-5.png',
-      '/images/portfolio/project-2/pic-6.png',
+      // '/images/portfolio/project-2/pic-4.png',
+      // '/images/portfolio/project-2/pic-5.png',
+      // '/images/portfolio/project-2/pic-6.png',
     ],
   },
   {
@@ -41,10 +38,10 @@ const featuredProjects: Project[] = [
       '/images/portfolio/project-3/pic-1.png',
       '/images/portfolio/project-3/pic-2.png',
       '/images/portfolio/project-3/pic-3.png',
-      '/images/portfolio/project-3/pic-4.png',
-      '/images/portfolio/project-3/pic-5.png',
-      '/images/portfolio/project-3/pic-6.png',
-      '/images/portfolio/project-3/pic-7.png',
+      // '/images/portfolio/project-3/pic-4.png',
+      // '/images/portfolio/project-3/pic-5.png',
+      // '/images/portfolio/project-3/pic-6.png',
+      // '/images/portfolio/project-3/pic-7.png',
     ],
   },
 ];
