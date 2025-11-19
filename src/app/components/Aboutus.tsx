@@ -35,7 +35,7 @@ const AboutPage: React.FC = () => {
 
         <div className="relative z-10 max-w-6xl mx-auto px-6 py-24 text-center">
           {/* Heading */}
-          <motion.h1
+          <motion.h2
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
@@ -48,7 +48,7 @@ const AboutPage: React.FC = () => {
                                     0_0_24px_rgba(139,91,16,0.3)]"
           >
             About DUQOR
-          </motion.h1>
+          </motion.h2>
 
           {/* Description */}
           <motion.p

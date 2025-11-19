@@ -68,7 +68,7 @@ const Introduction: React.FC = () => {
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 py-24 text-center">
           {/* Heading */}
-          <motion.h1
+          <motion.h3
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
@@ -81,7 +81,7 @@ const Introduction: React.FC = () => {
                                     0_0_24px_rgba(139,91,16,0.3)]"
           >
             Welcome to DUQOR
-          </motion.h1>
+          </motion.h3>
 
           {/* Intro Text */}
           <motion.p

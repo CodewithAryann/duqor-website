@@ -56,7 +56,7 @@ export default function HeroSection() {
               className="object-cover"
               quality={75}
               placeholder="blur"
-              blurDataURL="/images/hero-section/placeholder.png"
+              blurDataURL="/images/hero-section/placeholder.webp"
             />
           </motion.div>
         ))}
