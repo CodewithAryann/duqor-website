@@ -8,7 +8,6 @@ import Process from './components/Process';
 import PortfolioSection from './components/PortfolioSection';
 import Introduction from './components/Intro';
 import FAQ from './components/FAQ';
-import Head from 'next/head';
 import { Metadata } from 'next';
 
 // --- SEO Metadata ---
@@ -16,6 +15,9 @@ export const metadata: Metadata = {
   title: 'Duqor Interiors | Luxury Interior Design in UAE',
   description:
     'Duqor Interiors delivers luxury residential, commercial, and hospitality interior design in Dubai, creating modern, functional, and elegant bespoke spaces.',
+  alternates: {
+    canonical: 'https://www.duqor.ae/', // ✅ This is how canonical URL is set in App Router
+  },
   keywords: [
     'Interior Design UAE',
     'Interior Design Dubai',
@@ -80,7 +82,7 @@ export const metadata: Metadata = {
   },
 };
 
-// --- JSON-LD Structured Data for Home Page ---
+// --- JSON-LD Structured Data ---
 const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
@@ -107,11 +109,6 @@ const structuredData = {
 export default function Home() {
   return (
     <div className="min-h-screen">
-      {/* Head for canonical & custom meta */}
-      <Head>
-        <link rel="canonical" href="https://www.duqor.ae/" />
-      </Head>
-
       {/* JSON-LD Structured Data */}
       <script
         type="application/ld+json"

@@ -12,6 +12,31 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.duqor.ae/",
   },
+  robots: "index, follow",
+  openGraph: {
+    title: "Duqor Interiors | Luxury Interior Design in UAE",
+    description:
+      "Luxury residential, commercial & hospitality interior design services in Dubai by Duqor Interiors. Modern, bespoke & functional spaces.",
+    url: "https://www.duqor.ae/",
+    siteName: "Duqor Interiors",
+    images: [
+      {
+        url: "https://www.duqor.ae/images/011.png",
+        width: 1200,
+        height: 630,
+        alt: "Duqor Interiors – Luxury Interior Design in Dubai, UAE",
+      },
+    ],
+    locale: "en_AE",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Duqor Interiors | Luxury Interior Design in UAE",
+    description:
+      "Duqor Interiors creates luxury residential, commercial and hospitality interiors in Dubai & UAE.",
+    images: ["https://www.duqor.ae/images/011.png"],
+  },
 };
 
 const structuredData = {
@@ -50,7 +75,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         {/* Navbar */}
         <Navbar />
 
-        {/* Page content */}
+        {/* Page Content */}
         <main className="grow">{children}</main>
 
         {/* WhatsApp Floating Button */}
