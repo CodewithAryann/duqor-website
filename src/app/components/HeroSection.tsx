@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Head from "next/head";
 
 // Optimized hero images in WebP format
 const images = [
@@ -36,14 +35,6 @@ export default function HeroSection() {
 
   return (
     <>
-      <Head>
-        <title>Duqor Interiors | Luxury Residential, Commercial & Hospitality Design</title>
-        <meta
-          name="description"
-          content="Duqor Interiors: Transforming spaces into elegant retreats with luxury residential, commercial, hospitality, and retail designs across UAE & GCC."
-        />
-        <link rel="canonical" href="https://www.duqor.com/" />
-      </Head>
 
       <section className="relative w-full h-screen overflow-hidden">
         {/* Background Slideshow */}

@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 // import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import Head from "next/head";
 
 const services = [
   {
@@ -63,16 +62,6 @@ const fadeUp = {
 const Introduction: React.FC = () => {
   return (
     <>
-      {/* SEO Tags */}
-      <Head>
-        <title>Duqor Interiors | Luxury Residential, Commercial & Hospitality Design</title>
-        <meta
-          name="description"
-          content="Duqor Interiors, a Dubai-based design studio, creates luxurious residential, commercial, hospitality, and retail spaces with sustainability and elegance."
-        />
-        <link rel="canonical" href="https://www.duqor.ae/introduction" />
-      </Head>
-
       <section className="min-h-screen relative bg-linear-to-b from-[#0a0a0a] via-[#121212] to-[#0a0a0a] text-white overflow-hidden">
         {/* Background Glow */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.15),transparent_75%)] pointer-events-none" />

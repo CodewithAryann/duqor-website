@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import Head from "next/head";
 import Image from "next/image";
 import {
   FaPaintBrush,
@@ -67,23 +66,6 @@ const ServicesSection: React.FC = () => {
 
   return (
     <>
-      {/* SEO Meta Tags */}
-      <Head>
-        <title>Our Services | DUQOR Luxury Interior Design Dubai</title>
-        <meta
-          name="description"
-          content="Discover DUQOR's interior design and fit-out services in Dubai. From bespoke concepts to turnkey execution, furniture, joinery, renovation, and lighting — transforming spaces with elegance."
-        />
-        <link rel="canonical" href="https://www.duqor.ae/services" />
-        {/* Open Graph / Social Sharing */}
-        <meta property="og:title" content="Our Services | DUQOR Luxury Interior Design Dubai" />
-        <meta
-          property="og:description"
-          content="Explore DUQOR's comprehensive interior design services: design concepts, turnkey fit-out, bespoke furniture, joinery, renovation, and lighting styling in Dubai & GCC."
-        />
-        <meta property="og:url" content="https://www.duqor.ae/services" />
-        <meta property="og:type" content="website" />
-      </Head>
 
       <section
         id="services"

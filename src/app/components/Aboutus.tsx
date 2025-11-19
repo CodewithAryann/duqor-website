@@ -2,7 +2,6 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import Head from "next/head";
 
 const highlights = [
   "Headquartered in Dubai, UAE",
@@ -25,24 +24,6 @@ const fadeUp = {
 const AboutPage: React.FC = () => {
   return (
     <>
-      {/* SEO Meta Tags */}
-      <Head>
-        <title>About DUQOR | Luxury Interior Design Dubai & GCC</title>
-        <meta
-          name="description"
-          content="DUQOR is a premier interior design and fit-out firm in Dubai, UAE, crafting modern, luxurious, and sustainable spaces across residential, commercial, retail, and hospitality sectors."
-        />
-        <link rel="canonical" href="https://www.duqor.ae/about" />
-        {/* Open Graph / Social Sharing */}
-        <meta property="og:title" content="About DUQOR | Luxury Interior Design Dubai & GCC" />
-        <meta
-          property="og:description"
-          content="Crafting modern, luxurious, and sustainable spaces in Dubai and GCC. Explore DUQOR's expertise in residential, commercial, retail, and hospitality interiors."
-        />
-        <meta property="og:url" content="https://www.duqor.ae/about" />
-        <meta property="og:type" content="website" />
-      </Head>
-
       <section className="min-h-screen relative bg-linear-to-b from-[#0a0a0a] via-[#1a1a1a] to-[#0a0a0a] text-white overflow-hidden">
         {/* Animated Background Overlay */}
         <motion.div
