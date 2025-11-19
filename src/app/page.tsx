@@ -50,20 +50,6 @@ export const metadata: Metadata = {
     'Dubai Interior Designers',
     'Luxury Interiors UAE',
   ],
-  icons: {
-    icon: [
-      { url: '/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
-      { url: '/favicon.svg', type: 'image/svg+xml' },
-      { url: '/favicon.ico' },
-    ],
-    apple: [{ url: '/apple-touch-icon.png', sizes: '180x180' }],
-    other: [
-      {
-        rel: 'manifest',
-        url: '/site.webmanifest',
-      },
-    ],
-  },
   openGraph: {
     title: 'Duqor Interiors | Luxury Interior Design in UAE',
     description:
@@ -121,7 +107,7 @@ const structuredData = {
 export default function Home() {
   return (
     <div className="min-h-screen">
-      {/* Add Head for canonical link */}
+      {/* Head for canonical & custom meta */}
       <Head>
         <link rel="canonical" href="https://www.duqor.ae/" />
       </Head>
@@ -132,6 +118,7 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
 
+      {/* Page Sections */}
       <HeroSection />
       <Introduction />
       <AboutPage />
