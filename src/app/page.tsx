@@ -8,6 +8,7 @@ import Process from './components/Process';
 import PortfolioSection from './components/PortfolioSection';
 import Introduction from './components/Intro';
 import FAQ from './components/FAQ';
+import Head from 'next/head';
 import { Metadata } from 'next';
 
 // --- SEO Metadata ---
@@ -15,7 +16,6 @@ export const metadata: Metadata = {
   title: 'Duqor Interiors | Luxury Interior Design in UAE',
   description:
     'Duqor Interiors delivers luxury residential, commercial, and hospitality interior design in Dubai, creating modern, functional, and elegant bespoke spaces.',
-
   keywords: [
     'Interior Design UAE',
     'Interior Design Dubai',
@@ -50,8 +50,6 @@ export const metadata: Metadata = {
     'Dubai Interior Designers',
     'Luxury Interiors UAE',
   ],
-
-  // --- Favicons ---
   icons: {
     icon: [
       { url: '/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
@@ -66,7 +64,6 @@ export const metadata: Metadata = {
       },
     ],
   },
-
   openGraph: {
     title: 'Duqor Interiors | Luxury Interior Design in UAE',
     description:
@@ -84,7 +81,6 @@ export const metadata: Metadata = {
     locale: 'en_AE',
     type: 'website',
   },
-
   twitter: {
     card: 'summary_large_image',
     title: 'Duqor Interiors | Luxury Interior Design in UAE',
@@ -92,9 +88,7 @@ export const metadata: Metadata = {
       'Duqor Interiors creates luxury residential, commercial and hospitality interiors in Dubai & UAE.',
     images: ['https://www.duqor.ae/images/011.png'],
   },
-
   robots: 'index, follow',
-
   verification: {
     google: 'V3Yre0rwVk6SPt9ZiQ3uZYLzIBtCHdo0X5g5U_uYXBQ',
   },
@@ -127,6 +121,11 @@ const structuredData = {
 export default function Home() {
   return (
     <div className="min-h-screen">
+      {/* Add Head for canonical link */}
+      <Head>
+        <link rel="canonical" href="https://www.duqor.ae/" />
+      </Head>
+
       {/* JSON-LD Structured Data */}
       <script
         type="application/ld+json"
