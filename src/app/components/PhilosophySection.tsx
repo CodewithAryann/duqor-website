@@ -1,23 +1,23 @@
 "use client";
 import React from "react";
-import { motion } from "framer-motion";
 import Image from "next/image";
 
+// Philosophy content
 const philosophies = [
   {
     title: "Simplicity with Substance",
     description:
-      "Clean architectural lines, rich premium materials, and intentional detailing that speaks volumes through restraint.",
+      "Clean architectural lines, rich premium materials, and intentional detailing that speaks through refined restraint.",
   },
   {
     title: "Luxury through Experience",
     description:
-      "Comfort and elegance that authentically resonate with your lifestyle, creating spaces that feel both opulent and inviting.",
+      "Comfort and elegance that resonate with your lifestyle — creating spaces both opulent and inviting.",
   },
   {
     title: "Innovation in Execution",
     description:
-      "Smart technology integration, sustainable practices, and precision craftsmanship that set new standards in luxury interiors.",
+      "Smart technology, sustainable practices, and precision craftsmanship shaping next-generation interiors.",
   },
 ];
 
@@ -25,123 +25,69 @@ const DesignPhilosophy: React.FC = () => {
   return (
     <section
       id="philosophy"
-      className="relative py-20 md:py-28 bg-linear-to-b from-[#0a0a0a] via-[#141414] to-[#0a0a0a] text-white overflow-hidden"
+      className="relative py-20 md:py-28 bg-black text-white overflow-hidden"
     >
-      {/* Background image with golden glow overlay */}
-      <div className="absolute inset-0 -z-10">
+      {/* Background Image - LOW JS + LOW NETWORK */}
+      <div className="absolute inset-0 -z-10 opacity-20">
         <Image
-          src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1600"
+          src="/images/bg/interior-bg.webp" // <-- Use your own 50–80 kb local webp
           alt="Luxury interior background"
           fill
-          className="object-cover opacity-20"
-          unoptimized
+          className="object-cover"
+          priority={false}
         />
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.15 }}
-          transition={{ duration: 2 }}
-          className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(194,161,88,0.3),transparent_70%)]"
-          aria-hidden="true"
-        />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(194,161,88,0.25),transparent_70%)]" />
       </div>
 
       <div className="max-w-6xl mx-auto px-6 lg:px-10 relative z-10">
-        {/* Section Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16 md:mb-20"
-        >
-          <motion.h2
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-            className="relative text-4xl md:text-5xl font-serif font-bold leading-tight
-                       bg-linear-to-b from-[#e7c675] via-[#c38a27] to-[#8b5b10]
-                       bg-clip-text text-transparent
-                       drop-shadow-[0_3px_8px_rgba(0,0,0,0.6)]
-                       [text-shadow:0_0_6px_rgba(255,220,120,0.5),
-                                    0_0_14px_rgba(195,138,39,0.4),
-                                    0_0_24px_rgba(139,91,16,0.3)]"
+        {/* Heading */}
+        <div className="text-center mb-16 md:mb-20">
+          <h2
+            className="text-4xl md:text-5xl font-serif font-bold bg-clip-text text-transparent
+                       bg-linear-to-b from-[#e7c675] via-[#c38a27] to-[#8b5b10]"
           >
             Our Design Philosophy
-          </motion.h2>
+          </h2>
 
-          <p className="max-w-3xl mx-auto text-gray-300 text-base md:text-lg leading-relaxed mt-3">
+          <p className="max-w-3xl mx-auto text-gray-300 text-base md:text-lg leading-relaxed mt-4">
             At{" "}
-            <span className="font-serif font-semibold
-                             bg-linear-to-b from-[#e7c675] via-[#c38a27] to-[#8b5b10]
-                             bg-clip-text text-transparent
-                             drop-shadow-[0_2px_6px_rgba(0,0,0,0.5)]">
+            <span className="font-serif bg-clip-text text-transparent bg-linear-to-b from-[#e7c675] via-[#c38a27] to-[#8b5b10]">
               DUQOR
             </span>
-            , design transcends the visual — it becomes experiential. We craft interiors
-            that merge refined aesthetics, cultural context, and contemporary
-            sophistication, transforming every environment into an extension of
-            how you live, work, and inspire.
+            , design is more than aesthetics — it is an experience reflecting
+            lifestyle, culture, and contemporary sophistication.
           </p>
-        </motion.div>
+        </div>
 
-        {/* Philosophy Cards */}
+        {/* Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
           {philosophies.map((item, idx) => (
-            <motion.div
+            <div
               key={idx}
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: idx * 0.2 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.02 }}
-              className="relative group bg-[#111] border border-[#2a2a2a] hover:border-[#d4af67]/70
-                         rounded-2xl p-6 md:p-8 overflow-hidden transition-all duration-500 shadow-md hover:shadow-[0_0_20px_rgba(212,175,55,0.4)]"
+              className="relative bg-[#111] border border-[#2a2a2a] rounded-2xl p-6 md:p-8 
+                         transition-all duration-300 hover:border-[#d4af67] hover:shadow-[0_0_18px_rgba(212,175,55,0.35)]"
             >
-              {/* Accent line with gold gradient */}
-              <motion.div
-                className="h-1 w-12 md:w-16 mb-4 md:mb-6 rounded-full bg-linear-to-r from-[#f5d67a] via-[#c38a27] to-[#8b5b10] shadow-[0_0_6px_rgba(212,175,55,0.6),0_0_12px_rgba(195,138,39,0.4)] origin-left"
-                whileHover={{ scaleX: 1.5 }}
-                transition={{ duration: 0.4 }}
-              />
+              {/* Gold Accent Line */}
+              <div className="h-1 w-14 md:w-16 mb-6 rounded-full bg-linear-to-r from-[#f5d67a] via-[#c38a27] to-[#8b5b10]" />
 
-              {/* Heading */}
-              <motion.h3
-                initial={{ opacity: 0, y: 5 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: idx * 0.2 }}
-                className="text-xl md:text-2xl font-semibold mb-2 md:mb-3 font-serif
-                           bg-linear-to-b from-[#e7c675] via-[#c38a27] to-[#8b5b10]
-                           bg-clip-text text-transparent
-                           drop-shadow-[0_2px_6px_rgba(0,0,0,0.5)]
-                           transition-colors duration-300 group-hover:text-[#f5d67a]"
+              <h3
+                className="text-xl md:text-2xl font-serif font-semibold mb-3 bg-clip-text 
+                           text-transparent bg-linear-to-b from-[#e7c675] via-[#c38a27] to-[#8b5b10]"
               >
                 {item.title}
-              </motion.h3>
+              </h3>
 
               <p className="text-gray-300 text-sm md:text-base leading-relaxed">
                 {item.description}
               </p>
-
-              {/* Subtle shimmer overlay */}
-              <motion.div
-                className="absolute inset-0 opacity-0 group-hover:opacity-100
-                           bg-linear-to-r from-transparent via-[#c2a158]/10 to-transparent rounded-2xl"
-                transition={{ duration: 0.6 }}
-                aria-hidden="true"
-              />
-            </motion.div>
+            </div>
           ))}
         </div>
 
-        {/* Footer line */}
-        <motion.div
-          initial={{ scaleX: 0, opacity: 0 }}
-          whileInView={{ scaleX: 1, opacity: 1 }}
-          transition={{ duration: 1.2, delay: 0.4, ease: "easeInOut" }}
-          className="mx-auto mt-16 h-1 w-3/5 
-                     bg-linear-to-r from-[#f5d67a] via-[#c38a27] to-[#8b5b10]
-                     rounded-full shadow-[0_0_12px_rgba(212,175,55,0.6),0_0_20px_rgba(195,138,39,0.4)]
-                     origin-center"
+        {/* Footer Line */}
+        <div
+          className="mx-auto mt-16 h-1 w-3/5 rounded-full 
+                     bg-linear-to-r from-[#f5d67a] via-[#c38a27] to-[#8b5b10]"
         />
       </div>
     </section>
