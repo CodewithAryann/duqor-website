@@ -2,107 +2,16 @@ import "./globals.css";
 import { ReactNode } from "react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import { Metadata } from "next";
 import WhatsAppFloat from "./components/WhatsAppSticker";
-
-// --- Global SEO Metadata ---
-export const metadata: Metadata = {
-  title: "Duqor Interiors | Luxury Interior Design in UAE",
-  description:
-    "Duqor Interiors delivers luxury residential, commercial, and hospitality interior design in Dubai, creating modern, functional, and elegant bespoke spaces.",
-  keywords: [
-    "Interior Design UAE",
-    "Interior Design Dubai",
-    "Luxury Interior Design",
-    "Residential Interior Design",
-    "Commercial Interior Design",
-    "Hospitality Interior Design",
-    "Modern Interior Design",
-    "Classic Interior Design",
-    "Minimalist Interiors",
-    "Office Interior Design",
-    "Villa Interior Design",
-    "Restaurant Interior Design",
-    "Hotel Interior Design",
-    "Retail Interior Design",
-    "Fit-out Company Dubai",
-    "Interior Fit Out UAE",
-    "Turnkey Interior Solutions",
-    "Space Planning and Design",
-    "Custom Furniture Design",
-    "Interior Decoration Services",
-    "Architectural Design Dubai",
-    "Interior Renovation UAE",
-    "3D Interior Visualization",
-    "Home Renovation Dubai",
-    "Office Renovation UAE",
-    "Interior Design Consultation",
-    "Bespoke Interior Design UAE",
-    "High-End Interiors Dubai",
-    "Duqor Interiors",
-    "Interior Design Studio Dubai",
-    "Dubai Interior Designers",
-    "Luxury Interiors UAE",
-  ],
-  icons: {
-    icon: "/favicon.ico",
-  },
-  openGraph: {
-    title: "Duqor Interiors | Luxury Interior Design in UAE",
-    description:
-      "Luxury residential, commercial & hospitality interior design services in Dubai by Duqor Interiors. Modern, bespoke & functional spaces.",
-    url: "https://www.duqor.ae/",
-    siteName: "Duqor Interiors",
-    images: [
-      {
-        url: "https://www.duqor.ae/images/011.png",
-        width: 1200,
-        height: 630,
-        alt: "Duqor Interiors – Luxury Interior Design in Dubai, UAE",
-      },
-    ],
-    locale: "en_AE",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Duqor Interiors | Luxury Interior Design in UAE",
-    description:
-      "Duqor Interiors creates luxury residential, commercial and hospitality interiors in Dubai & UAE.",
-    images: ["https://www.duqor.ae/images/011.png"],
-  },
-  robots: "index, follow",
-  verification: {
-    google: "V3Yre0rwVk6SPt9ZiQ3uZYLzIBtCHdo0X5g5U_uYXBQ",
-  },
-};
-
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "Duqor Interiors",
-  url: "https://www.duqor.ae/",
-  logo: "https://www.duqor.ae/images/011.png",
-  sameAs: [
-    "https://www.instagram.com/duqor",
-    "https://www.facebook.com/duqor",
-    "https://www.linkedin.com/company/duqor",
-  ],
-  contactPoint: [
-    {
-      "@type": "ContactPoint",
-      telephone: "+971543517100",
-      contactType: "customer service",
-      email: "info@duqor.com",
-      areaServed: "AE",
-      availableLanguage: ["English", "Arabic"],
-    },
-  ],
-};
+import Head from "next/head"; // <-- import Head
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
+      <Head>
+        {/* Canonical URL for SEO */}
+        <link rel="canonical" href="https://www.duqor.ae/" />
+      </Head>
       <body
         className="bg-white text-gray-900 min-h-screen flex flex-col"
         suppressHydrationWarning
@@ -110,7 +19,30 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         {/* JSON-LD Structured Data for Organization */}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Duqor Interiors",
+              url: "https://www.duqor.ae/",
+              logo: "https://www.duqor.ae/images/011.png",
+              sameAs: [
+                "https://www.instagram.com/duqor",
+                "https://www.facebook.com/duqor",
+                "https://www.linkedin.com/company/duqor",
+              ],
+              contactPoint: [
+                {
+                  "@type": "ContactPoint",
+                  telephone: "+971543517100",
+                  contactType: "customer service",
+                  email: "info@duqor.com",
+                  areaServed: "AE",
+                  availableLanguage: ["English", "Arabic"],
+                },
+              ],
+            }),
+          }}
         />
 
         {/* Navbar on all pages */}
