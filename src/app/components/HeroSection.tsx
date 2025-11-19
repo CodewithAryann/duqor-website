@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import Image from "next/image";
 
 const images = [
@@ -11,155 +12,136 @@ const images = [
 ];
 
 export default function HeroSection() {
-  const [loaded, setLoaded] = useState(false);
+  const [currentImage, setCurrentImage] = useState(0);
+  const [particles, setParticles] = useState<
+    { x: number; y: number; size: number; delay: number }[]
+  >([]);
 
+  // Hero slideshow
   useEffect(() => {
-    // Trigger initial fade-in for hero content
-    const t = setTimeout(() => setLoaded(true), 100);
-    return () => clearTimeout(t);
+    const interval = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % images.length);
+    }, 7000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Generate floating particles only on client
+  useEffect(() => {
+    const newParticles = Array.from({ length: 35 }).map(() => ({
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      size: Math.random() * 3 + 0.5, // random size 0.5px to 3.5px
+      delay: Math.random() * 5,       // animation delay 0-5s
+    }));
+    setParticles(newParticles);
   }, []);
 
   return (
     <section className="relative w-full h-screen overflow-hidden">
+      {/* Background slideshow */}
+      {images.map((img, index) => (
+        <motion.div
+          key={index}
+          className={`absolute inset-0 transition-opacity duration-2000 ease-in-out ${
+            index === currentImage ? "opacity-100" : "opacity-0"
+          }`}
+          animate={{ scale: index === currentImage ? 1.05 : 1 }}
+          transition={{ duration: 8, ease: "easeOut" }}
+        >
+          <Image
+            src={img}
+            alt={`Hero Slide ${index + 1}`}
+            fill
+            priority={index === 0}
+            sizes="100vw"
+            className="object-cover"
+            quality={75}
+            placeholder="blur"
+            blurDataURL="/images/hero-section/placeholder.webp"
+          />
+        </motion.div>
+      ))}
 
-      {/* PURE CSS BACKGROUND SLIDESHOW */}
-      <div className="absolute inset-0 z-0 slideshow">
-        {images.map((img, i) => (
-          <div key={i} className={`slide bg-cover bg-center`} style={{ backgroundImage: `url(${img})` }} />
-        ))}
-      </div>
-
-      {/* GOLDEN OVERLAY */}
+      {/* Golden Overlay */}
       <div className="absolute inset-0 bg-linear-to-r from-black/40 via-black/35 to-black/45 z-10" />
 
-      {/* PURE CSS SPARKLES (ZERO JS) */}
-      <div className="absolute inset-0 pointer-events-none z-20 sparkle-layer">
-        {Array.from({ length: 30 }).map((_, i) => (
-          <span key={i} className="sparkle"></span>
+      {/* Floating Golden Sparkles */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-20 pointer-events-none">
+        {particles.map((p, i) => (
+          <span
+            key={i}
+            className="absolute rounded-full bg-[#d4af37] opacity-60 animate-float"
+            style={{
+              width: `${p.size}px`,
+              height: `${p.size}px`,
+              top: `${p.y}px`,
+              left: `${p.x}px`,
+              animationDelay: `${p.delay}s`,
+            }}
+          />
         ))}
       </div>
 
-      {/* HERO CONTENT */}
+      {/* Hero Content */}
       <div className="relative z-30 flex flex-col items-center justify-center h-full text-center text-white px-6">
-
-        {/* LOGO */}
-        <Image
+        <motion.img
           src="/images/copper-logo.png"
           alt="Duqor Logo"
-          width={192}
-          height={192}
-          className={`w-40 md:w-48 mb-6 transition-all duration-1000 ${
-            loaded ? "opacity-100 scale-100" : "opacity-0 scale-95"
-          }`}
-          priority
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1 }}
+          className="w-40 md:w-48 mx-auto mb-6 drop-shadow-[0_0_25px_rgba(212,175,55,0.5)]"
         />
 
-        {/* HEADING */}
-        <h1
-          className={`text-4xl md:text-5xl font-serif font-bold tracking-wide leading-tight transition-all duration-1000 delay-200
-                      bg-clip-text text-transparent bg-linear-to-b from-[#e7c675] via-[#c38a27] to-[#8b5b10]
-                      drop-shadow-[0_3px_8px_rgba(0,0,0,0.6)]
-                      ${loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
-        >
+       <motion.h1
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="text-4xl md:text-5xl font-serif font-bold tracking-wide leading-tight
+                       bg-clip-text text-transparent bg-linear-to-b from-[#e7c675] via-[#c38a27] to-[#8b5b10]
+                       drop-shadow-[0_3px_8px_rgba(0,0,0,0.6)]
+                       [text-shadow:0_0_6px_rgba(255,220,120,0.5),
+                                    0_0_14px_rgba(195,138,39,0.4),
+                                    0_0_24px_rgba(139,91,16,0.3)]"
+          >
           Where Elegance Inspires Luxury
-        </h1>
+        </motion.h1>
 
-        {/* SUBTEXT */}
-        <p
-          className={`text-lg md:text-2xl mb-12 max-w-2xl font-light text-gray-200 transition-all duration-1000 delay-400
-                      drop-shadow-[0_0_10px_rgba(0,0,0,0.5)]
-                      ${loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.4 }}
+          className="text-lg md:text-2xl mb-12 max-w-2xl font-light text-gray-200 drop-shadow-[0_0_10px_rgba(0,0,0,0.5)]"
         >
           Transforming spaces into elegant retreats of style and comfort across the UAE and GCC.
-        </p>
+        </motion.p>
 
-        {/* BUTTONS */}
-        <div
-          className={`flex flex-wrap gap-6 justify-center transition-all duration-1000 delay-500
-                      ${loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.4 }}
+          className="flex flex-wrap gap-6 justify-center"
         >
           <Link
             href="/portfolio"
-            className="px-6 md:px-10 py-4 md:py-3 rounded-full font-serif font-semibold text-lg tracking-wide text-black
-                       bg-linear-to-b from-[#f5d67a] via-[#c38a27] to-[#8b5b10]
-                       shadow-[0_4px_20px_rgba(195,138,39,0.6)]
-                       hover:scale-105 transition duration-300"
+            aria-label="Explore Projects"
+            className="px-6 md:px-10 py-4 md:py-3 rounded-full font-serif font-semibold text-lg tracking-wide text-black bg-linear-to-b from-[#f5d67a] via-[#c38a27] to-[#8b5b10] shadow-[0_4px_20px_rgba(195,138,39,0.6)] hover:scale-105 hover:shadow-[0_0_25px_rgba(212,175,55,0.8)] transition-all duration-300 inline-flex items-center justify-center min-h-12 min-w-[120px]"
           >
             Explore Projects
           </Link>
 
           <Link
             href="/contact"
-            className="px-6 md:px-10 py-4 md:py-3 rounded-full font-serif font-semibold text-lg tracking-wide text-black
-                       bg-linear-to-b from-[#f5d67a] via-[#c38a27] to-[#8b5b10]
-                       border border-[#c38a27]
-                       shadow-[0_4px_20px_rgba(195,138,39,0.5)]
-                       hover:scale-105 transition duration-300"
+            aria-label="Contact Us"
+            className="px-6 md:px-10 py-4 md:py-3 rounded-full font-serif font-semibold text-lg tracking-wide text-black bg-linear-to-b from-[#f5d67a] via-[#c38a27] to-[#8b5b10] border-2 border-[#c38a27] shadow-[0_4px_20px_rgba(195,138,39,0.5)] hover:scale-105 hover:shadow-[0_0_25px_rgba(212,175,55,0.8)] transition-all duration-300 inline-flex items-center justify-center min-h-12 min-w-[120px]"
           >
             Contact Us
           </Link>
-        </div>
+        </motion.div>
       </div>
 
-      {/* Bottom Fade */}
+      {/* Bottom Glow */}
       <div className="absolute bottom-0 left-0 w-full h-32 bg-linear-to-t from-black/80 to-transparent z-20" />
-
-      {/* STYLES */}
-      <style jsx>{`
-        /* PURE CSS SLIDESHOW */
-        .slideshow {
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          overflow: hidden;
-        }
-        .slide {
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          opacity: 0;
-          animation: fadeSlideshow 18s infinite;
-        }
-        .slide:nth-child(1) { animation-delay: 0s; }
-        .slide:nth-child(2) { animation-delay: 6s; }
-        .slide:nth-child(3) { animation-delay: 12s; }
-
-        @keyframes fadeSlideshow {
-          0% { opacity: 0; transform: scale(1); }
-          10% { opacity: 1; transform: scale(1.05); }
-          30% { opacity: 1; transform: scale(1.05); }
-          40% { opacity: 0; transform: scale(1.1); }
-          100% { opacity: 0; }
-        }
-
-        /* PURE CSS SPARKLES */
-        .sparkle-layer {
-          position: absolute;
-          width: 100%;
-          height: 100%;
-        }
-        .sparkle {
-          position: absolute;
-          width: 3px;
-          height: 3px;
-          background: #d4af37;
-          border-radius: 50%;
-          opacity: 0.7;
-          animation: sparkleFloat 6s infinite linear;
-        }
-        .sparkle:nth-child(n) {
-          top: calc(100% * var(--randY));
-          left: calc(100% * var(--randX));
-          animation-delay: calc(-5s * var(--randD));
-          transform: scale(calc(0.5 + var(--randS) * 1.5));
-        }
-
-        @keyframes sparkleFloat {
-          0% { transform: translateY(0) scale(1); opacity: 0.8; }
-          50% { transform: translateY(-40px) scale(1.2); opacity: 1; }
-          100% { transform: translateY(-80px) scale(0.8); opacity: 0; }
-        }
-      `}</style>
     </section>
   );
 }
