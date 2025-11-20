@@ -41,7 +41,7 @@ const projectCategories: Category[] = [
     desc: "Elegant and functional spaces designed for modern living.",
     projects: [
       {
-        title: "Private Villa – Palm Jumeirah",
+        title: "Parkside residence – Palm Jumeirah",
         images: [
           "/images/portfolio/project-2/pic-1.png",
           "/images/portfolio/project-2/pic-2.png",
