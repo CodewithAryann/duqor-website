@@ -30,7 +30,7 @@ const Footer: React.FC = () => {
               height={50}
               className="mb-4 select-none"
             />
-            <p className="text-sm text-gray-400 leading-relaxed max-w-xs">
+            <p className="text-sm text-gray-300 leading-relaxed max-w-xs">
               Excellence in interior design and construction. We craft spaces that blend innovation, luxury, and timeless design.
             </p>
           </div>
