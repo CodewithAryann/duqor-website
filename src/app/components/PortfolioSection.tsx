@@ -4,37 +4,17 @@ import React, { useState } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowRight, ChevronLeft, ChevronRight, X } from "lucide-react";
 
-// Dynamic imports to reduce JS requests
-const MotionDiv = dynamic(() =>
-  import("framer-motion").then((m) => m.motion.div),
-{ ssr: false });
-
-const MotionH2 = dynamic(() =>
-  import("framer-motion").then((m) => m.motion.h2),
-{ ssr: false });
-
-const AnimatePresence = dynamic(
-  () => import("framer-motion").then((m) => m.AnimatePresence),
-{ ssr: false });
-
-const ArrowRight = dynamic(
-  () => import("lucide-react").then((m) => m.ArrowRight),
-{ ssr: false });
-const ChevronLeft = dynamic(
-  () => import("lucide-react").then((m) => m.ChevronLeft),
-{ ssr: false });
-const ChevronRight = dynamic(
-  () => import("lucide-react").then((m) => m.ChevronRight),
-{ ssr: false });
-const X = dynamic(
-  () => import("lucide-react").then((m) => m.X),
-{ ssr: false });
+// Dynamic motion imports (ssr: false to avoid hydration mismatch)
+const MotionDiv = dynamic(() => import("framer-motion").then((m) => m.motion.div), { ssr: false });
+const MotionH2 = dynamic(() => import("framer-motion").then((m) => m.motion.h2), { ssr: false });
+const AnimatePresence = dynamic(() => import("framer-motion").then((m) => m.AnimatePresence), { ssr: false });
 
 interface Project {
   title: string;
-  cover: string; // only ONE main image loaded on homepage
-  gallery: string[]; // loaded only when lightbox opens
+  cover: string;
+  gallery: string[];
 }
 
 const featuredProjects: Project[] = [
@@ -75,27 +55,29 @@ const PortfolioSection: React.FC = () => {
   const [activeImage, setActiveImage] = useState<number>(0);
 
   const openGallery = (index: number) => {
+    console.log("openGallery called, index:", index);
     setActiveProject(index);
     setActiveImage(0);
+    // Also print the gallery URLs for this project
+    console.log("gallery urls:", featuredProjects[index]?.gallery);
   };
 
-  const closeGallery = () => setActiveProject(null);
+  const closeGallery = () => {
+    console.log("closeGallery");
+    setActiveProject(null);
+  };
 
   const prevImage = () => {
     if (activeProject === null) return;
     setActiveImage((prev) =>
-      prev === 0
-        ? featuredProjects[activeProject].gallery.length - 1
-        : prev - 1
+      prev === 0 ? featuredProjects[activeProject].gallery.length - 1 : prev - 1
     );
   };
 
   const nextImage = () => {
     if (activeProject === null) return;
     setActiveImage((prev) =>
-      prev === featuredProjects[activeProject].gallery.length - 1
-        ? 0
-        : prev + 1
+      prev === featuredProjects[activeProject].gallery.length - 1 ? 0 : prev + 1
     );
   };
 
@@ -110,8 +92,7 @@ const PortfolioSection: React.FC = () => {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(194,161,88,0.08)_0%,transparent_70%)]" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
-        
-        {/* SECTION HEADER */}
+        {/* HEADER */}
         <MotionDiv
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -123,8 +104,7 @@ const PortfolioSection: React.FC = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
-            className={`text-4xl md:text-5xl font-serif font-bold ${goldGradient}
-                       bg-clip-text text-transparent`}
+            className={`text-4xl md:text-5xl font-serif font-bold ${goldGradient} bg-clip-text text-transparent`}
           >
             Our Portfolio
           </MotionH2>
@@ -155,7 +135,6 @@ const PortfolioSection: React.FC = () => {
                 <div className="absolute inset-0 bg-black/50 group-hover:bg-black/30 transition-all" />
               </div>
 
-              {/* INFO */}
               <div className="absolute bottom-6 left-6 right-6">
                 <h3
                   className={`text-xl font-semibold mb-2 ${goldGradient} bg-clip-text text-transparent`}
@@ -167,7 +146,7 @@ const PortfolioSection: React.FC = () => {
                   onClick={() => openGallery(idx)}
                   className={`flex items-center gap-2 ${goldGradient} bg-clip-text text-transparent text-sm`}
                 >
-                  View Details <ArrowRight size={16} />
+                  {/* View Details <ArrowRight size={16} /> */}
                 </button>
               </div>
 
@@ -179,15 +158,14 @@ const PortfolioSection: React.FC = () => {
         <div className="text-center">
           <Link
             href="/portfolio"
-            className={`inline-flex items-center gap-2 px-8 py-3 rounded-full 
-                       font-semibold ${goldGradient} text-black shadow-lg`}
+            className={`inline-flex items-center gap-2 px-8 py-3 rounded-full font-semibold ${goldGradient} text-black shadow-lg`}
           >
             View Full Portfolio <ArrowRight size={18} />
           </Link>
         </div>
       </div>
 
-      {/* LIGHTBOX */}
+      {/* LIGHTBOX - DEBUG MODE: plain <img> used so browser requests are visible in network tab */}
       <AnimatePresence>
         {activeProject !== null && (
           <MotionDiv
@@ -204,24 +182,45 @@ const PortfolioSection: React.FC = () => {
               <X size={28} />
             </button>
 
-            <div className="relative w-full max-w-4xl h-[60vh] md:h-[70vh]">
+            <div className="relative w-full max-w-4xl h-[70vh] bg-transparent flex items-center justify-center">
+              {/* DEBUG: plain img tag (bypasses next/image) */}
               <Image
                 src={featuredProjects[activeProject].gallery[activeImage]}
-                alt=""
+                alt={`gallery-${activeImage}`}
                 fill
-                className="object-contain"
+                style={{ objectFit: "contain" }}
+                sizes="(max-width: 1024px) 100vw, 1024px"
+                priority
+                onError={(e) => {
+                  // show helpful message in console and on page
+                  console.error("Image failed to load:", (e.target as HTMLImageElement).src);
+                  // optionally show a tiny overlay message
+                  const el = document.createElement("div");
+                  el.textContent = "Image failed to load (check console/network).";
+                  Object.assign(el.style, {
+                    color: "white",
+                    position: "absolute",
+                    left: "16px",
+                    top: "16px",
+                    background: "rgba(0,0,0,0.6)",
+                    padding: "8px",
+                    borderRadius: "6px",
+                    zIndex: "60",
+                  });
+                  document.body.appendChild(el);
+                }}
               />
 
               <button
                 onClick={prevImage}
-                className="absolute left-2 top-1/2 -translate-y-1/2 text-white p-2 hover:bg-white/10 rounded-full"
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-white p-3 hover:bg-white/10 rounded-full"
               >
                 <ChevronLeft size={32} />
               </button>
 
               <button
                 onClick={nextImage}
-                className="absolute right-2 top-1/2 -translate-y-1/2 text-white p-2 hover:bg-white/10 rounded-full"
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-white p-3 hover:bg-white/10 rounded-full"
               >
                 <ChevronRight size={32} />
               </button>
