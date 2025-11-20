@@ -37,6 +37,48 @@ interface CategoryBlockProps {
 
 const projectCategories: Category[] = [
   {
+    title: "Residential Interiors",
+    desc: "Elegant and functional spaces designed for modern living.",
+    projects: [
+      {
+        title: "Private Villa – Palm Jumeirah",
+        images: [
+          "/images/portfolio/project-2/pic-1.png",
+          "/images/portfolio/project-2/pic-2.png",
+          "/images/portfolio/project-2/pic-4.png",
+          "/images/portfolio/project-2/pic-5.png",
+          "/images/portfolio/project-2/pic-6.png",
+          "/images/portfolio/project-2/pic-9.png",
+          "/images/portfolio/project-2/pic-13.png",
+        ],
+      },
+      {
+        title: "Seaside Villa – Jumeirah Bay",
+        images: [
+          "/images/portfolio/residential/project-2/pic-1.png",
+          "/images/portfolio/residential/project-2/pic-2.png",
+          "/images/portfolio/residential/project-2/pic-3.png",
+          "/images/portfolio/residential/project-2/pic-4.png",
+          "/images/portfolio/residential/project-2/pic-5.png",
+          "/images/portfolio/residential/project-2/pic-6.png",
+          "/images/portfolio/residential/project-2/pic-7.png",
+          "/images/portfolio/residential/project-2/pic-8.png",
+        ],
+      },
+      {
+        title: "Signature Villa – The World Islands",
+        images: [
+          "/images/portfolio/residential/project-3/pic-1.png",
+          "/images/portfolio/residential/project-3/pic-2.png",
+          "/images/portfolio/residential/project-3/pic-3.png",
+          "/images/portfolio/residential/project-3/pic-4.png",
+          "/images/portfolio/residential/project-3/pic-5.png",
+          "/images/portfolio/residential/project-3/pic-6.png",
+        ],
+      },
+    ],
+  },
+  {
     title: "Commercial Interiors",
     desc: "Inspiring workplaces that enhance creativity and efficiency.",
     projects: [
