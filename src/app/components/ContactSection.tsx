@@ -40,7 +40,7 @@ const ContactSection: React.FC = () => {
           Accept: "application/json",
         },
         body: JSON.stringify({
-          access_key: "11ce7814-b7a8-4543-9fa2-7892e049afc1",
+          access_key: "aa882c10-4156-4660-9614-354cc4a4b564",
           subject: "New Contact Message from DUQOR",
           from_name: form.name,
           from_email: form.email,
@@ -67,7 +67,8 @@ const ContactSection: React.FC = () => {
     {
       icon: <MapPin size={26} stroke="url(#goldGradient)" />,
       label: "Address",
-      value: "Dubai, UAE",
+      value: `Al ASMAWI office Build 1st floor #17 Ras Al Khor Industrial Area 2 Al Manama street 
+| Dubai | UAE`,
     },
     {
       icon: <Phone size={26} stroke="url(#goldGradient)" />,
@@ -147,15 +148,17 @@ const ContactSection: React.FC = () => {
             ))}
 
             {/* MAP */}
-            <div className="w-full h-80 rounded-2xl overflow-hidden border border-[#d4af37]/30 shadow-[0_0_25px_rgba(212,175,55,0.15)]">
+            <div className="w-full h-60 rounded-2xl overflow-hidden border border-[#d4af37]/30 shadow-[0_0_25px_rgba(212,175,55,0.15)]">
               <iframe
-                title="Duqor Location"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3609.999999!2d55.2708!3d25.2048!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f4348b2fb1234%3A0x123456789abcdef!2sDubai!5e0!3m2!1sen!2sae!4v1700000000000!5m2!1sen!2sae"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                loading="lazy"
-              />
+  src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d2590.6861027808654!2d55.3556722587755!3d25.17034024586482!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sAl%20ASMAWI%20office%20Build%201st%20floor%20%2317%20Ras%20Al%20Khor%20Industrial%20Area%202%20Al%20Manama%20street%20%20%7C%20Dubai%20%7C%20UAE!5e1!3m2!1sen!2sae!4v1763970881014!5m2!1sen!2sae"
+  width="600"
+  height="300"
+  style={{ border: 0 }}
+  allowFullScreen
+  loading="lazy"
+  referrerPolicy="no-referrer-when-downgrade"
+/>
+
             </div>
           </div>
 

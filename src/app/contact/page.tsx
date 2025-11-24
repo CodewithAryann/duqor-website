@@ -1,28 +1,24 @@
 "use client";
-import { motion } from "framer-motion";
-import Image from "next/image";
-import React, { useState, useEffect } from "react";
-import { FiPhone, FiMail, FiUser, FiFileText } from "react-icons/fi";
 
-const ConsultationPage: React.FC = () => {
+import { motion } from "framer-motion";
+import { useState } from "react";
+
+export default function ContactSection() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
-    project: "",
     message: "",
   });
 
-  const [status, setStatus] = useState<string | null>(null);
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
-  // 🔹 handle input
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  // Handle input change
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // 🔹 handle form submit (Web3Forms API)
+  // Handle form submit
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("loading");
@@ -30,202 +26,154 @@ const ConsultationPage: React.FC = () => {
     try {
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
-          access_key: "YOUR_ACCESS_KEY_HERE", // 🟡 replace with your real access key from https://web3forms.com
+          access_key: "aa882c10-4156-4660-9614-354cc4a4b564", // 🔹 Replace with your Web3Forms access key
           subject: "New Consultation Request",
-          ...formData,
+          sender_name: formData.name,
+          sender_email: formData.email,
+          message: formData.message + "\nPhone: " + formData.phone,
         }),
       });
 
       const data = await res.json();
+
       if (data.success) {
         setStatus("success");
-        setFormData({ name: "", email: "", phone: "", project: "", message: "" });
+        setFormData({ name: "", email: "", phone: "", message: "" });
       } else {
         setStatus("error");
         console.error("Web3Forms error:", data);
       }
-    } catch (error) {
-      console.error("Submission error:", error);
+    } catch (err) {
+      console.error("Submission error:", err);
       setStatus("error");
     }
   };
 
-  // 🔹 background particle animation
-  const [particles, setParticles] = useState<
-    { x: number; y: number; color: string }[]
-  >([]);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-    const generated = Array.from({ length: 50 }, () => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      color: ["#d4af37", "#ffd700"][Math.floor(Math.random() * 2)],
-    }));
-    setParticles(generated);
-  }, []);
-
   return (
-    <section className="relative min-h-screen bg-[#0a0a0a] text-white flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
-      <Image
-        src="/images/contact/hero.png"
-        alt="Consultation Background"
-        fill
-        style={{ objectFit: "cover" }}
-        className="absolute inset-0 opacity-20 z-0"
-      />
+    <section id="contact" className="relative py-20 px-6 bg-black text-white overflow-hidden">
+      {/* Background blur */}
+      <div className="absolute inset-0 bg-[url('/bg-pattern.png')] opacity-10 pointer-events-none"></div>
 
-      <div className="absolute inset-0 bg-black/60 z-10" />
-
-      {/* Particles */}
-      {mounted && (
-        <div className="absolute inset-0 z-20 pointer-events-none">
-          {particles.map((p, i) => (
-            <motion.span
-              key={i}
-              className="absolute w-0.5 h-0.5 rounded-full opacity-60"
-              style={{ top: p.y, left: p.x, backgroundColor: p.color }}
-              animate={{
-                y: [p.y, p.y - 80, p.y],
-                opacity: [0.2, 1, 0.2],
-                scale: [1, 1.8, 1],
-              }}
-              transition={{
-                duration: 4 + Math.random() * 4,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            />
-          ))}
-        </div>
-      )}
-
-      {/* Form Container */}
-      <div className="relative z-30 w-full max-w-5xl px-6 py-20">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 relative z-20">
+        {/* LEFT — Contact Info + Map */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, x: -40 }}
+          animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-12"
+          className="bg-[#111]/60 backdrop-blur-xl p-10 rounded-2xl shadow-[0_0_25px_rgba(212,175,55,0.25)] border border-[#d4af37]/20"
         >
-          <h1 className="text-4xl md:text-6xl font-bold mb-4 tracking-tight text-[#d4af37] drop-shadow-[0_0_25px_rgba(212,175,55,0.7)]">
-            Contact Us
-          </h1>
-          <p className="text-gray-200 text-lg max-w-2xl mx-auto drop-shadow-[0_0_10px_rgba(0,0,0,0.5)]">
-            Fill out the form below and our expert team will reach out to discuss your vision.
-          </p>
+          <h2 className="text-4xl font-bold text-[#d4af37] mb-6">Contact Information</h2>
+
+          <div className="space-y-6">
+            <div>
+              <h3 className="text-xl font-semibold text-white mb-1">📍 Address</h3>
+              <p className="text-gray-300">
+                Al ASMAWI Office, Building 1, 1st Floor #17<br />
+                Ras Al Khor Industrial Area 2<br />
+                Al Manama Street, Dubai, UAE
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold text-white mb-1">📞 Phone</h3>
+              <p className="text-gray-300">+971 4 287 1395</p>
+              <p className="text-gray-300">+971 56 470 6375</p>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold text-white mb-1">📧 Email</h3>
+              <a href="mailto:info@duqor.ae" className="text-[#d4af37] hover:text-[#ffd700] transition">
+                info@duqor.ae
+              </a>
+            </div>
+          </div>
+
+          {/* Map */}
+          <div className="mt-10 rounded-xl overflow-hidden border border-[#d4af37]/20 shadow-lg h-60">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d2590.6861027808654!2d55.3556722587755!3d25.17034024586482!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sAl%20ASMAWI%20office%20Build%201st%20floor%20%2317%20Ras%20Al%20Khor%20Industrial%20Area%202%20Al%20Manama%20street%20%20%7C%20Dubai%20%7C%20UAE!5e1!3m2!1sen!2sae!4v1763970881014!5m2!1sen!2sae"
+              width="100%"
+              height="100%"
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
         </motion.div>
 
+        {/* RIGHT — Form */}
         <motion.form
           onSubmit={handleSubmit}
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="relative bg-[#111]/80 backdrop-blur-lg rounded-2xl shadow-[0_0_30px_rgba(212,175,55,0.3)] p-10 grid grid-cols-1 md:grid-cols-2 gap-6"
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          className="bg-[#111]/60 backdrop-blur-xl p-10 rounded-2xl shadow-[0_0_25px_rgba(212,175,55,0.25)] border border-[#d4af37]/20 flex flex-col gap-6"
         >
-          {/* Name */}
-          <div className="relative">
-            <FiUser className="absolute left-4 top-4 text-[#d4af37]" />
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              placeholder="Full Name"
-              required
-              className="w-full pl-12 pr-4 py-3 rounded-lg bg-[#111] text-white placeholder-gray-400 border border-[#2c2c2c] focus:outline-none focus:border-[#d4af37] focus:shadow-[0_0_15px_rgba(212,175,55,0.6)] transition-all duration-300"
-            />
-          </div>
+          <h2 className="text-4xl font-bold text-[#d4af37] mb-6">Send Us a Message</h2>
 
-          {/* Email */}
-          <div className="relative">
-            <FiMail className="absolute left-4 top-4 text-[#d4af37]" />
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Email Address"
-              required
-              className="w-full pl-12 pr-4 py-3 rounded-lg bg-[#111] text-white placeholder-gray-400 border border-[#2c2c2c] focus:outline-none focus:border-[#d4af37] focus:shadow-[0_0_15px_rgba(212,175,55,0.6)] transition-all duration-300"
-            />
-          </div>
+          <input
+            type="text"
+            name="name"
+            placeholder="Full Name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+            className="bg-black/40 border border-gray-700 text-white p-4 rounded-xl focus:border-[#d4af37] outline-none"
+          />
 
-          {/* Phone */}
-          <div className="relative">
-            <FiPhone className="absolute left-4 top-4 text-[#d4af37]" />
-            <input
-              type="tel"
-              name="phone"
-              value={formData.phone}
-              onChange={handleChange}
-              placeholder="Phone Number"
-              required
-              className="w-full pl-12 pr-4 py-3 rounded-lg bg-[#111] text-white placeholder-gray-400 border border-[#2c2c2c] focus:outline-none focus:border-[#d4af37] focus:shadow-[0_0_15px_rgba(212,175,55,0.6)] transition-all duration-300"
-            />
-          </div>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email Address"
+            value={formData.email}
+            onChange={handleChange}
+            required
+            className="bg-black/40 border border-gray-700 text-white p-4 rounded-xl focus:border-[#d4af37] outline-none"
+          />
 
-          {/* Project Type */}
-          <div className="relative">
-            <FiFileText className="absolute left-4 top-4 text-[#d4af37]" />
-            <input
-              type="text"
-              name="project"
-              value={formData.project}
-              onChange={handleChange}
-              placeholder="Project Type"
-              className="w-full pl-12 pr-4 py-3 rounded-lg bg-[#111] text-white placeholder-gray-400 border border-[#2c2c2c] focus:outline-none focus:border-[#d4af37] focus:shadow-[0_0_15px_rgba(212,175,55,0.6)] transition-all duration-300"
-            />
-          </div>
+          <input
+            type="tel"
+            name="phone"
+            placeholder="Phone Number"
+            value={formData.phone}
+            onChange={handleChange}
+            className="bg-black/40 border border-gray-700 text-white p-4 rounded-xl focus:border-[#d4af37] outline-none"
+          />
 
-          {/* Message */}
-          <div className="md:col-span-2 relative">
-            <textarea
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              rows={5}
-              placeholder="Project Details"
-              required
-              className="w-full pl-4 pr-4 py-3 rounded-lg bg-[#111] text-white placeholder-gray-400 border border-[#2c2c2c] focus:outline-none focus:border-[#d4af37] focus:shadow-[0_0_15px_rgba(212,175,55,0.6)] transition-all duration-300"
-            />
-          </div>
+          <textarea
+            name="message"
+            placeholder="Your Message"
+            value={formData.message}
+            onChange={handleChange}
+            rows={6}
+            required
+            className="bg-black/40 border border-gray-700 text-white p-4 rounded-xl focus:border-[#d4af37] outline-none"
+          />
 
-          {/* Submit Button */}
-          <div className="md:col-span-2 flex justify-center">
-            <button
-              type="submit"
-              disabled={status === "loading"}
-              className="bg-[#d4af37] text-black px-10 py-3 rounded-full font-semibold text-lg tracking-wide hover:bg-[#ffd700] hover:scale-105 transition-all duration-300 shadow-[0_0_25px_rgba(212,175,55,0.7)] disabled:opacity-70"
-            >
-              {status === "loading" ? "Submitting..." : "Submit Request"}
-            </button>
-          </div>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            type="submit"
+            className="mt-4 w-full bg-[#d4af37] hover:bg-[#c6a034] text-black font-semibold text-lg py-4 rounded-xl shadow-lg transition"
+          >
+            {status === "loading" ? "Sending..." : "Send Message"}
+          </motion.button>
 
-          {/* Status Message */}
+          {/* Status Messages */}
           {status === "success" && (
-            <p className="md:col-span-2 text-center text-green-400 font-medium mt-4">
-              ✅ Thank you! Your request has been submitted.
+            <p className="text-green-400 font-medium mt-2 text-center">
+              ✅ Thank you! Your message has been sent.
             </p>
           )}
           {status === "error" && (
-            <p className="md:col-span-2 text-center text-red-400 font-medium mt-4">
-              ❌ Oops! Something went wrong. Please try again later.
+            <p className="text-red-400 font-medium mt-2 text-center">
+              ❌ Oops! Something went wrong. Please try again.
             </p>
           )}
         </motion.form>
       </div>
     </section>
   );
-};
-
-export default ConsultationPage;
+}
