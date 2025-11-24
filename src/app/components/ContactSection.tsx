@@ -77,8 +77,8 @@ const ContactSection: React.FC = () => {
           <a href="tel:+97142871395" className="hover:text-[#d4af37]">
             +971 4 287 1395
           </a>
-          <a href="tel:+971501234567" className="hover:text-[#d4af37]">
-            +971 50 123 4567
+          <a href="tel:+971564706375" className="hover:text-[#d4af37]">
+            +971 56 470 6375
           </a>
         </div>
       ),
