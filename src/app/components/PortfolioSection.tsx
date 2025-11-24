@@ -29,7 +29,7 @@ const featuredProjects: Project[] = [
     ],
   },
   {
-    title: "Parkside residence – Palm Jumeirah",
+    title: "Parkside – Palm Jumeirah",
     cover: "/images/portfolio/project-2/pic-1.png",
     gallery: [
       "/images/portfolio/project-2/pic-1.png",
