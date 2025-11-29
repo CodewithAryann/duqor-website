@@ -28,7 +28,7 @@ export default function ContactSection() {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
-          access_key: "aa882c10-4156-4660-9614-354cc4a4b564", // 🔹 Replace with your Web3Forms access key
+          access_key: "b601d7fe-9d0c-448b-8f4e-f83b4879d175", 
           subject: "New Consultation Request",
           sender_name: formData.name,
           sender_email: formData.email,
@@ -79,7 +79,7 @@ export default function ContactSection() {
             <div>
               <h3 className="text-xl font-semibold text-white mb-1">📞 Phone</h3>
               <p className="text-gray-300">+971 4 287 1395</p>
-              <p className="text-gray-300">+971 56 470 6375</p>
+              <p className="text-gray-300">+971 54 599 9795</p>
             </div>
 
             <div>

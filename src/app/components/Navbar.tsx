@@ -147,7 +147,7 @@ const Navbar: React.FC = () => {
 
         {/* Social Icons + Contact (Desktop) */}
         <div className="hidden md:flex items-center space-x-6">
-          <a href="tel:+971564706375" aria-label="Call Duqor" className="text-white/90 hover:text-[#c97a00] hover:scale-110 transition-all duration-300">
+          <a href="tel:++971545999795" aria-label="Call Duqor" className="text-white/90 hover:text-[#c97a00] hover:scale-110 transition-all duration-300">
             <HiOutlinePhone size={18} />
           </a>
           <a href="mailto:info@duqor.ae" aria-label="Email Duqor" className="text-white/90 hover:text-[#c97a00] hover:scale-110 transition-all duration-300">
@@ -209,7 +209,7 @@ const Navbar: React.FC = () => {
 
           {/* Mobile Social + Contact */}
           <div className="flex items-center space-x-6 pt-6 border-t border-[#d4af37]/20 w-3/4 justify-center">
-            <a href="tel:+971564706375" aria-label="Call Duqor" className="hover:text-[#c97a00] hover:scale-110 transition-all duration-300">
+            <a href="tel:+971545999795" aria-label="Call Duqor" className="hover:text-[#c97a00] hover:scale-110 transition-all duration-300">
               <HiOutlinePhone size={22} />
             </a>
             <a href="mailto:info@duqor.ae" aria-label="Email Duqor" className="hover:text-[#c97a00] hover:scale-110 transition-all duration-300">

@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-ArrowRight,
+  ArrowRight,
   Sunrise,
   Settings,
   PenTool,
@@ -15,6 +15,8 @@ ArrowRight,
   Quote
 } from "lucide-react";
 import Head from "next/head";
+import PhoneInput from "react-phone-input-2";
+import 'react-phone-input-2/lib/style.css';
 
 const COPPER_GRADIENT =
   "bg-clip-text text-transparent bg-linear-to-b from-[#e7c675] via-[#c38a27] to-[#8b5b10]";
@@ -30,19 +32,11 @@ interface Particle {
   dur: number;
 }
 
-// Utility: predictable pseudo-random
-function seededRandom(seed: number) {
-  return () => {
-    seed = (seed * 9301 + 49297) % 233280;
-    return seed / 233280;
-  };
-}
-
-/* ──────────────────────────── HERO SECTION ─────────────────────────── */
+/* ───────────────────────── HERO SECTION ───────────────────────── */
 function HeroSection() {
   const heroImages: HeroImage[] = useMemo(
     () => [
-       { src: "/images/residential/living-room-modern.webp", alt: "Modern residential living room with warm lighting" },
+      { src: "/images/residential/living-room-modern.webp", alt: "Modern residential living room with warm lighting" },
     ],
     []
   );
@@ -58,15 +52,20 @@ function HeroSection() {
     return () => clearInterval(id);
   }, [nextSlide]);
 
-  /* --- SAFE PARTICLES (no hydration mismatch) --- */
   const [particles, setParticles] = useState<Particle[]>([]);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
+    const rand = (() => {
+      let seed = 12345;
+      return () => {
+        seed = (seed * 9301 + 49297) % 233280;
+        return seed / 233280;
+      };
+    })();
 
-    const rand = seededRandom(12345);
-    const generated: Particle[] = Array.from({ length: 12 }).map(() => ({
+    const generated = Array.from({ length: 12 }).map(() => ({
       x: rand() * 1200,
       y: rand() * 800,
       dur: 3 + rand() * 4,
@@ -74,9 +73,9 @@ function HeroSection() {
     setParticles(generated);
   }, []);
 
+
   return (
     <section className="relative h-screen overflow-hidden bg-black text-white">
-      {/* Background Slider */}
       <AnimatePresence mode="wait">
         <motion.div
           key={slide}
@@ -97,7 +96,6 @@ function HeroSection() {
         </motion.div>
       </AnimatePresence>
 
-      {/* Particles — ONLY render after mount */}
       {mounted && (
         <div className="absolute inset-0 pointer-events-none z-20">
           {particles.map((p, i) => (
@@ -191,10 +189,10 @@ function Introduction() {
 function DesignApproach() {
   const approaches = useMemo(
     () => [
-       { title: "Concept Development", desc: "Bespoke design visions crafted to reflect personal style and lifestyle.", icon: <PenTool size={28} /> },
-    { title: "Material & Finish Selection", desc: "Selecting high-quality materials and finishes for lasting elegance.", icon: <Diamond size={28} /> },
-    { title: "Spatial Planning & Lighting", desc: "Layouts and lighting that create harmony between openness and coziness.", icon: <Sunrise size={28} /> },
-    { title: "Execution & Detailing", desc: "Meticulous attention to every detail for flawless interiors.", icon: <Settings size={28} /> },
+      { title: "Concept Development", desc: "Bespoke design visions crafted to reflect personal style and lifestyle.", icon: <PenTool size={28} /> },
+      { title: "Material & Finish Selection", desc: "Selecting high-quality materials and finishes for lasting elegance.", icon: <Diamond size={28} /> },
+      { title: "Spatial Planning & Lighting", desc: "Layouts and lighting that create harmony between openness and coziness.", icon: <Sunrise size={28} /> },
+      { title: "Execution & Detailing", desc: "Meticulous attention to every detail for flawless interiors.", icon: <Settings size={28} /> },
     ],
     []
   );
@@ -242,39 +240,20 @@ function SignatureProjects() {
   };
 
   return (
-    <section
-      className="py-24 bg-[#0a0a0a] text-white"
-      aria-label="Signature Projects Section"
-    >
+    <section className="py-24 bg-[#0a0a0a] text-white" aria-label="Signature Projects Section">
       <div className="text-center mb-12">
         <h2 className="text-4xl font-bold">
           Signature <span className={COPPER_GRADIENT}>Projects</span>
         </h2>
       </div>
 
-      <div
-        className="relative max-w-6xl mx-auto h-[60vh] md:h-[70vh] rounded-3xl overflow-hidden"
-        aria-labelledby="signature-title"
-      >
-        {/* Static Image */}
-        <Image
-          src={slide.img}
-          alt={slide.alt}
-          fill
-          sizes="100vw"
-          className="object-cover brightness-90"
-          priority
-        />
+      <div className="relative max-w-6xl mx-auto h-[60vh] md:h-[70vh] rounded-3xl overflow-hidden" aria-labelledby="signature-title">
+        <Image src={slide.img} alt={slide.alt} fill sizes="100vw" className="object-cover brightness-90" priority />
 
-        {/* Overlay to make text more visible */}
         <div className="absolute inset-0 bg-black/40"></div>
 
-        {/* Text Overlay */}
         <div className="absolute bottom-16 left-0 right-0 text-center px-4 z-10">
-          <h3
-            id="signature-title"
-            className="text-2xl md:text-3xl font-semibold text-[#c38a27]"
-          >
+          <h3 id="signature-title" className="text-2xl md:text-3xl font-semibold text-[#c38a27]">
             {slide.title}
           </h3>
 
@@ -293,15 +272,14 @@ function SignatureProjects() {
   );
 }
 
-
 /* ───────────────────────── CORE CAPABILITIES ───────────────────────── */
 function CoreCapabilities() {
   const items = useMemo(
     () => [
       { icon: <PenTool size={36} />, label: "Personalized Design Concepts" },
-    { icon: <Sun size={36} />, label: "Natural Light Integration" },
-    { icon: <Maximize2 size={36} />, label: "Indoor-Outdoor Spatial Harmony" },
-    { icon: <Diamond size={36} />, label: "Luxury Finishes & Detailing" },
+      { icon: <Sun size={36} />, label: "Natural Light Integration" },
+      { icon: <Maximize2 size={36} />, label: "Indoor-Outdoor Spatial Harmony" },
+      { icon: <Diamond size={36} />, label: "Luxury Finishes & Detailing" },
     ],
     []
   );
@@ -330,6 +308,7 @@ function CoreCapabilities() {
   );
 }
 
+
 /* ───────────────────────── CLIENT EXPERIENCE ───────────────────────── */
 function ClientExperience() {
   return (
@@ -345,6 +324,137 @@ function ClientExperience() {
   );
 }
 
+/* ───────────────────────── CONTACT FORM (WEB3FORM) ───────────────────────── */
+function ContactForm() {
+  const [phone, setPhone] = useState("");
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    // Remove non-digit characters and check length
+    if (!phone || phone.replace(/\D/g, "").length < 9) {
+      e.preventDefault();
+      alert("Please enter a valid phone number");
+      return;
+    }
+  };
+
+  return (
+    <section className="py-28 bg-[#0a0a0a] text-white px-6" id="contact-form">
+
+      {/* Heading */}
+      <div className="text-center mb-14">
+        <h2 className="text-4xl md:text-5xl font-bold">
+          Lets <span className="bg-clip-text text-transparent bg-linear-to-r from-[#e7c675] via-[#c38a27] to-[#8b5b10]">Discuss</span> Your Project
+        </h2>
+        <p className="text-gray-400 max-w-xl mx-auto mt-3">
+          Fill out the form and our design specialists will connect with you shortly.
+        </p>
+      </div>
+
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-stretch">
+
+        {/* Left Image */}
+        <div className="relative w-full h-[610px] rounded-2xl overflow-hidden">
+          <Image
+            src="/images/residential.png"
+            alt="Residential Interior Design"
+            fill
+            className="object-cover scale-105 hover:scale-100 transition-all duration-700"
+            sizes="(max-width: 768px) 100vw, 50vw"
+            priority
+          />
+          <div className="absolute inset-0 bg-linear-to-t from-[#0a0a0a] via-[#00000045] to-transparent" />
+        </div>
+
+        {/* Right Form */}
+        <form
+          action="https://api.web3forms.com/submit"
+          method="POST"
+          onSubmit={handleSubmit}
+          className="h-[610px] bg-[#111] border border-[#2c2c2c] rounded-2xl p-10 flex flex-col justify-between"
+        >
+          <input type="hidden" name="access_key" value="b601d7fe-9d0c-448b-8f4e-f83b4879d175" />
+          <input type="hidden" name="subject" value="Residential Interior Inquiry - Duqor" />
+
+          <div className="space-y-4 grow">
+
+            {/* Name */}
+            <div>
+              <label className="block text-gray-300 mb-1">Name *</label>
+              <input
+                type="text" name="name" required
+                className="w-full p-3 bg-[#0d0d0d] border border-[#333] rounded-lg focus:border-[#c38a27] outline-none"
+              />
+            </div>
+
+            {/* Email */}
+            <div>
+              <label className="block text-gray-300 mb-1">Email *</label>
+              <input
+                type="email" name="email" required
+                className="w-full p-3 bg-[#0d0d0d] border border-[#333] rounded-lg focus:border-[#c38a27] outline-none"
+              />
+            </div>
+
+            {/* Phone */}
+            <div>
+              <label className="block text-gray-300 mb-1">Phone *</label>
+              <PhoneInput
+                country={'ae'}
+                value={phone}
+                onChange={setPhone}
+                inputProps={{
+                  name: 'phone',
+                  required: true,
+                }}
+                containerStyle={{ width: '100%' }}
+                inputStyle={{
+                  width: '100%',
+                  height: '48px',
+                  paddingLeft: '60px',
+                  backgroundColor: '#0d0d0d',
+                  borderRadius: '0.5rem',
+                  border: '1px solid #333',
+                  color: '#fff',
+                }}
+                buttonStyle={{
+                  border: '1px solid #333',
+                  borderRadius: '0.5rem 0 0 0.5rem',
+                  backgroundColor: '#0d0d0d',
+                }}
+                dropdownStyle={{
+                  backgroundColor: '#111',
+                  color: '#c38a27',
+                  borderRadius: '0.5rem',
+                }}
+                dropdownClass="custom-phone-dropdown"
+              />
+            </div>
+
+            {/* Message */}
+            <div>
+              <label className="block text-gray-300 mb-1">Message</label>
+              <textarea
+                name="message" rows={5} required
+                className="w-full p-3 bg-[#0d0d0d] border border-[#333] rounded-lg focus:border-[#c38a27] outline-none resize-none"
+              ></textarea>
+            </div>
+          </div>
+
+          {/* Submit Button */}
+          <button
+            type="submit"
+            className="w-full py-3 bg-[#c38a27] text-black rounded-full font-semibold hover:bg-[#d4b15a] transition"
+          >
+            Send Message
+          </button>
+        </form>
+
+      </div>
+    </section>
+  );
+}
+
+
 /* ───────────────────────── FINAL CTA ───────────────────────── */
 function FinalCTA() {
   return (
@@ -355,12 +465,11 @@ function FinalCTA() {
           "linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(17,17,17,0.5), rgba(0,0,0,0.5)), url('/images/residential/slider/bottom.png')",
       }}
     >
-      {/* Accessibility label for background image */}
-  <span
-    className="sr-only"
-    role="img"
-    aria-label="Residential living room interior with modern design and cozy ambiance"
-  />
+      <span
+        className="sr-only"
+        role="img"
+        aria-label="Residential living room interior with modern design and cozy ambiance"
+      />
       <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
         Design Your <span className={COPPER_GRADIENT}>Dream</span> Home with Duqor
       </h2>
@@ -371,13 +480,13 @@ function FinalCTA() {
 
       <div className="flex justify-center gap-6 flex-wrap">
         <Link href="/contact">
-          <button className="px-8 py-3 bg-[#c38a27] cursor-pointer text-black rounded-full font-semibold flex items-center gap-2">
+          <button className="px-8 py-3 bg-[#c38a27] text-black rounded-full font-semibold flex items-center gap-2">
             Contact Us <ArrowRight size={18} />
           </button>
         </Link>
 
         <Link href="/portfolio">
-          <button className="px-8 py-3 border-2 cursor-pointer border-[#c38a27] text-[#c38a27] rounded-full font-semibold">
+          <button className="px-8 py-3 border-2 border-[#c38a27] text-[#c38a27] rounded-full font-semibold">
             View Projects
           </button>
         </Link>
@@ -391,14 +500,13 @@ export default function ResidentialInteriors() {
   return (
     <>
       <Head>
-  <title>Duqor Residential Interior Design | Luxury Homes & Villas</title>
-  <meta
-    name="description"
-    content="Duqor creates elegant and functional residential interiors for luxury homes and villas. Transforming spaces into comfortable, stylish, and sophisticated living environments."
-  />
-  <link rel="canonical" href="https://www.duqor.ae/residential" />
-</Head>
-
+        <title>Duqor Residential Interior Design | Luxury Homes & Villas</title>
+        <meta
+          name="description"
+          content="Duqor creates elegant and functional residential interiors for luxury homes and villas. Transforming spaces into comfortable, stylish, and sophisticated living environments."
+        />
+        <link rel="canonical" href="https://www.duqor.ae/residential" />
+      </Head>
 
       <main className="bg-black text-white">
         <HeroSection />
@@ -407,6 +515,7 @@ export default function ResidentialInteriors() {
         <SignatureProjects />
         <CoreCapabilities />
         <ClientExperience />
+        <ContactForm />     {/* ← Web3Form contact form added */}
         <FinalCTA />
       </main>
     </>

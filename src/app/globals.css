@@ -32,3 +32,18 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+/* global.css or your component module */
+.custom-phone-dropdown .country-list li {
+  color: #c38a27;             /* normal text color */
+  background-color: #111;     /* dark background */
+}
+
+.custom-phone-dropdown .country-list li:hover {
+  background-color: #c38a27;  /* hover bg highlight */
+  color: #000;                /* hover text color for contrast */
+}
+
+.custom-phone-dropdown .country-list .selected-flag {
+  background-color: #0d0d0d !important; /* flag button bg */
+}

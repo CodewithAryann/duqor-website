@@ -40,7 +40,7 @@ const ContactSection: React.FC = () => {
           Accept: "application/json",
         },
         body: JSON.stringify({
-          access_key: "aa882c10-4156-4660-9614-354cc4a4b564",
+          access_key: "b601d7fe-9d0c-448b-8f4e-f83b4879d175",
           subject: "New Contact Message from DUQOR",
           from_name: form.name,
           from_email: form.email,
@@ -78,8 +78,8 @@ const ContactSection: React.FC = () => {
           <a href="tel:+97142871395" className="hover:text-[#d4af37]">
             +971 4 287 1395
           </a>
-          <a href="tel:+971564706375" className="hover:text-[#d4af37]">
-            +971 56 470 6375
+          <a href="tel:+971545999795" className="hover:text-[#d4af37]">
+            +971 54 599 9795
           </a>
         </div>
       ),
