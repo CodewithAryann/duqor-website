@@ -75,8 +75,8 @@ const ContactSection: React.FC = () => {
       label: "Phone",
       value: (
         <div className="flex flex-col gap-1">
-          <a href="tel:+97142871395" className="hover:text-[#d4af37]">
-            +971 4 287 1395
+          <a href="tel:+97148823427" className="hover:text-[#d4af37]">
+            +971 4 8823 427
           </a>
           <a href="tel:+971545999795" className="hover:text-[#d4af37]">
             +971 54 599 9795

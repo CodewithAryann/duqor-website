@@ -78,7 +78,7 @@ export default function ContactSection() {
 
             <div>
               <h3 className="text-xl font-semibold text-white mb-1">📞 Phone</h3>
-              <p className="text-gray-300">+971 4 287 1395</p>
+              <p className="text-gray-300">+971 4 8823 427</p>
               <p className="text-gray-300">+971 54 599 9795</p>
             </div>
 
