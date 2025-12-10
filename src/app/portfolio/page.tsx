@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, memo } from "react";
+import React, { useState, memo, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Head from "next/head";
@@ -32,7 +32,7 @@ interface CategoryBlockProps {
 }
 
 // ---------------------------------------------------------------------------
-// DATA
+// DATA (UNCHANGED, as requested)
 // ---------------------------------------------------------------------------
 
 const projectCategories: Category[] = [
@@ -190,7 +190,7 @@ const projectCategories: Category[] = [
 ];
 
 // ---------------------------------------------------------------------------
-// MEMOIZED PROJECT CARD
+// PROJECT CARD (Optimized)
 // ---------------------------------------------------------------------------
 
 const ProjectCard = memo(function ProjectCard({
@@ -207,8 +207,9 @@ const ProjectCard = memo(function ProjectCard({
           src={project.images[0]}
           alt={project.title}
           fill
-          unoptimized
+          priority={false}
           loading="lazy"
+          quality={70}
           className="object-cover transition-transform duration-500 hover:scale-105"
         />
       </div>
@@ -224,7 +225,7 @@ const ProjectCard = memo(function ProjectCard({
 });
 
 // ---------------------------------------------------------------------------
-// CATEGORY BLOCK (MEMOIZED)
+// CATEGORY BLOCK (Optimized)
 // ---------------------------------------------------------------------------
 
 const CategoryBlock = memo(function CategoryBlock({
@@ -236,7 +237,7 @@ const CategoryBlock = memo(function CategoryBlock({
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      viewport={{ once: true, margin: "-50px" }}
+      viewport={{ once: true }}
       className="max-w-7xl mx-auto mb-24"
     >
       <h2 className="text-3xl font-semibold mb-2 text-center md:text-left bg-linear-to-b from-[#e7c675] via-[#c38a27] to-[#8b5b10] bg-clip-text text-transparent">
@@ -249,11 +250,7 @@ const CategoryBlock = memo(function CategoryBlock({
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {category.projects.map((project, index) => (
-          <ProjectCard
-            key={index}
-            project={project}
-            onOpen={openGallery}
-          />
+          <ProjectCard key={index} project={project} onOpen={openGallery} />
         ))}
       </div>
     </motion.div>
@@ -261,32 +258,36 @@ const CategoryBlock = memo(function CategoryBlock({
 });
 
 // ---------------------------------------------------------------------------
-// MAIN PAGE
+// MAIN PAGE — FASTER, SMOOTH, OPTIMIZED
 // ---------------------------------------------------------------------------
 
 export default function ProjectsPage() {
   const [activeProject, setActiveProject] = useState<Project | null>(null);
   const [currentImage, setCurrentImage] = useState(0);
 
-  const openGallery = (project: Project) => {
+  const openGallery = useCallback((project: Project) => {
     setActiveProject(project);
     setCurrentImage(0);
-  };
+  }, []);
 
-  const closeGallery = () => setActiveProject(null);
+  const closeGallery = useCallback(() => {
+    setActiveProject(null);
+  }, []);
 
-  const nextImage = () =>
+  const nextImage = useCallback(() => {
     setCurrentImage((prev) =>
       activeProject ? (prev + 1) % activeProject.images.length : 0
     );
+  }, [activeProject]);
 
-  const prevImage = () =>
+  const prevImage = useCallback(() => {
     setCurrentImage((prev) =>
       activeProject
         ? (prev - 1 + activeProject.images.length) %
           activeProject.images.length
         : 0
     );
+  }, [activeProject]);
 
   return (
     <>
@@ -317,11 +318,7 @@ export default function ProjectsPage() {
 
         {/* Categories */}
         {projectCategories.map((category, i) => (
-          <CategoryBlock
-            key={i}
-            category={category}
-            openGallery={openGallery}
-          />
+          <CategoryBlock key={i} category={category} openGallery={openGallery} />
         ))}
 
         {/* Gallery Modal */}
@@ -346,7 +343,7 @@ export default function ProjectsPage() {
                 </h3>
 
                 <div className="relative w-full flex items-center justify-center">
-                  {/* LEFT */}
+                  {/* Left */}
                   <button
                     onClick={prevImage}
                     className="absolute left-2 md:left-6 text-gray-300 hover:text-[#c38a27] transition"
@@ -354,13 +351,13 @@ export default function ProjectsPage() {
                     <ArrowLeft size={36} />
                   </button>
 
-                  {/* IMAGE */}
+                  {/* Image */}
                   <motion.div
                     key={currentImage}
-                    initial={{ opacity: 0, x: 30 }}
+                    initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -30 }}
-                    transition={{ duration: 0.4 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ duration: 0.35 }}
                     className="w-full flex justify-center"
                   >
                     <Image
@@ -368,13 +365,13 @@ export default function ProjectsPage() {
                       alt="project photo"
                       width={900}
                       height={500}
-                      unoptimized
                       loading="lazy"
+                      quality={75}
                       className="rounded-2xl object-cover shadow-2xl"
                     />
                   </motion.div>
 
-                  {/* RIGHT */}
+                  {/* Right */}
                   <button
                     onClick={nextImage}
                     className="absolute right-2 md:right-6 text-gray-300 hover:text-[#c38a27] transition"

@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     siteName: "Duqor Interiors",
     images: [
       {
-        url: "https://www.duqor.ae/images/011.png",
+        url: "https://www.duqor.ae/images/copper-logo.png",
         width: 1200,
         height: 630,
         alt: "Duqor Interiors – Luxury Interior Design in Dubai, UAE",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     title: "Duqor Interiors | Luxury Interior Design in UAE",
     description:
       "Duqor Interiors creates luxury residential, commercial and hospitality interiors in Dubai & UAE.",
-    images: ["https://www.duqor.ae/images/011.png"],
+    images: ["https://www.duqor.ae/images/copper-logo.png"],
   },
 };
 
@@ -44,7 +44,7 @@ const structuredData = {
   "@type": "Organization",
   name: "Duqor Interiors",
   url: "https://www.duqor.ae/",
-  logo: "https://www.duqor.ae/images/011.png",
+  logo: "https://www.duqor.ae/images/copper-logo.png",
   sameAs: [
     "https://www.instagram.com/duqor",
     "https://www.facebook.com/duqor",

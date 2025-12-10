@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   description:
     'Duqor Interiors delivers luxury residential, commercial, and hospitality interior design in Dubai, creating modern, functional, and elegant bespoke spaces.',
   alternates: {
-    canonical: 'https://www.duqor.ae/', // ✅ This is how canonical URL is set in App Router
+    canonical: 'https://www.duqor.ae/',
   },
   keywords: [
     'Interior Design UAE',
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     siteName: 'Duqor Interiors',
     images: [
       {
-        url: 'https://www.duqor.ae/images/011.png',
+        url: 'https://www.duqor.ae/images/copper-logo.png',
         width: 1200,
         height: 630,
         alt: 'Duqor Interiors – Luxury Interior Design in Dubai, UAE',
@@ -74,7 +74,7 @@ export const metadata: Metadata = {
     title: 'Duqor Interiors | Luxury Interior Design in UAE',
     description:
       'Duqor Interiors creates luxury residential, commercial and hospitality interiors in Dubai & UAE.',
-    images: ['https://www.duqor.ae/images/011.png'],
+    images: ['https://www.duqor.ae/images/copper-logo.png'],
   },
   robots: 'index, follow',
   verification: {
@@ -88,7 +88,7 @@ const structuredData = {
   '@type': 'Organization',
   name: 'Duqor Interiors',
   url: 'https://www.duqor.ae/',
-  logo: 'https://www.duqor.ae/images/011.png',
+  logo: 'https://www.duqor.ae/images/copper-logo.png',
   sameAs: [
     'https://www.instagram.com/duqor',
     'https://www.facebook.com/duqor',
@@ -97,7 +97,7 @@ const structuredData = {
   contactPoint: [
     {
       '@type': 'ContactPoint',
-      telephone: '+971543517100',
+      telephone: '+971545999795',
       contactType: 'customer service',
       email: 'info@duqor.com',
       areaServed: 'AE',
