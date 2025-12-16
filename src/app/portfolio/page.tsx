@@ -37,48 +37,6 @@ interface CategoryBlockProps {
 
 const projectCategories: Category[] = [
   {
-    title: "Residential Interiors",
-    desc: "Elegant and functional spaces designed for modern living.",
-    projects: [
-      {
-        title: "Parkside residence – Palm Jumeirah",
-        images: [
-          "/images/portfolio/project-2/pic-1.png",
-          "/images/portfolio/project-2/pic-2.png",
-          "/images/portfolio/project-2/pic-4.png",
-          "/images/portfolio/project-2/pic-5.png",
-          "/images/portfolio/project-2/pic-6.png",
-          "/images/portfolio/project-2/pic-9.png",
-          "/images/portfolio/project-2/pic-13.png",
-        ],
-      },
-      {
-        title: "Seaside Villa – Jumeirah Bay",
-        images: [
-          "/images/portfolio/residential/project-2/pic-1.png",
-          "/images/portfolio/residential/project-2/pic-2.png",
-          "/images/portfolio/residential/project-2/pic-3.png",
-          "/images/portfolio/residential/project-2/pic-4.png",
-          "/images/portfolio/residential/project-2/pic-5.png",
-          "/images/portfolio/residential/project-2/pic-6.png",
-          "/images/portfolio/residential/project-2/pic-7.png",
-          "/images/portfolio/residential/project-2/pic-8.png",
-        ],
-      },
-      {
-        title: "Signature Villa – The World Islands",
-        images: [
-          "/images/portfolio/residential/project-3/pic-1.png",
-          "/images/portfolio/residential/project-3/pic-2.png",
-          "/images/portfolio/residential/project-3/pic-3.png",
-          "/images/portfolio/residential/project-3/pic-4.png",
-          "/images/portfolio/residential/project-3/pic-5.png",
-          "/images/portfolio/residential/project-3/pic-6.png",
-        ],
-      },
-    ],
-  },
-  {
     title: "Commercial Interiors",
     desc: "Inspiring workplaces that enhance creativity and efficiency.",
     projects: [
@@ -103,22 +61,75 @@ const projectCategories: Category[] = [
           "/images/portfolio/project-3/pic-6.png",
           "/images/portfolio/project-3/pic-7.png",
         ],
-      },
-      {
+      },{
         title: "Corporate Office – Downtown",
         images: [
-          "/images/portfolio/commercial/project-3/pic-1.png",
-          "/images/portfolio/commercial/project-3/pic-2.png",
-          "/images/portfolio/commercial/project-3/pic-3.png",
-          "/images/portfolio/commercial/project-3/pic-4.png",
-          "/images/portfolio/commercial/project-3/pic-5.png",
-          "/images/portfolio/commercial/project-3/pic-6.png",
-          "/images/portfolio/commercial/project-3/pic-7.png",
-          "/images/portfolio/commercial/project-3/pic-8.png",
-          "/images/portfolio/commercial/project-3/pic-9.png",
-          "/images/portfolio/commercial/project-3/pic-10.png",
+          "/images/portfolio/project-4/pic-1.png",
+          "/images/portfolio/project-4/pic-2.png",
+          "/images/portfolio/project-4/pic-3.png",
+          "/images/portfolio/project-4/pic-4.png",
+          "/images/portfolio/project-4/pic-5.png",
+          "/images/portfolio/project-4/pic-6.png",
+          "/images/portfolio/project-4/pic-7.png",
         ],
       },
+      // {
+      //   title: "Corporate Office – Downtown",
+      //   images: [
+      //     "/images/portfolio/commercial/project-3/pic-1.png",
+      //     "/images/portfolio/commercial/project-3/pic-2.png",
+      //     "/images/portfolio/commercial/project-3/pic-3.png",
+      //     "/images/portfolio/commercial/project-3/pic-4.png",
+      //     "/images/portfolio/commercial/project-3/pic-5.png",
+      //     "/images/portfolio/commercial/project-3/pic-6.png",
+      //     "/images/portfolio/commercial/project-3/pic-7.png",
+      //     "/images/portfolio/commercial/project-3/pic-8.png",
+      //     "/images/portfolio/commercial/project-3/pic-9.png",
+      //     "/images/portfolio/commercial/project-3/pic-10.png",
+      //   ],
+      // },
+    ],
+  },
+  {
+    title: "Residential Interiors",
+    desc: "Elegant and functional spaces designed for modern living.",
+    projects: [
+      {
+        title: "Parkside residence – Palm Jumeirah",
+        images: [
+          "/images/portfolio/project-2/pic-1.png",
+          "/images/portfolio/project-2/pic-2.png",
+          "/images/portfolio/project-2/pic-4.png",
+          "/images/portfolio/project-2/pic-5.png",
+          "/images/portfolio/project-2/pic-6.png",
+          "/images/portfolio/project-2/pic-9.png",
+          "/images/portfolio/project-2/pic-13.png",
+        ],
+      },
+      // {
+      //   title: "Seaside Villa – Jumeirah Bay",
+      //   images: [
+      //     "/images/portfolio/residential/project-2/pic-1.png",
+      //     "/images/portfolio/residential/project-2/pic-2.png",
+      //     "/images/portfolio/residential/project-2/pic-3.png",
+      //     "/images/portfolio/residential/project-2/pic-4.png",
+      //     "/images/portfolio/residential/project-2/pic-5.png",
+      //     "/images/portfolio/residential/project-2/pic-6.png",
+      //     "/images/portfolio/residential/project-2/pic-7.png",
+      //     "/images/portfolio/residential/project-2/pic-8.png",
+      //   ],
+      // },
+      // {
+      //   title: "Signature Villa – The World Islands",
+      //   images: [
+      //     "/images/portfolio/residential/project-3/pic-1.png",
+      //     "/images/portfolio/residential/project-3/pic-2.png",
+      //     "/images/portfolio/residential/project-3/pic-3.png",
+      //     "/images/portfolio/residential/project-3/pic-4.png",
+      //     "/images/portfolio/residential/project-3/pic-5.png",
+      //     "/images/portfolio/residential/project-3/pic-6.png",
+      //   ],
+      // },
     ],
   },
 
@@ -129,64 +140,97 @@ const projectCategories: Category[] = [
       {
         title: "Luma Boutique Hotel",
         images: [
-          "/images/portfolio/hospitality/project-1/pic-1.png",
-          "/images/portfolio/hospitality/project-1/pic-2.png",
-          "/images/portfolio/hospitality/project-1/pic-3.png",
-          "/images/portfolio/hospitality/project-1/pic-4.png",
-          "/images/portfolio/hospitality/project-1/pic-5.png",
+          "/images/portfolio/project-5/pic-9.jpg",
+          "/images/portfolio/project-5/pic-8.jpg",
+          "/images/portfolio/project-5/pic-7.jpg",
+          "/images/portfolio/project-5/pic-6.jpg",
+          "/images/portfolio/project-5/pic-5.jpg",
+          "/images/portfolio/project-5/pic-4.jpg",
+          "/images/portfolio/project-5/pic-3.jpg",
+          "/images/portfolio/project-5/pic-2.jpg",
+          "/images/portfolio/project-5/pic-1.jpg",
         ],
       },
-      {
-        title: "Serenno Suites",
-        images: [
-          "/images/portfolio/hospitality/project-2/pic-1.png",
-          "/images/portfolio/hospitality/project-2/pic-2.png",
-          "/images/portfolio/hospitality/project-2/pic-3.png",
-          "/images/portfolio/hospitality/project-2/pic-4.png",
-          "/images/portfolio/hospitality/project-2/pic-5.png",
-        ],
-      },
-      {
-        title: "Maison Verra Hotel",
-        images: [
-          "/images/portfolio/hospitality/project-3/pic-1.png",
-          "/images/portfolio/hospitality/project-3/pic-2.png",
-          "/images/portfolio/hospitality/project-3/pic-3.png",
-          "/images/portfolio/hospitality/project-3/pic-4.png",
-          "/images/portfolio/hospitality/project-3/pic-5.png",
-          "/images/portfolio/hospitality/project-3/pic-6.png",
-          "/images/portfolio/hospitality/project-3/pic-7.png",
-        ],
-      },
+      // {
+      //   title: "Serenno Suites",
+      //   images: [
+      //     "/images/portfolio/hospitality/project-2/pic-1.png",
+      //     "/images/portfolio/hospitality/project-2/pic-2.png",
+      //     "/images/portfolio/hospitality/project-2/pic-3.png",
+      //     "/images/portfolio/hospitality/project-2/pic-4.png",
+      //     "/images/portfolio/hospitality/project-2/pic-5.png",
+      //   ],
+      // },
+      // {
+      //   title: "Maison Verra Hotel",
+      //   images: [
+      //     "/images/portfolio/hospitality/project-3/pic-1.png",
+      //     "/images/portfolio/hospitality/project-3/pic-2.png",
+      //     "/images/portfolio/hospitality/project-3/pic-3.png",
+      //     "/images/portfolio/hospitality/project-3/pic-4.png",
+      //     "/images/portfolio/hospitality/project-3/pic-5.png",
+      //     "/images/portfolio/hospitality/project-3/pic-6.png",
+      //     "/images/portfolio/hospitality/project-3/pic-7.png",
+      //   ],
+      // },
     ],
   },
 
+  // {
+  //   title: "Retail Interiors",
+  //   desc: "Immersive guest experiences that balance luxury and comfort.",
+  //   projects: [
+  //     {
+  //       title: "Verra Luxe",
+  //       images: [
+  //         "/images/portfolio/retail/project-1/pic-1.png",
+  //         "/images/portfolio/retail/project-1/pic-2.png",
+  //         "/images/portfolio/retail/project-1/pic-3.png",
+  //         "/images/portfolio/retail/project-1/pic-4.png",
+  //       ],
+  //     },
+  //     {
+  //       title: "The Atelier",
+  //       images: [
+  //         "/images/portfolio/retail/project-2/pic-1.png",
+  //         "/images/portfolio/retail/project-2/pic-2.png",
+  //         "/images/portfolio/retail/project-2/pic-3.png",
+  //         "/images/portfolio/retail/project-2/pic-4.png",
+  //         "/images/portfolio/retail/project-2/pic-5.png",
+  //         "/images/portfolio/retail/project-2/pic-6.png",
+  //       ],
+  //     },
+  //   ],
+  // },
   {
-    title: "Retail Interiors",
-    desc: "Immersive guest experiences that balance luxury and comfort.",
-    projects: [
-      {
-        title: "Verra Luxe",
-        images: [
-          "/images/portfolio/retail/project-1/pic-1.png",
-          "/images/portfolio/retail/project-1/pic-2.png",
-          "/images/portfolio/retail/project-1/pic-3.png",
-          "/images/portfolio/retail/project-1/pic-4.png",
-        ],
-      },
-      {
-        title: "The Atelier",
-        images: [
-          "/images/portfolio/retail/project-2/pic-1.png",
-          "/images/portfolio/retail/project-2/pic-2.png",
-          "/images/portfolio/retail/project-2/pic-3.png",
-          "/images/portfolio/retail/project-2/pic-4.png",
-          "/images/portfolio/retail/project-2/pic-5.png",
-          "/images/portfolio/retail/project-2/pic-6.png",
-        ],
-      },
-    ],
-  },
+  title: "Ongoing Projects",
+  desc: "A selection of ongoing interior projects currently in development, with final designs and visuals to be revealed upon completion.",
+  projects: [
+    {
+      title: "Corporate Office – JAFZA",
+      images: [
+        "/images/portfolio/ongoing/project-1/pic-1.jpg",
+        "/images/portfolio/ongoing/project-1/pic-2.jpg",
+        "/images/portfolio/ongoing/project-1/pic-3.jpg",
+        "/images/portfolio/ongoing/project-1/pic-4.jpg",
+        "/images/portfolio/ongoing/project-1/pic-5.jpg",
+      ],
+    },
+    {
+      title: "Corporate Innovation Office – JAFZA",
+      images: [
+        "/images/portfolio/ongoing/project-2/pic-3.jpg",
+        "/images/portfolio/ongoing/project-2/pic-2.jpg",
+        "/images/portfolio/ongoing/project-2/pic-4.jpg",
+        "/images/portfolio/ongoing/project-2/pic-1.jpg",
+        "/images/portfolio/ongoing/project-2/pic-5.jpg",
+        "/images/portfolio/ongoing/project-2/pic-6.jpg",
+        "/images/portfolio/ongoing/project-2/pic-7.jpg",
+      ],
+    },
+  ],
+}
+
 ];
 
 // ---------------------------------------------------------------------------

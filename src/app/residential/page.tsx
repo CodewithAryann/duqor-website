@@ -233,10 +233,10 @@ function DesignApproach() {
 /* ───────────────────────── SIGNATURE PROJECTS ───────────────────────── */
 function SignatureProjects() {
   const slide = {
-    img: "/images/residential/slider/serenity-villa.webp",
-    title: "Serenity Villa",
+    img: "/images/portfolio/project-2/pic-6.png",
+    title: "Parkside residence",
     desc: "A private sanctuary combining modern elegance with timeless comfort.",
-    alt: "Serenity Villa interior showcasing modern elegance and comfort"
+    alt: "Parkside residence – Palm Jumeirah interior showcasing modern elegance and comfort"
   };
 
   return (
@@ -250,7 +250,7 @@ function SignatureProjects() {
       <div className="relative max-w-6xl mx-auto h-[60vh] md:h-[70vh] rounded-3xl overflow-hidden" aria-labelledby="signature-title">
         <Image src={slide.img} alt={slide.alt} fill sizes="100vw" className="object-cover brightness-90" priority />
 
-        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="absolute inset-0 bg-black/20"></div>
 
         <div className="absolute bottom-16 left-0 right-0 text-center px-4 z-10">
           <h3 id="signature-title" className="text-2xl md:text-3xl font-semibold text-[#c38a27]">

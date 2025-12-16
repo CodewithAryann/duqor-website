@@ -45,7 +45,7 @@ function HeroSection() {
   const heroImages: HeroImage[] = useMemo(
     () => [
        {
-    src: "/images/commercial/corporate-office-suite.png",
+    src: "/images/portfolio/project-3/pic-14.png",
     name: "Corporate Office Suite",
     alt: "Interior view of a corporate office suite with modern workstations and sleek design"
   },
@@ -241,7 +241,7 @@ function DesignApproach() {
 /* ───────────────────────── SIGNATURE PROJECTS ───────────────────────── */
 function SignatureProjects() {
   const slide = {
-    img: "/images/commercial/corporate-elegance-tower.png",
+    img: "/images/portfolio/project-4/pic-5.png",
   title: "Corporate Elegance Tower",
   desc: "A bold workspace redefining productivity and prestige for leading enterprises.",
   alt: "Interior view of Corporate Elegance Tower showcasing modern workspace design with prestige and functionality"
@@ -273,7 +273,7 @@ function SignatureProjects() {
         />
 
         {/* Overlay to make text more visible */}
-        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="absolute inset-0 bg-black/20"></div>
 
         {/* Text Overlay */}
         <div className="absolute bottom-16 left-0 right-0 text-center px-4 z-10">
@@ -382,7 +382,7 @@ function ContactForm() {
         {/* Left Image */}
         <div className="relative w-full h-[610px] rounded-2xl overflow-hidden">
           <Image
-            src="/images/commercial.png"
+            src="/images/portfolio/project-4/pic-1.png"
             alt="Commercial Interior Design"
             fill
             className="object-cover scale-105 hover:scale-100 transition-all duration-700"

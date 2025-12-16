@@ -271,10 +271,10 @@ function DesignApproach() {
 /* ───────────────────────── SIGNATURE PROJECTS ───────────────────────── */
 function SignatureProjects() {
   const slide = {
-    img: "/images/hospitality/Azure-grand.png",
-    title: "Azure Grand Hotel",
+    img: "/images/portfolio/project-5/pic-9.jpg",
+    title: "Luma Boutique Hotel",
     desc: "Refined fusion of comfort and contemporary design.",
-    alt: "Interior view of Azure Grand Hotel showcasing luxury modern design",
+    alt: "Interior view of Luma Boutique Hotel showcasing luxury modern design",
   };
 
   return (
@@ -303,7 +303,7 @@ function SignatureProjects() {
         />
 
         {/* Overlay to make text more visible */}
-        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="absolute inset-0 bg-black/20"></div>
 
         {/* Text Overlay */}
         <div className="absolute bottom-16 left-0 right-0 text-center px-4 z-10">
@@ -412,7 +412,7 @@ function ContactForm() {
         {/* Left Image */}
         <div className="relative w-full h-[610px] rounded-2xl overflow-hidden">
           <Image
-            src="/images/hospitality.png"
+            src="/images/portfolio/project-5/pic-4.jpg"
             alt="Hospitality Interior Design"
             fill
             className="object-cover scale-105 hover:scale-100 transition-all duration-700"
