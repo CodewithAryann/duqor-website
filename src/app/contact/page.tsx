@@ -156,7 +156,7 @@ export default function ContactSection() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             type="submit"
-            className="mt-4 w-full bg-[#d4af37] hover:bg-[#c6a034] text-black font-semibold text-lg py-4 rounded-xl shadow-lg transition"
+            className="mt-4 w-full cursor-pointer bg-[#d4af37] hover:bg-[#c6a034] text-black font-semibold text-lg py-4 rounded-xl shadow-lg transition"
           >
             {status === "loading" ? "Sending..." : "Send Message"}
           </motion.button>

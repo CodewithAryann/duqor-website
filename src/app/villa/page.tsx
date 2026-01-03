@@ -1,23 +1,23 @@
 "use client";
-
 import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
 import {
-ArrowRight,
+  ArrowRight,
   Layout,
   Hammer,
   Layers,
   Zap,
   Quote,
+  Sparkles,
+  Palette,
+  Eye,
+  Lightbulb,
 } from "lucide-react";
-import Head from "next/head";
-import PhoneInput from "react-phone-input-2";
-import 'react-phone-input-2/lib/style.css';
 
 const COPPER_GRADIENT =
-  "bg-clip-text text-transparent bg-linear-to-b from-[#e7c675] via-[#c38a27] to-[#8b5b10]";
+  "bg-clip-text text-transparent bg-gradient-to-b from-[#e7c675] via-[#c38a27] to-[#8b5b10]";
 
 interface HeroImage {
   src: string;
@@ -30,7 +30,7 @@ interface Particle {
   dur: number;
 }
 
-// Utility: predictable pseudo-random
+// Utility: predictable pseudo-random function
 function seededRandom(seed: number) {
   return () => {
     seed = (seed * 9301 + 49297) % 233280;
@@ -38,21 +38,19 @@ function seededRandom(seed: number) {
   };
 }
 
-/* ──────────────────────────── HERO SECTION ─────────────────────────── */
+/* ──────────────────────────── HERO SECTION WITH FORM ─────────────────────────── */
 function HeroSection() {
   const heroImages: HeroImage[] = useMemo(
     () => [
       {
-    src: "/images/villa/1.jpeg",
-    alt: "Interior view of Luxury Retail Space featuring elegant displays and fixtures"
-  },
-
+        src: "/images/villa/1.jpeg",
+        alt: "Interior view of Luxury Villa featuring elegant design",
+      },
     ],
     []
   );
 
-  const [slide, setSlide] = useState<number>(0);
-
+  const [slide, setSlide] = useState(0);
   const nextSlide = useCallback(() => {
     setSlide((s) => (s + 1) % heroImages.length);
   }, [heroImages.length]);
@@ -68,7 +66,6 @@ function HeroSection() {
 
   useEffect(() => {
     setMounted(true);
-
     const rand = seededRandom(12345);
     const generated: Particle[] = Array.from({ length: 12 }).map(() => ({
       x: rand() * 1200,
@@ -78,119 +75,249 @@ function HeroSection() {
     setParticles(generated);
   }, []);
 
+  const [phone, setPhone] = useState("");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+    
+    if (!phone || phone.replace(/\D/g, "").length < 9) {
+      alert("Please enter a valid phone number");
+      return;
+    }
+
+    // Submit to Web3Forms
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          alert("Thank you! We'll contact you soon.");
+          form.reset();
+          setPhone("");
+        } else {
+          alert("Something went wrong. Please try again.");
+        }
+      })
+      .catch(() => {
+        alert("Error submitting form. Please try again.");
+      });
+  };
+
   return (
-    <section className="relative h-screen overflow-hidden bg-black text-white">
-      {/* Background Slider */}
-      <AnimatePresence mode="wait">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
+  {/* Background Slider */}
+  <div className="absolute inset-0 z-0">
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={slide}
+        initial={{ opacity: 0, scale: 1.1 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.95 }}
+        transition={{ duration: 1.2 }}
+        className="absolute inset-0"
+      >
+        <Image
+          src={heroImages[slide].src}
+          alt={heroImages[slide].alt}
+          fill
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-linear-to-b from-black/60 via-black/40 to-black/70" />
+      </motion.div>
+    </AnimatePresence>
+  </div>
+
+  {/* Particles */}
+  {mounted && (
+    <div className="absolute inset-0 pointer-events-none z-10">
+      {particles.map((p, i) => (
         <motion.div
-          key={slide}
-          initial={{ opacity: 0, scale: 1.03 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.9 }}
-          className="absolute inset-0"
-        >
-          <Image
-            src={heroImages[slide].src}
-            alt={heroImages[slide].alt}
-            fill
-            className="object-cover brightness-60"
-            priority={slide === 0}
-            sizes="100vw"
-          />
-        </motion.div>
-      </AnimatePresence>
+          key={i}
+          className="absolute w-1 h-1 bg-[#e7c675] rounded-full opacity-40"
+          style={{ left: p.x, top: p.y }}
+          animate={{
+            y: [p.y, p.y - 100, p.y],
+            opacity: [0.4, 0.8, 0.4],
+          }}
+          transition={{
+            duration: p.dur,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+      ))}
+    </div>
+  )}
 
-      {/* Particles — ONLY render after mount */}
-      {mounted && (
-        <div className="absolute inset-0 pointer-events-none z-20">
-          {particles.map((p, i) => (
-            <motion.span
-              key={i}
-              className="absolute w-0.5 h-0.5 bg-[#d4af37] rounded-full opacity-60"
-              style={{ top: p.y, left: p.x }}
-              animate={{
-                y: [p.y, p.y - 30, p.y],
-                opacity: [0.2, 1, 0.2],
-                scale: [1, 1.4, 1],
-              }}
-              transition={{ duration: p.dur, repeat: Infinity, ease: "easeInOut" }}
-            />
-          ))}
-        </div>
-      )}
+  {/* Content */}
+  <div
+  className="relative z-20 w-full max-w-7xl mx-auto
+    px-4 sm:px-6
+    pt-24 sm:pt-32
+    py-16 lg:py-20
+    lg:pl-[7%]
+    md:pr-[7%]"
+>
 
-      <div className="absolute inset-0 bg-black/20 z-10" />
 
-      <div className="absolute inset-0 flex flex-col justify-center items-center text-center z-30 px-6">
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-4xl md:text-6xl font-bold tracking-tight"
-        >
-          <span className="text-white/90">Villa Renovation</span>
-          <span className={COPPER_GRADIENT}> Reimagined</span>
-        </motion.h1>
+    <div className="grid lg:grid-cols-2 gap-8 md:gap-10 lg:gap-12 items-center">
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.8 }}
-          className="mt-6 text-gray-300 text-lg md:text-xl max-w-2xl"
-        >
+      {/* Left */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.9, delay: 0.2 }}
+        className="space-y-6 text-center lg:text-left"
+      >
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-bold text-white leading-tight">
+          Villa Renovation{" "}
+          <span className={COPPER_GRADIENT}>Reimagined</span>
+        </h1>
+
+        <p className="text-base sm:text-lg md:text-xl text-gray-200 max-w-2xl mx-auto lg:mx-0">
           Transforming villas into timeless, elegant homes through design,
           craftsmanship, and intelligent living solutions.
-        </motion.p>
+        </p>
 
+       <div className="flex justify-center lg:justify-start pt-3">
+  <Link href="/portfolio" className="inline-block">
+    <button className="group cursor-pointer px-8 py-4 bg-linear-to-r from-[#e7c675] to-[#c38a27] text-black font-semibold rounded-full hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center gap-2">
+      View Projects
+      <ArrowRight className="group-hover:translate-x-1 transition-transform" />
+    </button>
+  </Link>
+</div>
+      </motion.div>
+
+      {/* Right */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
-          className="mt-10 flex flex-wrap justify-center gap-4"
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.9, delay: 0.4 }}
+          className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-6 md:p-8 max-w-md w-full mx-auto lg:mx-0"
         >
-          <Link href="/portfolio">
-            <button className="px-8 py-3 rounded-full border-2 border-[#c38a27] text-[#c38a27] font-semibold flex items-center cursor-pointer gap-2 hover:bg-[#c38a27]/20 transition">
-              View Projects
-            </button>
-          </Link>
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+            Let&apos;s Discuss Your Project
+          </h2>
+          <p className="text-sm md:text-base text-gray-600 mb-5">
+            Fill in your details and we’ll reach out soon.
+          </p>
 
-          <Link href="/contact">
-            <button className="px-8 py-3 rounded-full font-semibold bg-[#c38a27] text-black cursor-pointer flex items-center gap-2">
-              Contact Us <ArrowRight size={18} />
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <input
+              type="hidden"
+              name="access_key"
+              value="b601d7fe-9d0c-448b-8f4e-f83b4879d175"
+            />
+            <input type="hidden" name="subject" value="New Villa Renovation Inquiry" />
+
+            {/* Name */}
+            <div>
+              <label className="block text-xs font-medium text-gray-700 mb-1.5">
+                Name *
+              </label>
+              <input
+                type="text"
+                name="name"
+                required
+                className="w-full px-3 py-2.5 text-sm rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#c38a27] focus:border-transparent outline-none transition-all text-gray-900"
+                placeholder="Your full name"
+              />
+            </div>
+
+            {/* Email and Phone in one row */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {/* Email */}
+              <div>
+                <label className="block text-xs font-medium text-gray-700 mb-1.5">
+                  Email *
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  className="w-full px-3 py-2.5 text-sm rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#c38a27] focus:border-transparent outline-none transition-all text-gray-900"
+                  placeholder="your@email.com"
+                />
+              </div>
+
+              {/* Phone */}
+              <div>
+                <label className="block text-xs font-medium text-gray-700 mb-1.5">
+                  Phone *
+                </label>
+                <input
+                  type="tel"
+                  name="phone"
+                  required
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  className="w-full px-3 py-2.5 text-sm rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#c38a27] focus:border-transparent outline-none transition-all text-gray-900"
+                  placeholder="+971 50 123 4567"
+                />
+              </div>
+            </div>
+
+            {/* Message */}
+            <div>
+              <label className="block text-xs font-medium text-gray-700 mb-1.5">
+                Message
+              </label>
+              <textarea
+                name="message"
+                rows={3}
+                className="w-full px-3 py-2.5 text-sm rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#c38a27] focus:border-transparent outline-none transition-all resize-none text-gray-900"
+                placeholder="Tell us about your villa renovation project..."
+              />
+            </div>
+
+            {/* Submit */}
+            <button
+              type="submit"
+              className="w-full px-5 py-3 bg-linear-to-r from-[#e7c675] to-[#c38a27] text-black text-sm font-semibold rounded-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300 cursor-pointer"
+            >
+              Send Message
             </button>
-          </Link>
+          </form>
         </motion.div>
-      </div>
-    </section>
+
+    </div>
+  </div>
+</section>
+
   );
 }
 
 /* ───────────────────────── INTRO SECTION ───────────────────────── */
 function Introduction() {
   return (
-    <section className="py-24 bg-black text-white text-center px-6">
+    <section className="py-20 px-6 bg-gray-50">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.9 }}
         viewport={{ once: true }}
-        className="max-w-3xl mx-auto"
+        transition={{ duration: 0.8 }}
+        className="max-w-4xl mx-auto text-center space-y-6"
       >
-        <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
-         At <span className={COPPER_GRADIENT}>Duqor</span>, we renovate villas with
-          a holistic approach—balancing architecture, interiors, and lifestyle.
-          Every renovation is tailored to enhance comfort, beauty, and long-term
-          value.
+        <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+          Crafting <span className={COPPER_GRADIENT}>Timeless Spaces</span>
+        </h2>
+        <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+          At Duqor, we renovate villas with a holistic approach—balancing
+          architecture, interiors, and lifestyle. Every renovation is tailored to
+          enhance comfort, beauty, and long-term value.
         </p>
       </motion.div>
-
       <motion.div
-        initial={{ width: 0 }}
-        whileInView={{ width: "60%" }}
-        transition={{ duration: 1.2, delay: 0.5 }}
-        className="mx-auto mt-20 h-0.5 bg-linear-to-r from-transparent via-[#c38a27] to-transparent"
-      />
+              initial={{ width: 0 }}
+              whileInView={{ width: "60%" }}
+              transition={{ duration: 1.2, delay: 0.5 }}
+              className="mx-auto mt-20 h-0.5 bg-linear-to-r from-transparent via-[#c38a27] to-transparent"
+            />
     </section>
   );
 }
@@ -200,57 +327,65 @@ function DesignApproach() {
   const approaches = useMemo(
     () => [
       {
-      title: "Concept Development",
-      desc: "Turning brand identity into spatial storytelling.",
-      icon: <Layout size={28} />, // creativity & personalization
-    },
-    {
-      title: "Material & Finish Selection",
-      desc: "Blending textures, lighting, and color for maximum visual appeal.",
-      icon: <Hammer size={28} />, // luxury & refinement
-    },
-    {
-      title: "Spatial Planning & Lighting",
-      desc: "Optimizing layout for movement, visibility, and flow.",
-      icon: <Layers size={28} />, // light, openness, and atmosphere
-    },
-    {
-      title: "Execution & Detailing",
-      desc: "From fixtures to finishes, every detail enhances customer experience.",
-      icon: <Zap size={28} />, // precision and craftsmanship
-    },
+        title: "Concept Development",
+        desc: "Turning your vision into spatial storytelling.",
+        icon: <Sparkles className="w-8 h-8 text-[#c38a27]" />,
+      },
+      {
+        title: "Material & Finish Selection",
+        desc: "Blending textures, lighting, and color for maximum appeal.",
+        icon: <Palette className="w-8 h-8 text-[#c38a27]" />,
+      },
+      {
+        title: "Spatial Planning & Lighting",
+        desc: "Optimizing layout for movement, visibility, and flow.",
+        icon: <Lightbulb className="w-8 h-8 text-[#c38a27]" />,
+      },
+      {
+        title: "Execution & Detailing",
+        desc: "From fixtures to finishes, every detail matters.",
+        icon: <Hammer className="w-8 h-8 text-[#c38a27]" />,
+      },
     ],
     []
   );
 
   return (
-    <section className="py-28 bg-black text-white px-6">
-      <div className="text-center mb-16">
-        <h2 className="text-4xl md:text-5xl font-bold">
-          <span className={COPPER_GRADIENT}>Our</span> Renovation
-        </h2>
-        <p className="text-gray-400 max-w-xl mx-auto mt-2">
-         From concept to execution, we craft spaces that resonate with your brand and culture.
-        </p>
-      </div>
+    <section className="py-20 px-6 bg-white">
+      <div className="max-w-6xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            Our <span className={COPPER_GRADIENT}>Renovation Philosophy</span>
+          </h2>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            From concept to execution, we craft spaces that resonate with your
+            lifestyle and aesthetic.
+          </p>
+        </motion.div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
-        {approaches.map((item, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.15, duration: 0.6 }}
-            className="bg-linear-to-br from-[#161616] to-[#0f0f0f] border border-[#2c2c2c] hover:border-[#c38a27]/60 rounded-2xl p-8 text-center"
-          >
-            <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center text-[#c38a27] bg-[#c38a27]/10 rounded-full">
-              {item.icon}
-            </div>
-            <h3 className="text-xl font-semibold text-[#c38a27]">{item.title}</h3>
-            <p className="text-gray-300 mt-3">{item.desc}</p>
-          </motion.div>
-        ))}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {approaches.map((item, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1, duration: 0.6 }}
+              className="bg-gray-50 p-6 rounded-xl hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
+            >
+              <div className="mb-4">{item.icon}</div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">
+                {item.title}
+              </h3>
+              <p className="text-gray-600">{item.desc}</p>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -259,96 +394,101 @@ function DesignApproach() {
 /* ───────────────────────── SIGNATURE PROJECTS ───────────────────────── */
 function SignatureProjects() {
   const slide = {
-  img: "/images/villa/2.jpeg",
-  title: "Luxury Villa Retreat",
-desc: "A thoughtfully renovated villa combining modern design with elegant, comfortable living spaces.",
-alt: "Interior view of Luxury Villa Retreat showcasing modern architecture, elegant décor, and sophisticated living areas"
+    img: "/images/villa/2.jpeg",
+    title: "Luxury Villa Retreat",
+    desc: "A thoughtfully renovated villa combining modern design with elegant, comfortable living spaces.",
+    alt: "Interior view of Luxury Villa Retreat showcasing modern architecture",
   };
 
   return (
-    <section
-      className="py-24 bg-[#0a0a0a] text-white"
-      aria-label="Signature Projects Section"
-    >
-      <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold">
+    <section className="py-20 px-6 bg-gray-50">
+      <div className="max-w-6xl mx-auto">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-4xl md:text-5xl font-bold text-gray-900 text-center mb-12"
+        >
           Signature <span className={COPPER_GRADIENT}>Projects</span>
-        </h2>
-      </div>
+        </motion.h2>
 
-      <div
-        className="relative max-w-6xl mx-auto h-[60vh] md:h-[70vh] rounded-3xl overflow-hidden"
-        aria-labelledby="signature-title"
-      >
-        {/* Static Image */}
-        <Image
-          src={slide.img}
-          alt={slide.alt}
-          fill
-          sizes="100vw"
-          className="object-cover brightness-90"
-          priority
-        />
-
-        {/* Overlay to make text more visible */}
-        <div className="absolute inset-0 bg-black/40"></div>
-
-        {/* Text Overlay */}
-        <div className="absolute bottom-16 left-0 right-0 text-center px-4 z-10">
-          <h3
-            id="signature-title"
-            className="text-2xl md:text-3xl font-semibold text-[#c38a27]"
-          >
-            {slide.title}
-          </h3>
-
-          <p className="text-gray-100 mb-6 text-lg md:text-xl">
-            {slide.desc}
-          </p>
-
-          <Link href="/projects" aria-label="Explore all interior design projects">
-            <button className="px-8 py-3 rounded-full cursor-pointer bg-[#c38a27] text-black font-semibold hover:bg-[#d4b15a] transition">
-              Explore All Projects
-            </button>
-          </Link>
-        </div>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="relative rounded-2xl overflow-hidden shadow-2xl group"
+        >
+          <Image
+            src={slide.img}
+            alt={slide.alt}
+            width={1600}
+            height={600}
+            className="w-full h-[600px] object-cover group-hover:scale-105 transition-transform duration-700"
+          />
+          <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12 text-white">
+            <h3 className="text-3xl md:text-4xl font-bold mb-3">
+              {slide.title}
+            </h3>
+            <p className="text-lg text-gray-200 mb-6 max-w-2xl">{slide.desc}</p>
+            <Link
+  href="/portfolio"
+  className="inline-flex items-center gap-2 px-6 py-3
+    bg-white/20 backdrop-blur-sm text-white font-semibold
+    rounded-full hover:bg-white/30 transition-all"
+>
+  Explore All Projects
+  <ArrowRight className="w-5 h-5" />
+</Link>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
 }
 
-
 /* ───────────────────────── CORE CAPABILITIES ───────────────────────── */
 function CoreCapabilities() {
   const items = useMemo(
     () => [
-     { icon: <Layout size={36} />, label: "Brand Experience & Visual Storytelling" },
-    { icon: <Hammer size={36} />, label: "Consumer Flow Optimization" },              
-    { icon: <Layers size={36} />, label: "Premium Finish Execution" },             
-    { icon: <Zap size={36} />, label: "Interactive Lighting & Displays" },        
+      { icon: <Eye className="w-6 h-6" />, label: "Brand Experience & Visual Storytelling" },
+      { icon: <Layout className="w-6 h-6" />, label: "Consumer Flow Optimization" },
+      { icon: <Layers className="w-6 h-6" />, label: "Premium Finish Execution" },
+      { icon: <Zap className="w-6 h-6" />, label: "Interactive Lighting & Displays" },
     ],
     []
   );
 
   return (
-    <section className="py-24 bg-black text-white">
-      <div className="text-center mb-14">
-        <h2 className="text-4xl font-bold">
+    <section className="py-20 px-6 bg-white">
+      <div className="max-w-5xl mx-auto">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-4xl md:text-5xl font-bold text-gray-900 text-center mb-12"
+        >
           Core <span className={COPPER_GRADIENT}>Capabilities</span>
-        </h2>
-      </div>
+        </motion.h2>
 
-      <div className="flex flex-wrap justify-center gap-10 max-w-5xl mx-auto">
-        {items.map((item, i) => (
-          <motion.div
-            key={i}
-            whileHover={{ scale: 1.06 }}
-            className="w-56 h-56 bg-linear-to-br from-[#161616] to-[#0f0f0f] border border-[#2c2c2c] hover:border-[#c38a27]/60 rounded-2xl flex flex-col items-center justify-center text-center p-6"
-          >
-            <div className="text-[#c38a27] mb-3">{item.icon}</div>
-            <p className="text-gray-300 text-sm">{item.label}</p>
-          </motion.div>
-        ))}
+        <div className="grid md:grid-cols-2 gap-6">
+          {items.map((item, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, x: i % 2 === 0 ? -30 : 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1, duration: 0.6 }}
+              className="flex items-center gap-4 p-6 bg-gray-50 rounded-xl hover:shadow-lg transition-all"
+            >
+              <div className="shrink-0 w-12 h-12 bg-linear-to-br from-[#e7c675] to-[#c38a27] rounded-lg flex items-center justify-center text-black">
+                {item.icon}
+              </div>
+              <p className="text-lg font-medium text-gray-800">{item.label}</p>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -357,190 +497,68 @@ function CoreCapabilities() {
 /* ───────────────────────── CLIENT EXPERIENCE ───────────────────────── */
 function ClientExperience() {
   return (
-    <section className="py-24 bg-black text-white px-6">
-      <div className="max-w-4xl mx-auto text-center">
-        <Quote className="mx-auto mb-6 text-[#c38a27] w-12 h-12" />
-        <p className="text-xl md:text-2xl text-gray-300 font-semibold mb-6">
-          “Our villa has been transformed into a timeless space of comfort and sophistication.”
-
+    <section className="py-20 px-6 bg-linear-to-br from-gray-50 to-gray-100">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="max-w-4xl mx-auto text-center space-y-6"
+      >
+        <Quote className="w-16 h-16 mx-auto text-[#c38a27] opacity-50" />
+        <blockquote className="text-2xl md:text-3xl font-medium text-gray-800 italic">
+          &quot;Our villa has been transformed into a timeless space of comfort and
+          sophistication.&quot;
+        </blockquote>
+        <p className="text-lg text-gray-600 font-semibold">
+          — Villa Owner, Abu Dhabi
         </p>
-        <p className="text-gray-400">— Villa Owner, Abu Dhabi</p>
-      </div>
+      </motion.div>
     </section>
   );
 }
-
-
-/* ───────────────────────── CONTACT FORM (WEB3FORM) ───────────────────────── */
-function ContactForm() {
-  const [phone, setPhone] = useState("");
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    // Remove non-digit characters and check length
-    if (!phone || phone.replace(/\D/g, "").length < 9) {
-      e.preventDefault();
-      alert("Please enter a valid phone number");
-      return;
-    }
-  };
-
-  return (
-    <section className="py-28 bg-[#0a0a0a] text-white px-6" id="contact-form">
-
-      {/* Heading */}
-      <div className="text-center mb-14">
-        <h2 className="text-4xl md:text-5xl font-bold">
-          Lets <span className="bg-clip-text text-transparent bg-linear-to-r from-[#e7c675] via-[#c38a27] to-[#8b5b10]">Discuss</span> Your Project
-        </h2>
-        <p className="text-gray-400 max-w-xl mx-auto mt-3">
-          Fill out the form and our design specialists will connect with you shortly.
-        </p>
-      </div>
-
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-stretch">
-
-        {/* Left Image */}
-        <div className="relative w-full h-[610px] rounded-2xl overflow-hidden">
-          <Image
-            src="/images/villa/3.jpeg"
-            alt="Retail Interior Design"
-            fill
-            className="object-cover scale-105 hover:scale-100 transition-all duration-700"
-            sizes="(max-width: 768px) 100vw, 50vw"
-            priority
-          />
-          <div className="absolute inset-0 bg-linear-to-t from-[#0a0a0a] via-[#00000045] to-transparent" />
-        </div>
-
-        {/* Right Form */}
-        <form
-          action="https://api.web3forms.com/submit"
-          method="POST"
-          onSubmit={handleSubmit}
-          className="h-[610px] bg-[#111] border border-[#2c2c2c] rounded-2xl p-10 flex flex-col justify-between"
-        >
-          <input type="hidden" name="access_key" value="b601d7fe-9d0c-448b-8f4e-f83b4879d175" />
-          <input type="hidden" name="subject" value="Residential Interior Inquiry - Duqor" />
-
-          <div className="space-y-4 grow">
-
-            {/* Name */}
-            <div>
-              <label className="block text-gray-300 mb-1">Name *</label>
-              <input
-                type="text" name="name" required
-                className="w-full p-3 bg-[#0d0d0d] border border-[#333] rounded-lg focus:border-[#c38a27] outline-none"
-              />
-            </div>
-
-            {/* Email */}
-            <div>
-              <label className="block text-gray-300 mb-1">Email *</label>
-              <input
-                type="email" name="email" required
-                className="w-full p-3 bg-[#0d0d0d] border border-[#333] rounded-lg focus:border-[#c38a27] outline-none"
-              />
-            </div>
-
-            {/* Phone */}
-            <div>
-              <label className="block text-gray-300 mb-1">Phone *</label>
-              <PhoneInput
-                country={'ae'}
-                value={phone}
-                onChange={setPhone}
-                inputProps={{
-                  name: 'phone',
-                  required: true,
-                }}
-                containerStyle={{ width: '100%' }}
-                inputStyle={{
-                  width: '100%',
-                  height: '48px',
-                  paddingLeft: '60px',
-                  backgroundColor: '#0d0d0d',
-                  borderRadius: '0.5rem',
-                  border: '1px solid #333',
-                  color: '#fff',
-                }}
-                buttonStyle={{
-                  border: '1px solid #333',
-                  borderRadius: '0.5rem 0 0 0.5rem',
-                  backgroundColor: '#0d0d0d',
-                }}
-                dropdownStyle={{
-                  backgroundColor: '#111',
-                  color: '#c38a27',
-                  borderRadius: '0.5rem',
-                }}
-                dropdownClass="custom-phone-dropdown"
-              />
-            </div>
-
-            {/* Message */}
-            <div>
-              <label className="block text-gray-300 mb-1">Message</label>
-              <textarea
-                name="message" rows={5} required
-                className="w-full p-3 bg-[#0d0d0d] border border-[#333] rounded-lg focus:border-[#c38a27] outline-none resize-none"
-              ></textarea>
-            </div>
-          </div>
-
-          {/* Submit Button */}
-          <button
-            type="submit"
-            className="w-full py-3 bg-[#c38a27] text-black rounded-full font-semibold hover:bg-[#d4b15a] transition"
-          >
-            Send Message
-          </button>
-        </form>
-
-      </div>
-    </section>
-  );
-}
-
-
 
 /* ───────────────────────── FINAL CTA ───────────────────────── */
 function FinalCTA() {
   return (
-    <section
-      className="py-32 text-center bg-cover bg-center relative"
-      style={{
-        backgroundImage:
-          "linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(17,17,17,0.5), rgba(0,0,0,0.5)), url('/images/villa/4.jpeg')",
-      }}
-      
-    >
-      {/* Accessibility label for background image */}
-  <span
-    className="sr-only"
-    role="img"
-    aria-label="Interior of a luxury villa showcasing modern design and elegant living spaces"
-  />
-      <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-        Let’s Redefine  <span className={COPPER_GRADIENT}>Your Villa</span> Living
-      </h2>
+    <section className="relative py-32 px-6 overflow-hidden">
+     <Image
+  src="/images/villa/4.jpeg"
+  alt="Elegant villa exterior at sunset"
+  fill
+  className="object-cover"
+  priority
+/>
+      <div className="absolute inset-0 bg-black/60" />
 
-      <p className="text-gray-300 max-w-2xl mx-auto mb-10">
-       Transform your villa into a timeless sanctuary where comfort, elegance, and modern design come together.
-      </p>
-
-      <div className="flex justify-center gap-6 flex-wrap">
-        <Link href="/contact">
-          <button className="px-8 py-3 bg-[#c38a27] cursor-pointer text-black rounded-full font-semibold flex items-center gap-2">
-            Contact Us <ArrowRight size={18} />
-          </button>
-        </Link>
-
-        <Link href="/portfolio">
-          <button className="px-8 py-3 border-2 cursor-pointer border-[#c38a27] text-[#c38a27] rounded-full font-semibold">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="relative z-10 max-w-4xl mx-auto text-center text-white space-y-8"
+      >
+        <h2 className="text-4xl md:text-6xl font-bold">
+          Let&apos;s Redefine Your{" "}
+          <span className={COPPER_GRADIENT}>Villa Living</span>
+        </h2>
+        <p className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto">
+          Transform your villa into a timeless sanctuary where comfort, elegance,
+          and modern design come together.
+        </p>
+        <div className="flex flex-wrap gap-4 justify-center pt-6">
+          <Link
+  href="/contact"
+  className="inline-block px-8 py-4 bg-linear-to-r from-[#e7c675] to-[#c38a27] text-black font-semibold rounded-full hover:shadow-2xl hover:scale-105 transition-all duration-300"
+>
+  Contact Us
+</Link>
+          <Link
+  href="/portfolio"
+  className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-full border-2 border-white/30 hover:bg-white/20 transition-all duration-300"
+>
             View Projects
-          </button>
-        </Link>
-      </div>
+          </Link>
+        </div>
+      </motion.div>
     </section>
   );
 }
@@ -548,27 +566,14 @@ function FinalCTA() {
 /* ───────────────────────── PAGE EXPORT ───────────────────────── */
 export default function VillaInteriors() {
   return (
-    <>
-      <Head>
-  <title>Duqor Villa Interior Design | Luxury Brand Experiences</title>
-  <meta
-    name="description"
-    content="Duqor creates elegant and functional villa interiors for luxury brands. Transforming spaces into immersive, stylish, and sophisticated living environments."
-  />
-  <link rel="canonical" href="https://www.duqor.ae/villa" />
-</Head>
-
-
-      <main className="bg-black text-white">
-        <HeroSection />
-        <Introduction />
-        <DesignApproach />
-        <SignatureProjects />
-        <CoreCapabilities />
-        <ClientExperience />
-        <ContactForm />
-        <FinalCTA />
-      </main>
-    </>
+    <div className="bg-white">
+      <HeroSection />
+      <Introduction />
+      <DesignApproach />
+      <SignatureProjects />
+      <CoreCapabilities />
+      <ClientExperience />
+      <FinalCTA />
+    </div>
   );
 }
