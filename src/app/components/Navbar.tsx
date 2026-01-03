@@ -42,7 +42,7 @@ const Navbar: React.FC = () => {
     { label: "Residential Interiors", href: "/residential" },
     { label: "Commercial Interiors", href: "/commercial" },
     { label: "Hospitality Interiors", href: "/hospitality" },
-    // { label: "Retail Interiors", href: "/retail" },
+    { label: "Villa Interiors", href: "/villa" },
   ];
 
   const handleServiceClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
