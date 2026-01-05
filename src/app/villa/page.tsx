@@ -2,6 +2,8 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -195,95 +197,115 @@ function HeroSection() {
 
       {/* Right */}
         <motion.div
-          initial={{ opacity: 0, x: 30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.9, delay: 0.4 }}
-          className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-6 md:p-8 max-w-md w-full mx-auto lg:mx-0"
-        >
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
-            Let&apos;s Discuss Your Project
-          </h2>
-          <p className="text-sm md:text-base text-gray-600 mb-5">
-            Fill in your details and we’ll reach out soon.
-          </p>
+      initial={{ opacity: 0, x: 30 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.9, delay: 0.4 }}
+      className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-6 md:p-8 max-w-md w-full mx-auto lg:mx-0"
+    >
+      <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+        Let&apos;s Discuss Your Project
+      </h2>
+      <p className="text-sm md:text-base text-gray-600 mb-5">
+        Fill in your details and we’ll reach out soon.
+      </p>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <input
+          type="hidden"
+          name="access_key"
+          value="b601d7fe-9d0c-448b-8f4e-f83b4879d175"
+        />
+        <input type="hidden" name="subject" value="New Villa Renovation Inquiry" />
+
+        {/* Name */}
+        <div>
+          <label className="block text-xs font-medium text-gray-700 mb-1.5">
+            Name *
+          </label>
+          <input
+            type="text"
+            name="name"
+            required
+            className="w-full px-3 py-2.5 text-sm rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#c38a27] focus:border-transparent outline-none transition-all text-gray-900"
+            placeholder="Your full name"
+          />
+        </div>
+
+        {/* Email and Phone */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {/* Email */}
+          <div>
+            <label className="block text-xs font-medium text-gray-700 mb-1.5">
+              Email *
+            </label>
             <input
-              type="hidden"
-              name="access_key"
-              value="b601d7fe-9d0c-448b-8f4e-f83b4879d175"
+              type="email"
+              name="email"
+              required
+              className="w-full px-3 py-2.5 text-sm rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#c38a27] focus:border-transparent outline-none transition-all text-gray-900"
+              placeholder="your@email.com"
             />
-            <input type="hidden" name="subject" value="New Villa Renovation Inquiry" />
+          </div>
 
-            {/* Name */}
-            <div>
-              <label className="block text-xs font-medium text-gray-700 mb-1.5">
-                Name *
-              </label>
-              <input
-                type="text"
-                name="name"
-                required
-                className="w-full px-3 py-2.5 text-sm rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#c38a27] focus:border-transparent outline-none transition-all text-gray-900"
-                placeholder="Your full name"
-              />
-            </div>
+          {/* Phone with Country Code */}
+          <div>
+            <label className="block text-xs font-medium text-gray-700 mb-1.5">
+              Phone *
+            </label>
+            <PhoneInput
+  country={"ae"} // default country
+  value={phone}
+  onChange={setPhone}
+  inputProps={{
+    name: "phone",
+    required: true,
+    placeholder: "+971 50 123 4567",
+  }}
+  containerStyle={{ width: "100%" }} // full width container
+  inputStyle={{
+    width: "100%",
+    paddingLeft: "48px", // leaves space for dropdown flag
+    height: "44px",
+    borderRadius: "0.5rem",
+    border: "1px solid #D1D5DB", // matches Tailwind gray-300
+    fontSize: "0.875rem", // Tailwind text-sm
+    color: "#111827", // Tailwind gray-900
+  }}
+  buttonStyle={{
+    border: "none",
+    borderRadius: "0.5rem 0 0 0.5rem",
+  }}
+  dropdownStyle={{
+    borderRadius: "0.5rem",
+    color: "#111827",
+  }}
+/>
 
-            {/* Email and Phone in one row */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {/* Email */}
-              <div>
-                <label className="block text-xs font-medium text-gray-700 mb-1.5">
-                  Email *
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  required
-                  className="w-full px-3 py-2.5 text-sm rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#c38a27] focus:border-transparent outline-none transition-all text-gray-900"
-                  placeholder="your@email.com"
-                />
-              </div>
+          </div>
+        </div>
 
-              {/* Phone */}
-              <div>
-                <label className="block text-xs font-medium text-gray-700 mb-1.5">
-                  Phone *
-                </label>
-                <input
-                  type="tel"
-                  name="phone"
-                  required
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  className="w-full px-3 py-2.5 text-sm rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#c38a27] focus:border-transparent outline-none transition-all text-gray-900"
-                  placeholder="+971 50 123 4567"
-                />
-              </div>
-            </div>
+        {/* Message */}
+        <div>
+          <label className="block text-xs font-medium text-gray-700 mb-1.5">
+            Message
+          </label>
+          <textarea
+            name="message"
+            rows={3}
+            className="w-full px-3 py-2.5 text-sm rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#c38a27] focus:border-transparent outline-none transition-all resize-none text-gray-900"
+            placeholder="Tell us about your villa renovation project..."
+          />
+        </div>
 
-            {/* Message */}
-            <div>
-              <label className="block text-xs font-medium text-gray-700 mb-1.5">
-                Message
-              </label>
-              <textarea
-                name="message"
-                rows={3}
-                className="w-full px-3 py-2.5 text-sm rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#c38a27] focus:border-transparent outline-none transition-all resize-none text-gray-900"
-                placeholder="Tell us about your villa renovation project..."
-              />
-            </div>
-
-            {/* Submit */}
-            <button
-              type="submit"
-              className="w-full px-5 py-3 bg-linear-to-r from-[#e7c675] to-[#c38a27] text-black text-sm font-semibold rounded-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300 cursor-pointer"
-            >
-              Send Message
-            </button>
-          </form>
-        </motion.div>
+        {/* Submit */}
+        <button
+          type="submit"
+          className="w-full px-5 py-3 bg-linear-to-r from-[#e7c675] to-[#c38a27] text-black text-sm font-semibold rounded-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300 cursor-pointer"
+        >
+          Send Message
+        </button>
+      </form>
+    </motion.div>
 
     </div>
   </div>
