@@ -186,12 +186,13 @@ function HeroSection() {
         </p>
 
        <div className="flex justify-center lg:justify-start pt-3">
-  <Link href="/portfolio" className="inline-block">
-    <button className="group cursor-pointer px-8 py-4 bg-linear-to-r from-[#e7c675] to-[#c38a27] text-black font-semibold rounded-full hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center gap-2">
-      View All Projects
-      <ArrowRight className="group-hover:translate-x-1 transition-transform" />
-    </button>
-  </Link>
+  <Link href="/portfolio" className="hidden sm:inline-block">
+  <button className="group cursor-pointer px-8 py-4 bg-linear-to-r from-[#e7c675] to-[#c38a27] text-black font-semibold rounded-full hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center gap-2">
+    View All Projects
+    <ArrowRight className="group-hover:translate-x-1 transition-transform" />
+  </button>
+</Link>
+
 </div>
       </motion.div>
 
