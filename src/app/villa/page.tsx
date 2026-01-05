@@ -186,7 +186,7 @@ function HeroSection() {
        <div className="flex justify-center lg:justify-start pt-3">
   <Link href="/portfolio" className="inline-block">
     <button className="group cursor-pointer px-8 py-4 bg-linear-to-r from-[#e7c675] to-[#c38a27] text-black font-semibold rounded-full hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center gap-2">
-      View Projects
+      View All Projects
       <ArrowRight className="group-hover:translate-x-1 transition-transform" />
     </button>
   </Link>
@@ -452,10 +452,26 @@ function SignatureProjects() {
 function CoreCapabilities() {
   const items = useMemo(
     () => [
-      { icon: <Eye className="w-6 h-6" />, label: "Brand Experience & Visual Storytelling" },
-      { icon: <Layout className="w-6 h-6" />, label: "Consumer Flow Optimization" },
-      { icon: <Layers className="w-6 h-6" />, label: "Premium Finish Execution" },
-      { icon: <Zap className="w-6 h-6" />, label: "Interactive Lighting & Displays" },
+      {
+        icon: <Eye className="w-6 h-6" />,
+        label: "Concept to Reality Execution",
+        desc: "Transforming approved designs into fully built spaces with precise detailing and on-site coordination.",
+      },
+      {
+        icon: <Layout className="w-6 h-6" />,
+        label: "Space Planning & Layout Optimization",
+        desc: "Efficient zoning of retail, office, or commercial spaces to improve movement, visibility, and usability.",
+      },
+      {
+        icon: <Layers className="w-6 h-6" />,
+        label: "High-Quality Fit-Out & Finishing Works",
+        desc: "Execution of ceilings, flooring, joinery, wall finishes, and bespoke elements with premium materials.",
+      },
+      {
+        icon: <Zap className="w-6 h-6" />,
+        label: "Lighting, Electrical & Display Installations",
+        desc: "Installation of functional and decorative lighting, power points, and display systems aligned with design intent.",
+      },
     ],
     []
   );
@@ -480,12 +496,19 @@ function CoreCapabilities() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.6 }}
-              className="flex items-center gap-4 p-6 bg-gray-50 rounded-xl hover:shadow-lg transition-all"
+              className="flex gap-4 p-6 bg-gray-50 rounded-xl hover:shadow-lg transition-all"
             >
               <div className="shrink-0 w-12 h-12 bg-linear-to-br from-[#e7c675] to-[#c38a27] rounded-lg flex items-center justify-center text-black">
                 {item.icon}
               </div>
-              <p className="text-lg font-medium text-gray-800">{item.label}</p>
+              <div>
+                <p className="text-lg font-semibold text-gray-900">
+                  {item.label}
+                </p>
+                <p className="text-sm text-gray-600 mt-1">
+                  {item.desc}
+                </p>
+              </div>
             </motion.div>
           ))}
         </div>
@@ -493,6 +516,7 @@ function CoreCapabilities() {
     </section>
   );
 }
+
 
 /* ───────────────────────── CLIENT EXPERIENCE ───────────────────────── */
 function ClientExperience() {
