@@ -43,10 +43,10 @@ const Footer: React.FC = () => {
 
             <ul className="space-y-2 text-sm">
               {[
-                { label: "Residential Interiors", href: "/residential" },
-                { label: "Commercial Interiors", href: "/commercial" },
-                { label: "Hospitality Interiors", href: "/hospitality" },
-                // { label: "Retail Interiors", href: "/retail" },
+                { label: "Residential Interiors", href: "/residential-renovation-in-dubai" },
+                { label: "Commercial Interiors", href: "/commercial-renovation-in-dubai" },
+                { label: "Hospitality Interiors", href: "/hospitality-renovation-in-dubai" },
+                { label: "Villa Interiors", href: "/villa-renovation-in-dubai" },
               ].map(({ label, href }) => (
                 <li key={href}>
                   <a
