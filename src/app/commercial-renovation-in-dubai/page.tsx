@@ -14,7 +14,6 @@ import {
   Briefcase,
   Quote,
 } from "lucide-react";
-import Head from "next/head";
 import PhoneInput from "react-phone-input-2";
 import 'react-phone-input-2/lib/style.css';
 
@@ -526,28 +525,55 @@ function FinalCTA() {
 
 /* ───────────────────────── PAGE EXPORT ───────────────────────── */
 export default function CommercialInteriors() {
+  // Client-side metadata injection
+  useEffect(() => {
+    document.title = "Duqor Commercial Interior Design | Corporate & Office Spaces in Dubai, UAE";
+    
+    const setMetaTag = (name: string, content: string, isProperty = false) => {
+      const attribute = isProperty ? 'property' : 'name';
+      let meta = document.querySelector(`meta[${attribute}="${name}"]`) as HTMLMetaElement;
+      
+      if (!meta) {
+        meta = document.createElement('meta');
+        meta.setAttribute(attribute, name);
+        document.head.appendChild(meta);
+      }
+      meta.content = content;
+    };
+
+    setMetaTag('description', 'Duqor creates elegant and functional commercial interiors for corporate offices and workspaces in Dubai, UAE. Transforming spaces into productive, stylish, and sophisticated environments.');
+    setMetaTag('robots', 'index, follow');
+    setMetaTag('geo.region', 'AE-DU');
+    setMetaTag('geo.placename', 'Dubai');
+    
+    setMetaTag('og:title', 'Duqor Commercial Interior Design | Corporate & Office Spaces in Dubai, UAE', true);
+    setMetaTag('og:description', 'Duqor creates elegant and functional commercial interiors for corporate offices and workspaces in Dubai, UAE. Transforming spaces into productive, stylish, and sophisticated environments.', true);
+    setMetaTag('og:type', 'website', true);
+    setMetaTag('og:url', 'https://www.duqor.ae/commercial-renovation-in-dubai', true);
+    
+    setMetaTag('twitter:card', 'summary_large_image');
+    setMetaTag('twitter:title', 'Duqor Commercial Interior Design | Corporate & Office Spaces in Dubai, UAE');
+    setMetaTag('twitter:description', 'Duqor creates elegant and functional commercial interiors for corporate offices and workspaces in Dubai, UAE. Transforming spaces into productive, stylish, and sophisticated environments.');
+
+    let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.rel = 'canonical';
+      document.head.appendChild(canonical);
+    }
+    canonical.href = 'https://www.duqor.ae/commercial-renovation-in-dubai';
+  }, []);
+
   return (
-    <>
-      <Head>
-  <title>Duqor Commercial Interior Design | Corporate & Office Spaces in Dubai, UAE</title>
-        <meta
-          name="description"
-          content="Duqor creates elegant and functional commercial interiors for corporate offices and workspaces in Dubai, UAE. Transforming spaces into productive, stylish, and sophisticated environments."
-        />
-  <link rel="canonical" href="https://www.duqor.ae/commercial-renovation-in-dubai" />
-</Head>
-
-
-      <main className="bg-black text-white">
-        <HeroSection />
-        <Introduction />
-        <DesignApproach />
-        <SignatureProjects />
-        <CoreCapabilities />
-        <ClientExperience />
-        <ContactForm />
-        <FinalCTA />
-      </main>
-    </>
+    <main className="bg-black text-white">
+      <HeroSection />
+      <Introduction />
+      <DesignApproach />
+      <SignatureProjects />
+      <CoreCapabilities />
+      <ClientExperience />
+      <ContactForm />
+      <FinalCTA />
+    </main>
   );
 }

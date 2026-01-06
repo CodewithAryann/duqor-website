@@ -16,7 +16,6 @@ import {
   Feather,
   Quote,
 } from "lucide-react";
-import Head from "next/head";
 import PhoneInput from "react-phone-input-2";
 import 'react-phone-input-2/lib/style.css';
 
@@ -553,27 +552,55 @@ function FinalCTA() {
 
 /* ───────────────────────── PAGE EXPORT ───────────────────────── */
 export default function HospitalityInteriors() {
-  return (
-    <>
-      <Head>
-        <title>Duqor Hospitality Interior Design | Luxury Hotel & Restaurant Spaces in Dubai, UAE</title>
-        <meta
-          name="description"
-          content="Duqor creates elegant and functional hospitality interiors for hotels, resorts, and restaurants in Dubai, UAE. Transforming spaces into stylish, comfortable, and sophisticated environments."
-        />
-        <link rel="canonical" href="https://www.duqor.ae/hospitality-renovation-in-dubai" />
-      </Head>
+  // Client-side metadata injection
+  useEffect(() => {
+    document.title = "Duqor Hospitality Interior Design | Luxury Hotel & Restaurant Spaces in Dubai, UAE";
+    
+    const setMetaTag = (name: string, content: string, isProperty = false) => {
+      const attribute = isProperty ? 'property' : 'name';
+      let meta = document.querySelector(`meta[${attribute}="${name}"]`) as HTMLMetaElement;
+      
+      if (!meta) {
+        meta = document.createElement('meta');
+        meta.setAttribute(attribute, name);
+        document.head.appendChild(meta);
+      }
+      meta.content = content;
+    };
 
-      <main className="bg-black text-white">
-        <HeroSection />
-        <Introduction />
-        <DesignApproach />
-        <SignatureProjects />
-        <CoreCapabilities />
-        <ClientExperience />
-        <ContactForm />
-        <FinalCTA />
-      </main>
-    </>
+    setMetaTag('description', 'Duqor creates elegant and functional hospitality interiors for hotels, resorts, and restaurants in Dubai, UAE. Transforming spaces into stylish, comfortable, and sophisticated environments.');
+    setMetaTag('robots', 'index, follow');
+    setMetaTag('geo.region', 'AE-DU');
+    setMetaTag('geo.placename', 'Dubai');
+    
+    setMetaTag('og:title', 'Duqor Hospitality Interior Design | Luxury Hotel & Restaurant Spaces in Dubai, UAE', true);
+    setMetaTag('og:description', 'Duqor creates elegant and functional hospitality interiors for hotels, resorts, and restaurants in Dubai, UAE. Transforming spaces into stylish, comfortable, and sophisticated environments.', true);
+    setMetaTag('og:type', 'website', true);
+    setMetaTag('og:url', 'https://www.duqor.ae/hospitality-renovation-in-dubai', true);
+    
+    setMetaTag('twitter:card', 'summary_large_image');
+    setMetaTag('twitter:title', 'Duqor Hospitality Interior Design | Luxury Hotel & Restaurant Spaces in Dubai, UAE');
+    setMetaTag('twitter:description', 'Duqor creates elegant and functional hospitality interiors for hotels, resorts, and restaurants in Dubai, UAE. Transforming spaces into stylish, comfortable, and sophisticated environments.');
+
+    let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.rel = 'canonical';
+      document.head.appendChild(canonical);
+    }
+    canonical.href = 'https://www.duqor.ae/hospitality-renovation-in-dubai';
+  }, []);
+
+  return (
+    <main className="bg-black text-white">
+      <HeroSection />
+      <Introduction />
+      <DesignApproach />
+      <SignatureProjects />
+      <CoreCapabilities />
+      <ClientExperience />
+      <ContactForm />
+      <FinalCTA />
+    </main>
   );
 }

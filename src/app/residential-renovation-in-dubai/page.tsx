@@ -14,7 +14,6 @@ import {
   Diamond,
   Quote
 } from "lucide-react";
-import Head from "next/head";
 import PhoneInput from "react-phone-input-2";
 import 'react-phone-input-2/lib/style.css';
 
@@ -497,17 +496,76 @@ function FinalCTA() {
 
 /* ───────────────────────── PAGE EXPORT ───────────────────────── */
 export default function ResidentialInteriors() {
+  // Client-side metadata injection
+  useEffect(() => {
+    // Set document title
+    document.title = "Duqor Residential Interior Design | Luxury Homes & Villas in Dubai, UAE";
+    
+    // Helper function to set or update meta tags
+    const setMetaTag = (name: string, content: string, isProperty = false) => {
+      const attribute = isProperty ? 'property' : 'name';
+      let meta = document.querySelector(`meta[${attribute}="${name}"]`) as HTMLMetaElement;
+      
+      if (!meta) {
+        meta = document.createElement('meta');
+        meta.setAttribute(attribute, name);
+        document.head.appendChild(meta);
+      }
+      meta.content = content;
+    };
+
+    // Set meta description
+    setMetaTag(
+      'description',
+      'Duqor creates elegant and functional residential interiors for luxury homes and villas in Dubai, UAE. Transforming spaces into comfortable, stylish, and sophisticated living environments.'
+    );
+
+    // Set robots meta tag
+    setMetaTag('robots', 'index, follow');
+
+    // Set geo meta tags
+    setMetaTag('geo.region', 'AE-DU');
+    setMetaTag('geo.placename', 'Dubai');
+
+    // Set Open Graph tags (using property attribute)
+    setMetaTag('og:title', 'Duqor Residential Interior Design | Luxury Homes & Villas in Dubai, UAE', true);
+    setMetaTag(
+      'og:description',
+      'Duqor creates elegant and functional residential interiors for luxury homes and villas in Dubai, UAE. Transforming spaces into comfortable, stylish, and sophisticated living environments.',
+      true
+    );
+    setMetaTag('og:type', 'website', true);
+    setMetaTag('og:url', 'https://www.duqor.ae/residential-renovation-in-dubai', true);
+
+    // Set Twitter Card tags
+    setMetaTag('twitter:card', 'summary_large_image');
+    setMetaTag('twitter:title', 'Duqor Residential Interior Design | Luxury Homes & Villas in Dubai, UAE');
+    setMetaTag(
+      'twitter:description',
+      'Duqor creates elegant and functional residential interiors for luxury homes and villas in Dubai, UAE. Transforming spaces into comfortable, stylish, and sophisticated living environments.'
+    );
+
+    // Set canonical link
+    let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.rel = 'canonical';
+      document.head.appendChild(canonical);
+    }
+    canonical.href = 'https://www.duqor.ae/residential-renovation-in-dubai';
+
+    // Set viewport (if not already in layout)
+    let viewport = document.querySelector('meta[name="viewport"]') as HTMLMetaElement;
+    if (!viewport) {
+      viewport = document.createElement('meta');
+      viewport.name = 'viewport';
+      viewport.content = 'width=device-width, initial-scale=1';
+      document.head.appendChild(viewport);
+    }
+
+  }, []); // Empty dependency array means this runs once on mount
   return (
     <>
-      <Head>
-        <title>Duqor Residential Interior Design | Luxury Homes & Villas in Dubai, UAE</title>
-        <meta
-          name="description"
-          content="Duqor creates elegant and functional residential interiors for luxury homes and villas in Dubai, UAE. Transforming spaces into comfortable, stylish, and sophisticated living environments."
-        />
-        <link rel="canonical" href="https://www.duqor.ae/residential-renovation-in-dubai" />
-      </Head>
-
       <main className="bg-black text-white">
         <HeroSection />
         <Introduction />

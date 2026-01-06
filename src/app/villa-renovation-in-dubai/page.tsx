@@ -5,7 +5,6 @@ import Image from "next/image";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import Link from "next/link";
-import Head from "next/head";
 
 import {
   ArrowRight,
@@ -113,207 +112,200 @@ function HeroSection() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
-  {/* Background Slider */}
-  <div className="absolute inset-0 z-0">
-    <AnimatePresence mode="wait">
-      <motion.div
-        key={slide}
-        initial={{ opacity: 0, scale: 1.1 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 0.95 }}
-        transition={{ duration: 1.2 }}
-        className="absolute inset-0"
-      >
-        <Image
-          src={heroImages[slide].src}
-          alt={heroImages[slide].alt}
-          fill
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-linear-to-b from-black/60 via-black/40 to-black/70" />
-      </motion.div>
-    </AnimatePresence>
-  </div>
-
-  {/* Particles */}
-  {mounted && (
-    <div className="absolute inset-0 pointer-events-none z-10">
-      {particles.map((p, i) => (
-        <motion.div
-          key={i}
-          className="absolute w-1 h-1 bg-[#e7c675] rounded-full opacity-40"
-          style={{ left: p.x, top: p.y }}
-          animate={{
-            y: [p.y, p.y - 100, p.y],
-            opacity: [0.4, 0.8, 0.4],
-          }}
-          transition={{
-            duration: p.dur,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-      ))}
-    </div>
-  )}
-
-  {/* Content */}
-  <div
-  className="relative z-20 w-full max-w-7xl mx-auto
-    px-4 sm:px-6
-    pt-24 sm:pt-32
-    py-16 lg:py-20
-    lg:pl-[7%]
-    md:pr-[7%]"
->
-
-
-    <div className="grid lg:grid-cols-2 gap-8 md:gap-10 lg:gap-12 items-center">
-
-      {/* Left */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.9, delay: 0.2 }}
-        className="space-y-6 text-center lg:text-left"
-      >
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-bold text-white leading-tight">
-          Villa Renovation{" "}
-          <span className={COPPER_GRADIENT}>Reimagined</span>
-        </h1>
-
-        <p className="text-base sm:text-lg md:text-xl text-gray-200 max-w-2xl mx-auto lg:mx-0">
-          Transforming villas into timeless, elegant homes through design,
-          craftsmanship, and intelligent living solutions.
-        </p>
-
-       <div className="flex justify-center lg:justify-start pt-3">
-  <Link href="/portfolio" className="hidden sm:inline-block">
-  <button className="group cursor-pointer px-8 py-4 bg-linear-to-r from-[#e7c675] to-[#c38a27] text-black font-semibold rounded-full hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center gap-2">
-    View All Projects
-    <ArrowRight className="group-hover:translate-x-1 transition-transform" />
-  </button>
-</Link>
-
-</div>
-      </motion.div>
-
-      {/* Right */}
-        <motion.div
-      initial={{ opacity: 0, x: 30 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.9, delay: 0.4 }}
-      className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-6 md:p-8 max-w-md w-full mx-auto lg:mx-0"
-    >
-      <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
-        Let&apos;s Discuss Your Project
-      </h2>
-      <p className="text-sm md:text-base text-gray-600 mb-5">
-        Fill in your details and we’ll reach out soon.
-      </p>
-
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <input
-          type="hidden"
-          name="access_key"
-          value="b601d7fe-9d0c-448b-8f4e-f83b4879d175"
-        />
-        <input type="hidden" name="subject" value="New Villa Renovation Inquiry" />
-
-        {/* Name */}
-        <div>
-          <label className="block text-xs font-medium text-gray-700 mb-1.5">
-            Name *
-          </label>
-          <input
-            type="text"
-            name="name"
-            required
-            className="w-full px-3 py-2.5 text-sm rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#c38a27] focus:border-transparent outline-none transition-all text-gray-900"
-            placeholder="Your full name"
-          />
-        </div>
-
-        {/* Email and Phone */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {/* Email */}
-          <div>
-            <label className="block text-xs font-medium text-gray-700 mb-1.5">
-              Email *
-            </label>
-            <input
-              type="email"
-              name="email"
-              required
-              className="w-full px-3 py-2.5 text-sm rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#c38a27] focus:border-transparent outline-none transition-all text-gray-900"
-              placeholder="your@email.com"
+      {/* Background Slider */}
+      <div className="absolute inset-0 z-0">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={slide}
+            initial={{ opacity: 0, scale: 1.1 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 1.2 }}
+            className="absolute inset-0"
+          >
+            <Image
+              src={heroImages[slide].src}
+              alt={heroImages[slide].alt}
+              fill
+              className="object-cover"
             />
-          </div>
+            <div className="absolute inset-0 bg-linear-to-b from-black/60 via-black/40 to-black/70" />
+          </motion.div>
+        </AnimatePresence>
+      </div>
 
-          {/* Phone with Country Code */}
-          <div>
-            <label className="block text-xs font-medium text-gray-700 mb-1.5">
-              Phone *
-            </label>
-            <PhoneInput
-  country={"ae"} // default country
-  value={phone}
-  onChange={setPhone}
-  inputProps={{
-    name: "phone",
-    required: true,
-    placeholder: "+971 50 123 4567",
-  }}
-  containerStyle={{ width: "100%" }} // full width container
-  inputStyle={{
-    width: "100%",
-    paddingLeft: "48px", // leaves space for dropdown flag
-    height: "44px",
-    borderRadius: "0.5rem",
-    border: "1px solid #D1D5DB", // matches Tailwind gray-300
-    fontSize: "0.875rem", // Tailwind text-sm
-    color: "#111827", // Tailwind gray-900
-  }}
-  buttonStyle={{
-    border: "none",
-    borderRadius: "0.5rem 0 0 0.5rem",
-  }}
-  dropdownStyle={{
-    borderRadius: "0.5rem",
-    color: "#111827",
-  }}
-/>
-
-          </div>
+      {/* Particles */}
+      {mounted && (
+        <div className="absolute inset-0 pointer-events-none z-10">
+          {particles.map((p, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-1 bg-[#e7c675] rounded-full opacity-40"
+              style={{ left: p.x, top: p.y }}
+              animate={{
+                y: [p.y, p.y - 100, p.y],
+                opacity: [0.4, 0.8, 0.4],
+              }}
+              transition={{
+                duration: p.dur,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            />
+          ))}
         </div>
+      )}
 
-        {/* Message */}
-        <div>
-          <label className="block text-xs font-medium text-gray-700 mb-1.5">
-            Message
-          </label>
-          <textarea
-            name="message"
-            rows={3}
-            className="w-full px-3 py-2.5 text-sm rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#c38a27] focus:border-transparent outline-none transition-all resize-none text-gray-900"
-            placeholder="Tell us about your villa renovation project..."
-          />
+      {/* Content */}
+      <div
+        className="relative z-20 w-full max-w-7xl mx-auto
+          px-4 sm:px-6
+          pt-24 sm:pt-32
+          py-16 lg:py-20
+          lg:pl-[7%]
+          md:pr-[7%]"
+      >
+        <div className="grid lg:grid-cols-2 gap-8 md:gap-10 lg:gap-12 items-center">
+          {/* Left */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.2 }}
+            className="space-y-6 text-center lg:text-left"
+          >
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-bold text-white leading-tight">
+              Villa Renovation{" "}
+              <span className={COPPER_GRADIENT}>Reimagined</span>
+            </h1>
+
+            <p className="text-base sm:text-lg md:text-xl text-gray-200 max-w-2xl mx-auto lg:mx-0">
+              Transforming villas into timeless, elegant homes through design,
+              craftsmanship, and intelligent living solutions.
+            </p>
+
+            <div className="flex justify-center lg:justify-start pt-3">
+              <Link href="/portfolio" className="hidden sm:inline-block">
+                <button className="group cursor-pointer px-8 py-4 bg-linear-to-r from-[#e7c675] to-[#c38a27] text-black font-semibold rounded-full hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center gap-2">
+                  View All Projects
+                  <ArrowRight className="group-hover:translate-x-1 transition-transform" />
+                </button>
+              </Link>
+            </div>
+          </motion.div>
+
+          {/* Right */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.9, delay: 0.4 }}
+            className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-6 md:p-8 max-w-md w-full mx-auto lg:mx-0"
+          >
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+              Let&apos;s Discuss Your Project
+            </h2>
+            <p className="text-sm md:text-base text-gray-600 mb-5">
+              Fill in your details and we&apos;ll reach out soon.
+            </p>
+
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <input
+                type="hidden"
+                name="access_key"
+                value="b601d7fe-9d0c-448b-8f4e-f83b4879d175"
+              />
+              <input type="hidden" name="subject" value="New Villa Renovation Inquiry" />
+
+              {/* Name */}
+              <div>
+                <label className="block text-xs font-medium text-gray-700 mb-1.5">
+                  Name *
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  required
+                  className="w-full px-3 py-2.5 text-sm rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#c38a27] focus:border-transparent outline-none transition-all text-gray-900"
+                  placeholder="Your full name"
+                />
+              </div>
+
+              {/* Email and Phone */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {/* Email */}
+                <div>
+                  <label className="block text-xs font-medium text-gray-700 mb-1.5">
+                    Email *
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    className="w-full px-3 py-2.5 text-sm rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#c38a27] focus:border-transparent outline-none transition-all text-gray-900"
+                    placeholder="your@email.com"
+                  />
+                </div>
+
+                {/* Phone with Country Code */}
+                <div>
+                  <label className="block text-xs font-medium text-gray-700 mb-1.5">
+                    Phone *
+                  </label>
+                  <PhoneInput
+                    country={"ae"}
+                    value={phone}
+                    onChange={setPhone}
+                    inputProps={{
+                      name: "phone",
+                      required: true,
+                      placeholder: "+971 50 123 4567",
+                    }}
+                    containerStyle={{ width: "100%" }}
+                    inputStyle={{
+                      width: "100%",
+                      paddingLeft: "48px",
+                      height: "44px",
+                      borderRadius: "0.5rem",
+                      border: "1px solid #D1D5DB",
+                      fontSize: "0.875rem",
+                      color: "#111827",
+                    }}
+                    buttonStyle={{
+                      border: "none",
+                      borderRadius: "0.5rem 0 0 0.5rem",
+                    }}
+                    dropdownStyle={{
+                      borderRadius: "0.5rem",
+                      color: "#111827",
+                    }}
+                  />
+                </div>
+              </div>
+
+              {/* Message */}
+              <div>
+                <label className="block text-xs font-medium text-gray-700 mb-1.5">
+                  Message
+                </label>
+                <textarea
+                  name="message"
+                  rows={3}
+                  className="w-full px-3 py-2.5 text-sm rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#c38a27] focus:border-transparent outline-none transition-all resize-none text-gray-900"
+                  placeholder="Tell us about your villa renovation project..."
+                />
+              </div>
+
+              {/* Submit */}
+              <button
+                type="submit"
+                className="w-full px-5 py-3 bg-linear-to-r from-[#e7c675] to-[#c38a27] text-black text-sm font-semibold rounded-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300 cursor-pointer"
+              >
+                Send Message
+              </button>
+            </form>
+          </motion.div>
         </div>
-
-        {/* Submit */}
-        <button
-          type="submit"
-          className="w-full px-5 py-3 bg-linear-to-r from-[#e7c675] to-[#c38a27] text-black text-sm font-semibold rounded-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300 cursor-pointer"
-        >
-          Send Message
-        </button>
-      </form>
-    </motion.div>
-
-    </div>
-  </div>
-</section>
-
+      </div>
+    </section>
   );
 }
 
@@ -338,11 +330,11 @@ function Introduction() {
         </p>
       </motion.div>
       <motion.div
-              initial={{ width: 0 }}
-              whileInView={{ width: "60%" }}
-              transition={{ duration: 1.2, delay: 0.5 }}
-              className="mx-auto mt-20 h-0.5 bg-linear-to-r from-transparent via-[#c38a27] to-transparent"
-            />
+        initial={{ width: 0 }}
+        whileInView={{ width: "60%" }}
+        transition={{ duration: 1.2, delay: 0.5 }}
+        className="mx-auto mt-20 h-0.5 bg-linear-to-r from-transparent via-[#c38a27] to-transparent"
+      />
     </section>
   );
 }
@@ -458,14 +450,14 @@ function SignatureProjects() {
             </h3>
             <p className="text-lg text-gray-200 mb-6 max-w-2xl">{slide.desc}</p>
             <Link
-  href="/portfolio"
-  className="inline-flex items-center gap-2 px-6 py-3
-    bg-white/20 backdrop-blur-sm text-white font-semibold
-    rounded-full hover:bg-white/30 transition-all"
->
-  Explore All Projects
-  <ArrowRight className="w-5 h-5" />
-</Link>
+              href="/portfolio"
+              className="inline-flex items-center gap-2 px-6 py-3
+                bg-white/20 backdrop-blur-sm text-white font-semibold
+                rounded-full hover:bg-white/30 transition-all"
+            >
+              Explore All Projects
+              <ArrowRight className="w-5 h-5" />
+            </Link>
           </div>
         </motion.div>
       </div>
@@ -542,7 +534,6 @@ function CoreCapabilities() {
   );
 }
 
-
 /* ───────────────────────── CLIENT EXPERIENCE ───────────────────────── */
 function ClientExperience() {
   return (
@@ -570,13 +561,13 @@ function ClientExperience() {
 function FinalCTA() {
   return (
     <section className="relative py-32 px-6 overflow-hidden">
-     <Image
-  src="/images/villa/4.jpeg"
-  alt="Elegant villa exterior at sunset"
-  fill
-  className="object-cover"
-  priority
-/>
+      <Image
+        src="/images/villa/4.jpeg"
+        alt="Elegant villa exterior at sunset"
+        fill
+        className="object-cover"
+        priority
+      />
       <div className="absolute inset-0 bg-black/60" />
 
       <motion.div
@@ -595,15 +586,15 @@ function FinalCTA() {
         </p>
         <div className="flex flex-wrap gap-4 justify-center pt-6">
           <Link
-  href="/contact"
-  className="inline-block px-8 py-4 bg-linear-to-r from-[#e7c675] to-[#c38a27] text-black font-semibold rounded-full hover:shadow-2xl hover:scale-105 transition-all duration-300"
->
-  Contact Us
-</Link>
+            href="/contact"
+            className="inline-block px-8 py-4 bg-linear-to-r from-[#e7c675] to-[#c38a27] text-black font-semibold rounded-full hover:shadow-2xl hover:scale-105 transition-all duration-300"
+          >
+            Contact Us
+          </Link>
           <Link
-  href="/portfolio"
-  className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-full border-2 border-white/30 hover:bg-white/20 transition-all duration-300"
->
+            href="/portfolio"
+            className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-full border-2 border-white/30 hover:bg-white/20 transition-all duration-300"
+          >
             View Projects
           </Link>
         </div>
@@ -612,32 +603,82 @@ function FinalCTA() {
   );
 }
 
-/* ───────────────────────── PAGE EXPORT ───────────────────────── */
+/* ───────────────────────── PAGE EXPORT WITH CLIENT-SIDE METADATA ───────────────────────── */
 export default function VillaInteriors() {
+  // Client-side metadata injection
+  useEffect(() => {
+    // Set document title
+    document.title = "Luxury Villa Renovation & Interiors in Dubai, UAE | Duqor";
+    
+    // Helper function to set or update meta tags
+    const setMetaTag = (name: string, content: string, isProperty = false) => {
+      const attribute = isProperty ? 'property' : 'name';
+      let meta = document.querySelector(`meta[${attribute}="${name}"]`) as HTMLMetaElement;
+      
+      if (!meta) {
+        meta = document.createElement('meta');
+        meta.setAttribute(attribute, name);
+        document.head.appendChild(meta);
+      }
+      meta.content = content;
+    };
+
+    // Set meta description
+    setMetaTag(
+      'description',
+      'Duqor offers luxury villa renovation and interior design services in Dubai, UAE. Transform your villa with premium design, fit-out, and execution.'
+    );
+
+    // Set robots meta tag
+    setMetaTag('robots', 'index, follow');
+
+    // Set geo meta tags
+    setMetaTag('geo.region', 'AE-DU');
+    setMetaTag('geo.placename', 'Dubai');
+
+    // Set Open Graph tags (using property attribute)
+    setMetaTag('og:title', 'Luxury Villa Renovation & Interiors in Dubai, UAE | Duqor', true);
+    setMetaTag(
+      'og:description',
+      'Duqor offers luxury villa renovation and interior design services in Dubai, UAE. Transform your villa with premium design, fit-out, and execution.',
+      true
+    );
+    setMetaTag('og:type', 'website', true);
+    setMetaTag('og:url', 'https://www.duqor.ae/villa-renovation-in-dubai', true);
+
+    // Set Twitter Card tags
+    setMetaTag('twitter:card', 'summary_large_image');
+    setMetaTag('twitter:title', 'Luxury Villa Renovation & Interiors in Dubai, UAE | Duqor');
+    setMetaTag(
+      'twitter:description',
+      'Duqor offers luxury villa renovation and interior design services in Dubai, UAE. Transform your villa with premium design, fit-out, and execution.'
+    );
+
+    // Set canonical link
+    let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.rel = 'canonical';
+      document.head.appendChild(canonical);
+    }
+    canonical.href = 'https://www.duqor.ae/villa-renovation-in-dubai';
+
+    // Cleanup function (optional - removes dynamically added tags on unmount)
+    return () => {
+      // You can optionally remove the tags when component unmounts
+      // but usually it's fine to leave them
+    };
+  }, []);
+
   return (
-    <>
-      <Head>
-         <title>Luxury Villa Renovation & Interiors in Dubai, UAE | Duqor</title>
-        <meta
-          name="description"
-          content="Duqor offers luxury villa renovation and interior design services in Dubai, UAE. Transform your villa with premium design, fit-out, and execution."
-        />
-
-        <meta name="robots" content="index, follow" />
-        <meta name="geo.region" content="AE-DU" />
-        <meta name="geo.placename" content="Dubai" />
-        <link rel="canonical" href="https://www.duqor.ae/villa-renovation-in-dubai" />
-      </Head>
-
-      <div className="bg-white">
-        <HeroSection />
-        <Introduction />
-        <DesignApproach />
-        <SignatureProjects />
-        <CoreCapabilities />
-        <ClientExperience />
-        <FinalCTA />
-      </div>
-    </>
+    <div className="bg-white">
+      <HeroSection />
+      <Introduction />
+      <DesignApproach />
+      <SignatureProjects />
+      <CoreCapabilities />
+      <ClientExperience />
+      <FinalCTA />
+    </div>
   );
 }

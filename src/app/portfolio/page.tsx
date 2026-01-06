@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useState, memo, useCallback } from "react";
+import React, { useState, memo, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import Head from "next/head";
 import { ArrowLeft, ArrowRight, X } from "lucide-react";
 
 // ---------------------------------------------------------------------------
@@ -309,6 +308,45 @@ export default function ProjectsPage() {
   const [activeProject, setActiveProject] = useState<Project | null>(null);
   const [currentImage, setCurrentImage] = useState(0);
 
+  // Client-side metadata injection
+  useEffect(() => {
+    document.title = "Duqor Signature Projects | Luxury Interior Design Portfolio in Dubai, UAE";
+    
+    const setMetaTag = (name: string, content: string, isProperty = false) => {
+      const attribute = isProperty ? 'property' : 'name';
+      let meta = document.querySelector(`meta[${attribute}="${name}"]`) as HTMLMetaElement;
+      
+      if (!meta) {
+        meta = document.createElement('meta');
+        meta.setAttribute(attribute, name);
+        document.head.appendChild(meta);
+      }
+      meta.content = content;
+    };
+
+    setMetaTag('description', "Explore Duqor's signature interior design projects in Dubai, UAE. View our luxury residential, commercial, hospitality, and villa renovation portfolio showcasing timeless elegance and craftsmanship.");
+    setMetaTag('robots', 'index, follow');
+    setMetaTag('geo.region', 'AE-DU');
+    setMetaTag('geo.placename', 'Dubai');
+    
+    setMetaTag('og:title', 'Duqor Signature Projects | Luxury Interior Design Portfolio in Dubai, UAE', true);
+    setMetaTag('og:description', "Explore Duqor's signature interior design projects in Dubai, UAE. View our luxury residential, commercial, hospitality, and villa renovation portfolio showcasing timeless elegance and craftsmanship.", true);
+    setMetaTag('og:type', 'website', true);
+    setMetaTag('og:url', 'https://www.duqor.ae/portfolio', true);
+    
+    setMetaTag('twitter:card', 'summary_large_image');
+    setMetaTag('twitter:title', 'Duqor Signature Projects | Luxury Interior Design Portfolio in Dubai, UAE');
+    setMetaTag('twitter:description', "Explore Duqor's signature interior design projects in Dubai, UAE. View our luxury residential, commercial, hospitality, and villa renovation portfolio showcasing timeless elegance and craftsmanship.");
+
+    let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.rel = 'canonical';
+      document.head.appendChild(canonical);
+    }
+    canonical.href = 'https://www.duqor.ae/portfolio';
+  }, []);
+
   const openGallery = useCallback((project: Project) => {
     setActiveProject(project);
     setCurrentImage(0);
@@ -334,104 +372,91 @@ export default function ProjectsPage() {
   }, [activeProject]);
 
   return (
-    <>
-      <Head>
-        <title>Duqor Signature Projects</title>
-        <meta
-          name="description"
-          content="Explore Duqor's signature interior design projects."
-        />
-      </Head>
+    <section className="min-h-screen bg-[#0a0a0a] text-white py-24 px-4 md:px-6">
+      {/* Title */}
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="text-center mb-20"
+      >
+        <h1 className="text-4xl md:text-5xl font-serif font-bold bg-linear-to-b from-[#e7c675] via-[#c38a27] to-[#8b5b10] bg-clip-text text-transparent">
+          Our Signature Projects
+        </h1>
 
-      <section className="min-h-screen bg-[#0a0a0a] text-white py-24 px-4 md:px-6">
-        {/* Title */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-20"
-        >
-          <h1 className="text-4xl md:text-5xl font-serif font-bold bg-linear-to-b from-[#e7c675] via-[#c38a27] to-[#8b5b10] bg-clip-text text-transparent">
-            Our Signature Projects
-          </h1>
+        <p className="text-gray-300 max-w-2xl mx-auto mt-4">
+          Luxury, creativity, and timeless elegance in every space.
+        </p>
+      </motion.div>
 
-          <p className="text-gray-300 max-w-2xl mx-auto mt-4">
-            Luxury, creativity, and timeless elegance in every space.
-          </p>
-        </motion.div>
+      {/* Categories */}
+      {projectCategories.map((category, i) => (
+        <CategoryBlock key={i} category={category} openGallery={openGallery} />
+      ))}
 
-        {/* Categories */}
-        {projectCategories.map((category, i) => (
-          <CategoryBlock key={i} category={category} openGallery={openGallery} />
-        ))}
-
-        {/* Gallery Modal */}
-        <AnimatePresence>
-          {activeProject && (
-            <motion.div
-              className="fixed inset-0 bg-black/90 backdrop-blur-md flex flex-col items-center justify-center z-50 p-4"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+      {/* Gallery Modal */}
+      <AnimatePresence>
+        {activeProject && (
+          <motion.div
+            className="fixed inset-0 bg-black/90 backdrop-blur-md flex flex-col items-center justify-center z-50 p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <button
+              onClick={closeGallery}
+              className="absolute top-6 right-6 text-gray-300 hover:text-white transition"
             >
-              <button
-                onClick={closeGallery}
-                className="absolute top-6 right-6 text-gray-300 hover:text-white transition"
-              >
-                <X size={28} />
-              </button>
+              <X size={28} />
+            </button>
 
-              <div className="max-w-5xl w-full flex flex-col items-center">
-                <h3 className="text-2xl font-semibold mb-6 text-center bg-linear-to-b from-[#e7c675] via-[#c38a27] to-[#8b5b10] bg-clip-text text-transparent">
-                  {activeProject.title}
-                </h3>
+            <div className="max-w-5xl w-full flex flex-col items-center">
+              <h3 className="text-2xl font-semibold mb-6 text-center bg-linear-to-b from-[#e7c675] via-[#c38a27] to-[#8b5b10] bg-clip-text text-transparent">
+                {activeProject.title}
+              </h3>
 
-                <div className="relative w-full flex items-center justify-center">
-                  {/* Left */}
-                  <button
-                    onClick={prevImage}
-                    className="absolute left-2 md:left-6 text-gray-300 hover:text-[#c38a27] transition"
-                  >
-                    <ArrowLeft size={36} />
-                  </button>
+              <div className="relative w-full flex items-center justify-center">
+                <button
+                  onClick={prevImage}
+                  className="absolute left-2 md:left-6 text-gray-300 hover:text-[#c38a27] transition"
+                >
+                  <ArrowLeft size={36} />
+                </button>
 
-                  {/* Image */}
-                  <motion.div
-                    key={currentImage}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.35 }}
-                    className="w-full flex justify-center"
-                  >
-                    <Image
-                      src={activeProject.images[currentImage]}
-                      alt="project photo"
-                      width={900}
-                      height={500}
-                      loading="lazy"
-                      quality={75}
-                      className="rounded-2xl object-cover shadow-2xl"
-                    />
-                  </motion.div>
+                <motion.div
+                  key={currentImage}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.35 }}
+                  className="w-full flex justify-center"
+                >
+                  <Image
+                    src={activeProject.images[currentImage]}
+                    alt="project photo"
+                    width={900}
+                    height={500}
+                    loading="lazy"
+                    quality={75}
+                    className="rounded-2xl object-cover shadow-2xl"
+                  />
+                </motion.div>
 
-                  {/* Right */}
-                  <button
-                    onClick={nextImage}
-                    className="absolute right-2 md:right-6 text-gray-300 hover:text-[#c38a27] transition"
-                  >
-                    <ArrowRight size={36} />
-                  </button>
-                </div>
-
-                <p className="text-gray-400 text-sm mt-4">
-                  Image {currentImage + 1} of {activeProject.images.length}
-                </p>
+                <button
+                  onClick={nextImage}
+                  className="absolute right-2 md:right-6 text-gray-300 hover:text-[#c38a27] transition"
+                >
+                  <ArrowRight size={36} />
+                </button>
               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </section>
-    </>
+
+              <p className="text-gray-400 text-sm mt-4">
+                Image {currentImage + 1} of {activeProject.images.length}
+              </p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </section>
   );
 }
