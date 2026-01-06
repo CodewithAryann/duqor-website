@@ -500,10 +500,10 @@ export default function ResidentialInteriors() {
   return (
     <>
       <Head>
-        <title>Duqor Residential Interior Design | Luxury Homes & Villas</title>
+        <title>Duqor Residential Interior Design | Luxury Homes & Villas in Dubai, UAE</title>
         <meta
           name="description"
-          content="Duqor creates elegant and functional residential interiors for luxury homes and villas. Transforming spaces into comfortable, stylish, and sophisticated living environments."
+          content="Duqor creates elegant and functional residential interiors for luxury homes and villas in Dubai, UAE. Transforming spaces into comfortable, stylish, and sophisticated living environments."
         />
         <link rel="canonical" href="https://www.duqor.ae/residential-renovation-in-dubai" />
       </Head>

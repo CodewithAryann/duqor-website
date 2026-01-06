@@ -617,13 +617,12 @@ export default function VillaInteriors() {
   return (
     <>
       <Head>
-        <title>Luxury Villa Renovation & Interiors in Dubai | Duqor</title>
+         <title>Luxury Villa Renovation & Interiors in Dubai, UAE | Duqor</title>
         <meta
           name="description"
-          content="Duqor offers luxury villa renovation and interior design services in Dubai. Transform your villa with premium design, fit-out, and execution."
+          content="Duqor offers luxury villa renovation and interior design services in Dubai, UAE. Transform your villa with premium design, fit-out, and execution."
         />
 
-        {/* Optional but recommended */}
         <meta name="robots" content="index, follow" />
         <meta name="geo.region" content="AE-DU" />
         <meta name="geo.placename" content="Dubai" />

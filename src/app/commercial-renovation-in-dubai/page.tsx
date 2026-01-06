@@ -529,11 +529,11 @@ export default function CommercialInteriors() {
   return (
     <>
       <Head>
-  <title>Duqor Commercial Interior Design | Corporate & Office Spaces</title>
-  <meta
-    name="description"
-    content="Duqor creates elegant and functional commercial interiors for corporate offices and workspaces. Transforming spaces into productive, stylish, and sophisticated environments."
-  />
+  <title>Duqor Commercial Interior Design | Corporate & Office Spaces in Dubai, UAE</title>
+        <meta
+          name="description"
+          content="Duqor creates elegant and functional commercial interiors for corporate offices and workspaces in Dubai, UAE. Transforming spaces into productive, stylish, and sophisticated environments."
+        />
   <link rel="canonical" href="https://www.duqor.ae/commercial-renovation-in-dubai" />
 </Head>
 

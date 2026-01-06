@@ -556,10 +556,10 @@ export default function HospitalityInteriors() {
   return (
     <>
       <Head>
-        <title>Duqor Hospitality Interior Design | Luxury Hotel & Restaurant Spaces</title>
+        <title>Duqor Hospitality Interior Design | Luxury Hotel & Restaurant Spaces in Dubai, UAE</title>
         <meta
           name="description"
-          content="Duqor creates elegant and functional hospitality interiors for hotels, resorts, and restaurants."
+          content="Duqor creates elegant and functional hospitality interiors for hotels, resorts, and restaurants in Dubai, UAE. Transforming spaces into stylish, comfortable, and sophisticated environments."
         />
         <link rel="canonical" href="https://www.duqor.ae/hospitality-renovation-in-dubai" />
       </Head>
