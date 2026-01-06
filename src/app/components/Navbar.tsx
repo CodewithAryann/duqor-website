@@ -39,10 +39,10 @@ const Navbar: React.FC = () => {
   ];
 
   const businessVerticals = [
-    { label: "Residential Interiors", href: "/residential" },
-    { label: "Commercial Interiors", href: "/commercial" },
-    { label: "Hospitality Interiors", href: "/hospitality" },
-    { label: "Villa Interiors", href: "/villa" },
+    { label: "Residential Interiors", href: "/residential-renovation-in-dubai" },
+    { label: "Commercial Interiors", href: "/commercial-renovation-in-dubai" },
+    { label: "Hospitality Interiors", href: "/hospitality-renovation-in-dubai" },
+    { label: "Villa Interiors", href: "/villa-renovation-in-dubai" },
   ];
 
   const handleServiceClick = (e: React.MouseEvent<HTMLAnchorElement>) => {

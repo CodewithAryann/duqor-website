@@ -505,7 +505,7 @@ export default function ResidentialInteriors() {
           name="description"
           content="Duqor creates elegant and functional residential interiors for luxury homes and villas. Transforming spaces into comfortable, stylish, and sophisticated living environments."
         />
-        <link rel="canonical" href="https://www.duqor.ae/residential" />
+        <link rel="canonical" href="https://www.duqor.ae/residential-renovation-in-dubai" />
       </Head>
 
       <main className="bg-black text-white">

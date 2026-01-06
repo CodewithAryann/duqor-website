@@ -5,15 +5,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  ArrowRight,
-  Hammer,
-  LayoutGrid,
-  Sparkles,
-  Palette,
-  Lamp,
-  Gem,
-  Route,
-  Feather,
+ ArrowRight,
+  Layers,
+  Lightbulb,
+  Users,
+  Ruler,
+  Settings,
+  Briefcase,
   Quote,
 } from "lucide-react";
 import Head from "next/head";
@@ -46,22 +44,11 @@ function seededRandom(seed: number) {
 function HeroSection() {
   const heroImages: HeroImage[] = useMemo(
     () => [
-      {
-        src: "/images/hospitality/duqor-hotel-lobby.webp",
-        alt: "Duqor hotel lobby interior design with luxurious lighting",
-      },
-      // {
-      //   src: "/images/hospitality/verve-urban-lounge.webp",
-      //   alt: "Verve Urban Lounge interior design with modern furnishings",
-      // },
-      // {
-      //   src: "/images/hospitality/luxury-hotel-suite.webp",
-      //   alt: "Luxury hotel suite designed for comfort and style",
-      // },
-      // {
-      //   src: "/images/hospitality/boutique-restaurant-dining.webp",
-      //   alt: "Boutique restaurant dining area with elegant ambiance",
-      // },
+       {
+    src: "/images/portfolio/project-3/pic-14.png",
+    name: "Corporate Office Suite",
+    alt: "Interior view of a corporate office suite with modern workstations and sleek design"
+  },
     ],
     []
   );
@@ -144,8 +131,8 @@ function HeroSection() {
           transition={{ duration: 0.8 }}
           className="text-4xl md:text-6xl font-bold tracking-tight"
         >
-          <span className="text-white/90">Crafting Hospitality </span>
-          <span className={COPPER_GRADIENT}>with Heart</span>
+          <span className="text-white/90">Redefining Workspaces</span>
+          <span className={COPPER_GRADIENT}> with Purpose</span>
         </motion.h1>
 
         <motion.p
@@ -154,7 +141,7 @@ function HeroSection() {
           transition={{ delay: 0.2, duration: 0.8 }}
           className="mt-6 text-gray-300 text-lg md:text-xl max-w-2xl"
         >
-          Elegant, functional, unforgettable — spaces that elevate every guest experience.
+          Designing homes that reflect individuality, warmth, and timeless elegance.
         </motion.p>
 
         <motion.div
@@ -192,8 +179,7 @@ function Introduction() {
         className="max-w-3xl mx-auto"
       >
         <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
-          At <span className={COPPER_GRADIENT}>Duqor</span>, we create ambiences that captivate —
-          from boutique hotels to luxury restaurants.
+          At <span className={COPPER_GRADIENT}>Duqor</span>, we design workspaces that go beyond functionality — shaping environments where ideas thrive. Our commercial office interiors blend architectural precision with human-centric design, optimizing every inch for productivity, comfort, and aesthetic harmony.
         </p>
       </motion.div>
 
@@ -211,26 +197,10 @@ function Introduction() {
 function DesignApproach() {
   const approaches = useMemo(
     () => [
-      {
-        title: "Concept Development",
-        desc: "Immersive storytelling that reflects brand ethos.",
-        icon: <Sparkles size={28} />,
-      },
-      {
-        title: "Material & Finish Selection",
-        desc: "Textures and tones that balance warmth and luxury.",
-        icon: <Palette size={28} />,
-      },
-      {
-        title: "Space Planning & Lighting",
-        desc: "Flow and lighting curated to heighten atmosphere.",
-        icon: <LayoutGrid size={28} />,
-      },
-      {
-        title: "Execution & Detailing",
-        desc: "Delivering sensory design with meticulous attention.",
-        icon: <Hammer size={28} />,
-      },
+      { title: "Concept Development", desc: "We translate brand identity into spatial experiences that define purpose and inspire culture.", icon: <Lightbulb size={28} /> },
+      { title: "Material & Finish Selection", desc: "Elegant, durable, and sustainable materials that reflect quality and functionality.", icon: <Layers size={28} /> },
+      { title: "Space Planning & Lighting", desc: "Balanced layouts designed for collaboration, focus, and productivity.", icon: <Ruler size={28} /> },
+      { title: "Execution & Detailing", desc: "Delivered with craftsmanship, precision, and strict adherence to timelines.", icon: <Settings size={28} /> },
     ],
     []
   );
@@ -242,7 +212,7 @@ function DesignApproach() {
           <span className={COPPER_GRADIENT}>Our</span> Design Approach
         </h2>
         <p className="text-gray-400 max-w-xl mx-auto mt-2">
-          From concept to execution, we craft spaces that resonate with your brand.
+          From concept to execution, we craft spaces that resonate with your brand and culture.
         </p>
       </div>
 
@@ -271,10 +241,10 @@ function DesignApproach() {
 /* ───────────────────────── SIGNATURE PROJECTS ───────────────────────── */
 function SignatureProjects() {
   const slide = {
-    img: "/images/portfolio/project-5/pic-9.jpg",
-    title: "Luma Boutique Hotel",
-    desc: "Refined fusion of comfort and contemporary design.",
-    alt: "Interior view of Luma Boutique Hotel showcasing luxury modern design",
+    img: "/images/portfolio/project-4/pic-5.png",
+  title: "Corporate Elegance Tower",
+  desc: "A bold workspace redefining productivity and prestige for leading enterprises.",
+  alt: "Interior view of Corporate Elegance Tower showcasing modern workspace design with prestige and functionality"
   };
 
   return (
@@ -319,7 +289,7 @@ function SignatureProjects() {
           </p>
 
           <Link href="/projects" aria-label="Explore all interior design projects">
-            <button className="px-8 py-3 rounded-full bg-[#c38a27] cursor-pointer text-black font-semibold hover:bg-[#d4b15a] transition">
+            <button className="px-8 py-3 rounded-full bg-[#c38a27] text-black cursor-pointer font-semibold hover:bg-[#d4b15a] transition">
               Explore All Projects
             </button>
           </Link>
@@ -334,10 +304,10 @@ function SignatureProjects() {
 function CoreCapabilities() {
   const items = useMemo(
     () => [
-      { icon: <Lamp size={36} />, label: "Ambient & Lighting Design" },
-      { icon: <Gem size={36} />, label: "Luxury Material Integration" },
-      { icon: <Route size={36} />, label: "Guest Flow & Planning" },
-      { icon: <Feather size={36} />, label: "Signature Detailing & Decor" },
+     { icon: <Layers size={36} />, label: "Ergonomic & Flexible Layouts" },
+    { icon: <Lightbulb size={36} />, label: "Acoustic & Lighting Design" },
+    { icon: <Users size={36} />, label: "Collaborative Zones & Suites" },
+    { icon: <Briefcase size={36} />, label: "Brand Identity Integration" },
     ],
     []
   );
@@ -373,9 +343,9 @@ function ClientExperience() {
       <div className="max-w-4xl mx-auto text-center">
         <Quote className="mx-auto mb-6 text-[#c38a27] w-12 h-12" />
         <p className="text-xl md:text-2xl text-gray-300 font-semibold mb-6">
-          “Duqor’s design elevated our guest experience beyond expectations.”
+          “Duqor transformed our office into a vibrant workspace that truly represents our company culture.
         </p>
-        <p className="text-gray-400">— Hotel Group, Dubai</p>
+        <p className="text-gray-400">— Corporate Client, Dubai.</p>
       </div>
     </section>
   );
@@ -412,8 +382,8 @@ function ContactForm() {
         {/* Left Image */}
         <div className="relative w-full h-[610px] rounded-2xl overflow-hidden">
           <Image
-            src="/images/portfolio/project-5/pic-4.jpg"
-            alt="Hospitality Interior Design"
+            src="/images/portfolio/project-4/pic-1.png"
+            alt="Commercial Interior Design"
             fill
             className="object-cover scale-105 hover:scale-100 transition-all duration-700"
             sizes="(max-width: 768px) 100vw, 50vw"
@@ -511,27 +481,30 @@ function ContactForm() {
   );
 }
 
+
 /* ───────────────────────── FINAL CTA ───────────────────────── */
 function FinalCTA() {
   return (
     <section
       className="py-32 text-center bg-cover bg-center relative"
       style={{
-    backgroundImage:
-      "linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(17,17,17,0.5), rgba(0,0,0,0.5)), url('/images/hospitality/hospitality-lobby.png')",
+        backgroundImage:
+      "linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(17,17,17,0.5), rgba(0,0,0,0.5)), url('/images/commercial/commercial-lobby.png')",
   }}
-    >
-       <span
+>
+  {/* Accessibility label for background image */}
+  <span
     className="sr-only"
     role="img"
-    aria-label="Luxury hotel lobby interior with elegant lighting and modern furnishings"
+    aria-label="Commercial interior lobby with modern furnishings, elegant lighting, and functional workspace design"
   />
+
       <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-        Let’s <span className={COPPER_GRADIENT}>Transform</span> Experiences That Last
+        Let’s<span className={COPPER_GRADIENT}>Transform</span> Office with Duqor
       </h2>
 
       <p className="text-gray-300 max-w-2xl mx-auto mb-10">
-        Collaborate with Duqor to design hospitality spaces that inspire every guest.
+        Where sophistication meets functionality — let’s create your corporate masterpiece
       </p>
 
       <div className="flex justify-center gap-6 flex-wrap">
@@ -552,17 +525,18 @@ function FinalCTA() {
 }
 
 /* ───────────────────────── PAGE EXPORT ───────────────────────── */
-export default function HospitalityInteriors() {
+export default function CommercialInteriors() {
   return (
     <>
       <Head>
-        <title>Duqor Hospitality Interior Design | Luxury Hotel & Restaurant Spaces</title>
-        <meta
-          name="description"
-          content="Duqor creates elegant and functional hospitality interiors for hotels, resorts, and restaurants."
-        />
-        <link rel="canonical" href="https://www.duqor.ae/hospitality" />
-      </Head>
+  <title>Duqor Commercial Interior Design | Corporate & Office Spaces</title>
+  <meta
+    name="description"
+    content="Duqor creates elegant and functional commercial interiors for corporate offices and workspaces. Transforming spaces into productive, stylish, and sophisticated environments."
+  />
+  <link rel="canonical" href="https://www.duqor.ae/commercial-renovation-in-dubai" />
+</Head>
+
 
       <main className="bg-black text-white">
         <HeroSection />

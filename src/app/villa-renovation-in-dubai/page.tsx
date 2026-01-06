@@ -5,6 +5,8 @@ import Image from "next/image";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import Link from "next/link";
+import Head from "next/head";
+
 import {
   ArrowRight,
   Layout,
@@ -613,14 +615,30 @@ function FinalCTA() {
 /* ───────────────────────── PAGE EXPORT ───────────────────────── */
 export default function VillaInteriors() {
   return (
-    <div className="bg-white">
-      <HeroSection />
-      <Introduction />
-      <DesignApproach />
-      <SignatureProjects />
-      <CoreCapabilities />
-      <ClientExperience />
-      <FinalCTA />
-    </div>
+    <>
+      <Head>
+        <title>Luxury Villa Renovation & Interiors in Dubai | Duqor</title>
+        <meta
+          name="description"
+          content="Duqor offers luxury villa renovation and interior design services in Dubai. Transform your villa with premium design, fit-out, and execution."
+        />
+
+        {/* Optional but recommended */}
+        <meta name="robots" content="index, follow" />
+        <meta name="geo.region" content="AE-DU" />
+        <meta name="geo.placename" content="Dubai" />
+        <link rel="canonical" href="https://www.duqor.ae/villa-renovation-in-dubai" />
+      </Head>
+
+      <div className="bg-white">
+        <HeroSection />
+        <Introduction />
+        <DesignApproach />
+        <SignatureProjects />
+        <CoreCapabilities />
+        <ClientExperience />
+        <FinalCTA />
+      </div>
+    </>
   );
 }
