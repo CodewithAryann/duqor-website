@@ -14,7 +14,7 @@ const services = [
       "Premium material and furniture selection",
       "End-to-end project management",
     ],
-    link: "/residential",
+    link: "/residential-renovation-in-dubai",
     img: "/images/portfolio/project-2/pic-1.png",
   },
   {
@@ -25,7 +25,7 @@ const services = [
       "Optimized lighting and spatial flow",
       "Focus on durability and long-term value",
     ],
-    link: "/commercial",
+    link: "/commercial-renovation-in-dubai",
     img: "/images/portfolio/project-3/pic-1.png",
   },
   {
@@ -36,7 +36,7 @@ const services = [
       "Custom furniture and décor for hospitality",
       "Guest-focused design experience",
     ],
-    link: "/hospitality",
+    link: "/hospitality-renovation-in-dubai",
     img: "/images/portfolio/project-5/pic-9.jpg",
   },
 ];

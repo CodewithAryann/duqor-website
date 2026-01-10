@@ -40,7 +40,7 @@ const projectCategories: Category[] = [
     desc: "Inspiring workplaces that enhance creativity and efficiency.",
     projects: [
       {
-        title: "Innovation Hub HQ – City Walk",
+        title: "Dental Clinic – 120 sqft – Timeline: 3 Weeks",
         images: [
           "/images/portfolio/project-1/pic-2.png",
           "/images/portfolio/project-1/pic-3.png",
