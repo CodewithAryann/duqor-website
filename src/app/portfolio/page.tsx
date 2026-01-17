@@ -40,7 +40,7 @@ const projectCategories: Category[] = [
     desc: "Inspiring workplaces that enhance creativity and efficiency.",
     projects: [
       {
-        title: "Dental Clinic – 120 sqft – Timeline: 3 Weeks",
+        title: "Aesthetic clinic – 85 Sqm - 5 Weeks",
         images: [
           "/images/portfolio/project-1/pic-2.png",
           "/images/portfolio/project-1/pic-3.png",
@@ -50,7 +50,7 @@ const projectCategories: Category[] = [
         ],
       },
       {
-        title: "Corporate Office – Downtown",
+        title: "IT Office - Downtown, Dubai - 160 Sqm - 8 Weeks",
         images: [
           "/images/portfolio/project-3/pic-1.png",
           "/images/portfolio/project-3/pic-2.png",
@@ -61,7 +61,7 @@ const projectCategories: Category[] = [
           "/images/portfolio/project-3/pic-7.png",
         ],
       },{
-        title: "Corporate Office – Downtown",
+        title: "Corporate Office - JAFZA, Dubai - 60 Sqm - 4 Weeks",
         images: [
           "/images/portfolio/project-4/pic-1.png",
           "/images/portfolio/project-4/pic-2.png",
@@ -94,7 +94,7 @@ const projectCategories: Category[] = [
     desc: "Elegant and functional spaces designed for modern living.",
     projects: [
       {
-        title: "Parkside residence – Palm Jumeirah",
+        title: "Duplex Apartment - Parkside Residence, Dubai - 4 Bed Apartment - 7 Weeks",
         images: [
           "/images/portfolio/project-2/pic-1.png",
           "/images/portfolio/project-2/pic-2.png",
@@ -137,7 +137,7 @@ const projectCategories: Category[] = [
     desc: "Immersive guest experiences that balance luxury and comfort.",
     projects: [
       {
-        title: "Luma Boutique Hotel",
+        title: "Al Barsha, Dubai - 1 Bed Apartment - 4 Weeks",
         images: [
           "/images/portfolio/project-5/pic-9.jpg",
           "/images/portfolio/project-5/pic-8.jpg",

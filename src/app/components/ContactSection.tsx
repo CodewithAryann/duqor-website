@@ -121,7 +121,7 @@ const ContactSection: React.FC = () => {
           bg-linear-to-b from-[#e7c675] via-[#c38a27] to-[#8b5b10]
           text-transparent bg-clip-text"
         >
-          Get In Touch
+          Book Free Design Consultation
         </h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
